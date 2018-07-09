@@ -14,12 +14,14 @@ const ClientVersion = "alpha"
 type BNetClient struct {
 	userAgent string
 	client    *http.Client
+	locale    locale.Locale
 }
 
 func New(args ...interface{}) (c *BNetClient, err error) {
 	c = &BNetClient{
 		userAgent: "GoBattleNet/" + ClientVersion,
 		client:    &http.Client{Timeout: (20 * time.Second)},
+		locale:    locale.AmericanEnglish,
 	}
 
 	if nil == args {
@@ -30,6 +32,9 @@ func New(args ...interface{}) (c *BNetClient, err error) {
 		switch t := arg.(type) {
 		case *http.Client:
 			c.client = t
+			return c, nil
+		case locale.Locale:
+			c.locale = t
 			return c, nil
 		case string:
 			return c, nil
