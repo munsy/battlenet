@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+
+	"github.com/munsy/gobattlenet/locale"
 )
 
 // ClientVersion defines the most up-to-date version of the GoBattleNet client.
@@ -17,6 +19,8 @@ type BNetClient struct {
 	locale    locale.Locale
 }
 
+// New creates a new BNetClient. Passing different interface types can cause
+// different behaviors. See function definiton for more details.
 func New(args ...interface{}) (c *BNetClient, err error) {
 	c = &BNetClient{
 		userAgent: "GoBattleNet/" + ClientVersion,
