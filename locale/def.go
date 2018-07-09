@@ -1,4 +1,6 @@
-package battlenet
+package locale
+
+// GET RID OF THIS FILE
 
 var (
 	AmericanEnglish    = "en_US" // American English
