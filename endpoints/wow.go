@@ -16,6 +16,8 @@ var (
 	EndpointWowChallenge         = EndpointWow + "challenge/"
 	EndpointWowRealmLeaderboard  = func(realm string) string { return EndpointWowChallenge + realm }
 	EndpointWowRegionLeaderboard = EndpointWowChallenge + "region"
+	EndpointWowCharacter         = EndpointWow + "character/"
+	EndpointWowCharacterProfile  = func(realm, characterName string) string { return EndpointWowCharacter + realm + "/" + characterName }
 
 /*
 		WOW API
