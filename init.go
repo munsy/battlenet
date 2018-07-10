@@ -1,8 +1,9 @@
 package battlenet
 
+import (
+	"github.com/munsy/gobattlenet/endpoints"
+)
+
 func init() {
-	// Set region global to "us" if it's not already set.
-	if "" == region {
-		region = "us"
-	}
+	endpoints.SetRegion("us")
 }

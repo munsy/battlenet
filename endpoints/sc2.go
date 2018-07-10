@@ -1,0 +1,18 @@
+package endpoints
+
+/*
+		SC2 API
+		--------------------------------------------------------------------
+		PROFILE
+	[ ]	PROFILE 		/SC2/PROFILE/:ID/:REGION/:NAME/
+	[ ]	LADDERS 		/SC2/PROFILE/:ID/:REGION/:NAME/LADDERS
+	[ ]	MATCH HISTORY 	/SC2/PROFILE/:ID/:REGION/:NAME/MATCHES
+
+		LADDER
+	[ ]	LADDER /SC2/LADDER/:ID
+
+		DATA RESOURCES
+	[ ]	ACHIEVEMENTS 	/SC2/DATA/ACHIEVEMENTS
+	[ ]	REWARDS 		/SC2/DATA/REWARDS
+
+*/

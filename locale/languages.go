@@ -1,6 +1,6 @@
 package locale
 
-const languages = []string{
+var languages = []string{
 	"de", // 0
 	"en", // 1
 	"es", // 2

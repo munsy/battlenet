@@ -11,10 +11,10 @@ type Locale struct {
 }
 
 func (l Locale) String() string {
-	if l.dialect > len(dialects) {
+	if int(l.dialect) > len(dialects) {
 		panic(errors.New("Invalid dialect format."))
 	}
-	if l.language > len(languages) {
+	if int(l.language) > len(languages) {
 		panic(errors.New("Invalid language format."))
 	}
 

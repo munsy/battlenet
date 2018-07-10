@@ -1,6 +1,6 @@
 package locale
 
-const dialects = []string{
+var dialects = []string{
 	"BR", // 0
 	"CN", // 1
 	"DE", // 2
