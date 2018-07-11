@@ -10,6 +10,7 @@ var (
 	//	PROFILE
 	WowUser         = wow + "user/"
 	WowOauthProfile = WowUser + "characters" // WOW OAUTH PROFILE /WOW/USER/CHARACTERS
+
 	//	ACHIEVEMENT
 	WowAchievement = func(id int) string { return wow + "achievement/" + strconv.Itoa(id) } // ACHIEVEMENT /WOW/ACHIEVEMENT/:ID
 
@@ -18,17 +19,17 @@ var (
 	WowAuctionDataStatus = func(realm string) string { return WowAuction + "data/" + realm } // AUCTION DATA STATUS /WOW/AUCTION/DATA/:REALM
 
 	//	BOSS
-	WowBossMaster = wow + "boss/"                                                   // MASTER LIST /WOW/BOSS/
-	WowBoss       = func(id int) string { return WowBossMaster + strconv.Itoa(id) } // BOSS /WOW/BOSS/:BOSSID
+	WowBossMasterList = wow + "boss/"                                                       // MASTER LIST /WOW/BOSS/
+	WowBoss           = func(id int) string { return WowBossMasterList + strconv.Itoa(id) } // BOSS /WOW/BOSS/:BOSSID
 
 	//	CHALLENGE MODE
-	WowChallenge         = wow + "challenge/"
-	WowRealmLeaderboard  = func(realm string) string { return WowChallenge + realm } // REALM LEADERBOARD /WOW/CHALLENGE/:REALM
-	WowRegionLeaderboard = WowChallenge + "region"                                   // REGION LEADERBOARD /WOW/CHALLENGE/REGION
+	endpointWowChallenge = wow + "challenge/"
+	WowRealmLeaderboard  = func(realm string) string { return endpointWowChallenge + realm } // REALM LEADERBOARD /WOW/CHALLENGE/:REALM
+	WowRegionLeaderboard = endpointWowChallenge + "region"                                   // REGION LEADERBOARD /WOW/CHALLENGE/REGION
 
 	//	CHARACTER PROFILE
-	WowCharacter        = wow + "character/"
-	WowCharacterProfile = func(realm, characterName string) string { return WowCharacter + realm + "/" + characterName } // CHARACTER PROFILE 	/WOW/CHARACTER/:REALM/:CHARACTERNAME
+	endpointWowCharacter = wow + "character/"
+	WowCharacterProfile  = func(realm, characterName string) string { return endpointWowCharacter + realm + "/" + characterName } // CHARACTER PROFILE 	/WOW/CHARACTER/:REALM/:CHARACTERNAME
 	// ACHIEVEMENTS 	/WOW/CHARACTER/:REALM/:CHARACTERNAME // Implement the rest differently?
 	// APPEARANCE 		/WOW/CHARACTER/:REALM/:CHARACTERNAME
 	// FEED 			/WOW/CHARACTER/:REALM/:CHARACTERNAME
@@ -50,8 +51,8 @@ var (
 	// AUDIT 			/WOW/CHARACTER/:REALM/:CHARACTERNAME
 
 	//	GUILD PROFILE
-	WowGuild        = wow + "guild/"
-	WowGuildProfile = func(realm, guildName string) string { return WowGuild + realm + "/" + guildName } // GUILD PROFILE 	/WOW/GUILD/:REALM/:GUILDNAME
+	endpointWowGuild = wow + "guild/"
+	WowGuildProfile  = func(realm, guildName string) string { return endpointWowGuild + realm + "/" + guildName } // GUILD PROFILE 	/WOW/GUILD/:REALM/:GUILDNAME
 	// MEMBERS 			/WOW/GUILD/:REALM/:GUILDNAME // implement the rest differently?
 	// ACHIEVEMENTS 	/WOW/GUILD/:REALM/:GUILDNAME
 	// NEWS 			/WOW/GUILD/:REALM/:GUILDNAME
@@ -66,14 +67,14 @@ var (
 	WowMount = wow + "mount/" // MASTER LIST /WOW/MOUNT/
 
 	//	PET
-	WowPet          = wow + "pet/"                                                                        // MASTER LIST 	/WOW/PET/
-	WowPetAbilities = func(abilityID int) string { return WowPet + "ability/" + strconv.Itoa(abilityID) } // ABILITIES 		/WOW/PET/ABILITY/:ABILITYID
-	WowPetSpecies   = func(speciesID int) string { return WowPet + "species/" + strconv.Itoa(speciesID) } // SPECIES 		/WOW/PET/SPECIES/:SPECIESID
-	WowPetStats     = func(speciesID int) string { return WowPet + "stats/" + strconv.Itoa(speciesID) }   // STATS 			/WOW/PET/STATS/:SPECIESID
+	WowPetMasterList = wow + "pet/"                                                                                  // MASTER LIST 	/WOW/PET/
+	WowPetAbilities  = func(abilityID int) string { return WowPetMasterList + "ability/" + strconv.Itoa(abilityID) } // ABILITIES 		/WOW/PET/ABILITY/:ABILITYID
+	WowPetSpecies    = func(speciesID int) string { return WowPetMasterList + "species/" + strconv.Itoa(speciesID) } // SPECIES 		/WOW/PET/SPECIES/:SPECIESID
+	WowPetStats      = func(speciesID int) string { return WowPetMasterList + "stats/" + strconv.Itoa(speciesID) }   // STATS 			/WOW/PET/STATS/:SPECIESID
 
 	//	PVP
-	WowPvp          = wow + "leaderboard/"
-	WowLeaderboards = func(bracket string) string { return WowPvp + bracket } // LEADERBOARDS /WOW/LEADERBOARD/:BRACKET
+	endpointWowPvp  = wow + "leaderboard/"
+	WowLeaderboards = func(bracket string) string { return endpointWowPvp + bracket } // LEADERBOARDS /WOW/LEADERBOARD/:BRACKET
 
 	//	QUEST
 	endpointWowQuest = wow + "quest/"
@@ -81,7 +82,7 @@ var (
 
 	//	REALM STATUS
 	endpointWowRealm = wow + "realm/"
-	WowRealmStatus   = endpointRealm + "status" // REALM STATUS /WOW/REALM/STATUS
+	WowRealmStatus   = endpointWowRealm + "status" // REALM STATUS /WOW/REALM/STATUS
 
 	//	RECIPE
 	endpointWowRecipe = wow + "recipe/"
@@ -92,8 +93,8 @@ var (
 	WowSpell         = func(spellID int) string { return endpointWowSpell + strconv.Itoa(spellID) } // SPELL /WOW/SPELL/:SPELLID
 
 	//	ZONE
-	WowZoneList = wow + "zone/"                                                         // MASTER LIST 	/WOW/ZONE/
-	WowZone     = func(zoneID int) string { return WowZoneList + strconv.Itoa(zoneID) } // ZONE 		/WOW/ZONE/:ZONEID
+	WowZoneMasterList = wow + "zone/"                                                               // MASTER LIST 	/WOW/ZONE/
+	WowZone           = func(zoneID int) string { return WowZoneMasterList + strconv.Itoa(zoneID) } // ZONE 		/WOW/ZONE/:ZONEID
 
 	//	DATA RESOURCES
 	endpointWowData          = wow + "data/"
@@ -108,23 +109,20 @@ var (
 	WowGuildAchievements     = endpointWowDataGuild + "achievements"     // GUILD ACHIEVEMENTS 		/WOW/DATA/GUILD/ACHIEVEMENTS
 	WowItemClasses           = endpointWowData + "item/classes"          // ITEM CLASSES 			/WOW/DATA/ITEM/CLASSES
 	WowTalents               = endpointWowData + "talents"               // TALENTS 				/WOW/DATA/TALENTS
-	WowPetTypes              = WowData + "pet/types"                     // PET TYPES 				/WOW/DATA/PET/TYPES
+	WowPetTypes              = endpointWowData + "pet/types"             // PET TYPES 				/WOW/DATA/PET/TYPES
 
 	//	WOW GAME DATA API
 	//	CONNECTED REALM
-	GetConnectedRealmIndex = "/connected-realm/" // GETCONNECTEDREALMINDEX 	/CONNECTED-REALM/
-	// GETCONNECTEDREALM 		/CONNECTED-REALM/{CONNECTEDREALMID}
-	GetConnectedRealm = func(connectedRealmID int) string {
+	GetConnectedRealmIndex = "/connected-realm/"                 // GETCONNECTEDREALMINDEX 	/CONNECTED-REALM/
+	GetConnectedRealm      = func(connectedRealmID int) string { // GETCONNECTEDREALM 		/CONNECTED-REALM/{CONNECTEDREALMID}
 		return GetConnectedRealmIndex + strconv.Itoa(connectedRealmID)
 	}
 
 	//	MYTHIC KEYSTONE LEADERBOARD
-	// GETMYTHICLEADERBOARDINDEX 	/CONNECTED-REALM/{CONNECTEDREALMID}/MYTHIC-LEADERBOARD/
-	GetMythicLeaderboardIndex = func(connectedRealmID int) string {
+	GetMythicLeaderboardIndex = func(connectedRealmID int) string { // GETMYTHICLEADERBOARDINDEX 	/CONNECTED-REALM/{CONNECTEDREALMID}/MYTHIC-LEADERBOARD/
 		return GetConnectedRealm(connectedRealmID) + "/mythic-leaderboard/"
 	}
-	// GETMYTHICLEADERBOARD 		/CONNECTED-REALM/{CONNECTEDREALMID}/MYTHIC-LEADERBOARD/{DUNGEONID}/PERIOD/{PERIOD}
-	GetMythicLeaderboard = func(connectedRealmID, dungeonID, period int) string {
+	GetMythicLeaderboard = func(connectedRealmID, dungeonID, period int) string { // GETMYTHICLEADERBOARD 	/CONNECTED-REALM/{CONNECTEDREALMID}/MYTHIC-LEADERBOARD/{DUNGEONID}/PERIOD/{PERIOD}
 		return GetMythicLeaderboardIndex(connectedRealmID) + strconv.Itoa(dungeonID) + "/period/" + strconv.Itoa(period)
 	}
 
@@ -133,10 +131,10 @@ var (
 
 	//	PLAYABLE CLASS
 	GetPlayableClassesIndex = "/playable-class/"                                                                  // GETPLAYABLECLASSESINDEX /PLAYABLE-CLASS/
-	GetPlayableClass        = func(classID int) string { return GetPlayableClassesIndex + strconv.Itoa(classID) } // GETPLAYABLECLASS 		/PLAYABLE-CLASS/{CLASSID}
+	GetPlayableClass        = func(classID int) string { return GetPlayableClassesIndex + strconv.Itoa(classID) } // GETPLAYABLECLASS 		 /PLAYABLE-CLASS/{CLASSID}
 
 	//	PLAYABLE SPECIALIZATION
-	GetPlayableSpecializationIndex = "/playable-specialization/"                                                              // GETPLAYABLESPECIALIZATIONINDEX 	/PLAYABLE-SPECIALIZATION/
+	GetPlayableSpecializationIndex = "/playable-specialization/"                                                              // GETPLAYABLESPECIALIZATIONINDEX /PLAYABLE-SPECIALIZATION/
 	GetPlayableSpecialization      = func(specID int) string { return GetPlayableSpecializationIndex + strconv.Itoa(specID) } // GETPLAYABLESPECIALIZATION 		/PLAYABLE-SPECIALIZATION/{SPECID}
 
 	//	REALM

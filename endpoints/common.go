@@ -35,7 +35,7 @@ var (
 		return "https://us.battle.net/oauth/" + endpoint
 	}
 
-	EndpointAPI = func() string {
+	API = func() string {
 		r := strings.ToLower(region)
 		switch r {
 		case "us":
