@@ -37,27 +37,30 @@ var (
 	}
 
 	// D3 ITEM TYPE
-
 	// 	GETITEMTYPEINDEX 	/D3/DATA/ITEM-TYPE
-
+	GetD3ItemTypeIndex = endpointD3Data + "item-type"
 	// 	GETITEMTYPE 		/D3/DATA/ITEM-TYPE/{ITEMTYPESLUG}
+	GetD3ItemType = func(itemTypeSlug string) string { return GetD3ItemTypeIndex + "/" + itemTypeSlug }
 
 	// D3 ITEM
-
+	endpointD3Item = endpointD3Data + "item/"
 	// 	GETITEM /D3/DATA/ITEM/{ITEMSLUGANDID}
+	GetD3Item = func(itemSlugAndID string) string { return endpointD3Item + itemSlugAndID }
 
 	// D3 PROFILE
-
+	endpointD3Profile = endpointD3 + "profile/"
 	// 	GETAPIACCOUNT 				/D3/PROFILE/{ACCOUNT}/
-
+	GetD3ApiAccount = func(account string) string { return endpointD3Profile + account }
 	// 	GETAPIHERO 					/D3/PROFILE/{ACCOUNT}/HERO/{HEROID}
-
+	GetD3ApiHero = func(account string, heroID int) string {
+		return GetD3ApiAccount(account) + "/hero/" + strconv.Itoa(heroID)
+	}
 	// 	GETAPIDETAILEDHEROITEMS 	/D3/PROFILE/{ACCOUNT}/HERO/{HEROID}/ITEMS
-
+	GetD3ApiDetailedHeroItems = func(account string, heroID int) string { return GetD3ApiHero(account, heroID) + "/items" }
 	// 	GETAPIDETAILEDFOLLOWERITEMS /D3/PROFILE/{ACCOUNT}/HERO/{HEROID}/FOLLOWER-ITEMS
+	GetD3ApiDetailedFollowerItems = func(account string, heroID int) string { return GetD3ApiHero(account, heroID) + "/follower-items" }
 
 	// D3 GAME DATA API
-	// --------------------------------------------------------------------
 	// D3
 	endpointDataD3 = endpointData + "d3/"
 	// 	SEASON INDEX 		/DATA/D3/SEASON/
