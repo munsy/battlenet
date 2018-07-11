@@ -7,37 +7,37 @@ import (
 var (
 	//	WOW API
 	//	------------------------------------------------------------
-	EndpointWow                  = EndpointAPI() + "wow/"
+	EndpointWow = EndpointAPI() + "wow/"
 	//	PROFILE
-	EndpointWowUser              = EndpointWow + "user/"
+	EndpointWowUser = EndpointWow + "user/"
 	//[x]	WOW OAUTH PROFILE /WOW/USER/CHARACTERS\
-	EndpointWowOauthProfile      = EndpointWowUser + "characters"
+	EndpointWowOauthProfile = EndpointWowUser + "characters"
 	//	ACHIEVEMENT
 	//[x]	ACHIEVEMENT /WOW/ACHIEVEMENT/:ID
-	EndpointWowAchievement       = func(id int) string { return EndpointWow + "achievement/" + strconv.Itoa(id) }
+	EndpointWowAchievement = func(id int) string { return EndpointWow + "achievement/" + strconv.Itoa(id) }
 
 	//	AUCTION
-	EndpointWowAuction           = EndpointWow + "auction/"
+	EndpointWowAuction = EndpointWow + "auction/"
 	//[x]	AUCTION DATA STATUS /WOW/AUCTION/DATA/:REALM
 	EndpointWowAuctionDataStatus = func(realm string) string { return EndpointWowAuction + "data/" + realm }
 
 	//	BOSS
 	//[x]	MASTER LIST /WOW/BOSS/
-	EndpointWowBossMaster        = EndpointWow + "boss/"
+	EndpointWowBossMaster = EndpointWow + "boss/"
 	//[x]	BOSS /WOW/BOSS/:BOSSID
-	EndpointWowBoss              = func(id int) string { return EndpointWowBossMaster + strconv.Itoa(id) }
+	EndpointWowBoss = func(id int) string { return EndpointWowBossMaster + strconv.Itoa(id) }
 
 	//	CHALLENGE MODE
-	EndpointWowChallenge         = EndpointWow + "challenge/"
+	EndpointWowChallenge = EndpointWow + "challenge/"
 	//[x]	REALM LEADERBOARD /WOW/CHALLENGE/:REALM
-	EndpointWowRealmLeaderboard  = func(realm string) string { return EndpointWowChallenge + realm }
+	EndpointWowRealmLeaderboard = func(realm string) string { return EndpointWowChallenge + realm }
 	//[x]	REGION LEADERBOARD /WOW/CHALLENGE/REGION
 	EndpointWowRegionLeaderboard = EndpointWowChallenge + "region"
 
 	//	CHARACTER PROFILE
-	EndpointWowCharacter         = EndpointWow + "character/"
+	EndpointWowCharacter = EndpointWow + "character/"
 	//[x]	CHARACTER PROFILE 	/WOW/CHARACTER/:REALM/:CHARACTERNAME // Implement the rest differently?
-	EndpointWowCharacterProfile  = func(realm, characterName string) string { return EndpointWowCharacter + realm + "/" + characterName }
+	EndpointWowCharacterProfile = func(realm, characterName string) string { return EndpointWowCharacter + realm + "/" + characterName }
 	//[ ]	ACHIEVEMENTS 		/WOW/CHARACTER/:REALM/:CHARACTERNAME
 	//[ ]	APPEARANCE 			/WOW/CHARACTER/:REALM/:CHARACTERNAME
 	//[ ]	FEED 				/WOW/CHARACTER/:REALM/:CHARACTERNAME
@@ -59,7 +59,7 @@ var (
 	//[ ]	AUDIT 				/WOW/CHARACTER/:REALM/:CHARACTERNAME
 
 	//	GUILD PROFILE
-	EndpointWowGuild        = EndpointWow + "guild/"
+	EndpointWowGuild = EndpointWow + "guild/"
 	//[x]	GUILD PROFILE 	/WOW/GUILD/:REALM/:GUILDNAME // implement the rest differently?
 	EndpointWowGuildProfile = func(realm, guildName string) string { return EndpointWowGuild + realm + "/" + guildName }
 	//[ ]	MEMBERS 		/WOW/GUILD/:REALM/:GUILDNAME
@@ -68,28 +68,28 @@ var (
 	//[ ]	CHALLENGE 		/WOW/GUILD/:REALM/:GUILDNAME
 
 	//	ITEM
-	endpointWowItem 		= EndpointWow + "item/"
+	endpointWowItem = EndpointWow + "item/"
 	//[x]	ITEM 		/WOW/ITEM/:ITEMID
-	EndpointWowItem 		= func(itemID int) string { return endpointWowItem + strconv.Itoa(itemID) }
+	EndpointWowItem = func(itemID int) string { return endpointWowItem + strconv.Itoa(itemID) }
 	//[x]	ITEM SET 	/WOW/ITEM/SET/:SETID
-	EndpointWowItemSet 		= func(setID int) string { return endpointWowItem + "set/" + strconv.Itoa(setID) }
+	EndpointWowItemSet = func(setID int) string { return endpointWowItem + "set/" + strconv.Itoa(setID) }
 
 	//	MOUNT
 	//[x]	MASTER LIST /WOW/MOUNT/
-	EndpointWowMount		= EndpointWow + "mount/"
+	EndpointWowMount = EndpointWow + "mount/"
 
 	//	PET
 	//[x]	MASTER LIST /WOW/PET/
-	EndpointWowPet 			= EndpointWow + "pet/"
+	EndpointWowPet = EndpointWow + "pet/"
 	//[x]	ABILITIES 	/WOW/PET/ABILITY/:ABILITYID
 	EndpointWowPetAbilities = func(abilityID int) string { return EndpointWowPet + "ability/" + strconv.Itoa(abilityID) }
 	//[x]	SPECIES 	/WOW/PET/SPECIES/:SPECIESID
-	EndpointWowPetSpecies 	= func(speciesID int) string { return EndpointWowPet + "species/" + strconv.Itoa(speciesID) }
+	EndpointWowPetSpecies = func(speciesID int) string { return EndpointWowPet + "species/" + strconv.Itoa(speciesID) }
 	//[x]	STATS 		/WOW/PET/STATS/:SPECIESID
-	EndpointWowPetStats 	= func(speciesID int) string { return EndpointWowPet + "stats/" + strconv.Itoa(speciesID) }
+	EndpointWowPetStats = func(speciesID int) string { return EndpointWowPet + "stats/" + strconv.Itoa(speciesID) }
 
 	//	PVP
-	EndpointWowPvp 			= EndpointWow + "leaderboard/"
+	EndpointWowPvp = EndpointWow + "leaderboard/"
 	//[x]	LEADERBOARDS /WOW/LEADERBOARD/:BRACKET
 	EndpointWowLeaderboards = func(bracket string) string { return EndpointWowPvp + bracket }
 
@@ -102,7 +102,6 @@ var (
 	endpointWowRealm = EndpointWow + "realm/"
 	//[x]	REALM STATUS /WOW/REALM/STATUS
 	EndpointWowRealmStatus = endpointRealm + "status"
-
 
 	//	RECIPE
 	endpointWowRecipe = EndpointWow + "recipe/"
@@ -119,11 +118,11 @@ var (
 	EndpointWowZoneList = EndpointWow + "zone/"
 	//[x]	ZONE 		/WOW/ZONE/:ZONEID
 	EndpointWowZone = func(zoneID int) string { return EndpointWowZoneList + strconv.Itoa(zoneID) }
-	
+
 	//	DATA RESOURCES
-	endpointWowData = EndpointWow + "data/"
+	endpointWowData          = EndpointWow + "data/"
 	endpointWowDataCharacter = endpointWowData + "character/"
-	endpointWowDataGuild = endpointWowData + "guild/"
+	endpointWowDataGuild     = endpointWowData + "guild/"
 	//[x]	BATTLEGROUPS 			/WOW/DATA/BATTLEGROUPS/
 	EndpointWowBattlegroups = endpointWowData + "battlegroups/"
 	//[x]	CHARACTER RACES 		/WOW/DATA/CHARACTER/RACES
@@ -148,35 +147,53 @@ var (
 	//	WOW GAME DATA API
 	//	--------------------------------------------------------------------
 	//	CONNECTED REALM
+	EndpointGet = ""
 	//[ ]	GETCONNECTEDREALMINDEX 	/CONNECTED-REALM/
-	EndpointWowConnectedRealmIndex = "/connected-realm/"
+	EndpointGetConnectedRealmIndex = "/connected-realm/"
 	//[ ]	GETCONNECTEDREALM 		/CONNECTED-REALM/{CONNECTEDREALMID}
+	EndpointGetConnectedRealm = func(connectedRealmID int) string {
+		return EndpointGetConnectedRealmIndex + strconv.Itoa(connectedRealmID)
+	}
 
 	//	MYTHIC KEYSTONE LEADERBOARD
 	//[ ]	GETMYTHICLEADERBOARDINDEX 	/CONNECTED-REALM/{CONNECTEDREALMID}/MYTHIC-LEADERBOARD/
+	EndpointGetMythicLeaderboardIndex = func(connectedRealmID int) string {
+		return EndpointGetConnectedRealm(connectedRealmID) + "/mythic-leaderboard/"
+	}
 	//[ ]	GETMYTHICLEADERBOARD 		/CONNECTED-REALM/{CONNECTEDREALMID}/MYTHIC-LEADERBOARD/{DUNGEONID}/PERIOD/{PERIOD}
+	EndpointGetMythicLeaderboard = func(connectedRealmID, dungeonID, period int) string {
+		return EndpointGetMythicLeaderboardIndex(connectedRealmID) + strconv.Itoa(dungeonID) + "/period/" + strconv.Itoa(period)
+	}
 
 	//	MYTHIC CHALLENGE MODE
 	//[ ]	GETMYTHICCHALLENGEMODEINDEX /MYTHIC-CHALLENGE-MODE/
+	EndpointGetMythicChallengeModeIndex = "/mythic-challenge-mode/"
 
 	//	PLAYABLE CLASS
 	//[ ]	GETPLAYABLECLASSESINDEX /PLAYABLE-CLASS/
+	EndpointGetPlayableClassesIndex = "/playable-class/"
 	//[ ]	GETPLAYABLECLASS 		/PLAYABLE-CLASS/{CLASSID}
+	EndpointGetPlayableClass = func(classID int) string { return EndpointGetPlayableClassesIndex + strconv.Itoa(classID) }
 
 	//	PLAYABLE SPECIALIZATION
 	//[ ]	GETPLAYABLESPECIALIZATIONINDEX 	/PLAYABLE-SPECIALIZATION/
+	EndpointGetPlayableSpecializationIndex = "/playable-specialization/"
 	//[ ]	GETPLAYABLESPECIALIZATION 		/PLAYABLE-SPECIALIZATION/{SPECID}
+	EndpointGetPlayableSpecialization = func(specID int) string { return EndpointGetPlayableSpecializationIndex + strconv.Itoa(specID) }
 
 	//	REALM
 	//[ ]	GETREALMINDEX 	/REALM/
+	EndpointGetRealmIndex = "/realm/"
 	//[ ]	GETREALM 		/REALM/{REALMSLUG}
+	EndpointGetRealm = func(realmslug string) string { return EndpointGetRealmIndex + realmslug }
 
 	//	REGION
 	//[ ]	GETREGIONINDEX 	/REGION/
+	EndpointGetRegionIndex = "/region/"
 	//[ ]	GETREGION 		/REGION/{REGIONID}
+	EndpointGetRegion = func(regionID int) string { return EndpointGetRegionIndex + strconv.Itoa(regionID) }
 
 	//	WOW TOKEN
 	//[ ]	GETTOKENINDEX /TOKEN/
-
-*/
+	EndpointGetWowTokenIndex = "/token/"
 )
