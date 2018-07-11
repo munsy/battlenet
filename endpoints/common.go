@@ -13,7 +13,7 @@ func SetRegion(r string) {
 }
 
 var (
-	EndpointOauth2 = func(endpoint string) string {
+	endpointOauth2 = func(endpoint string) string {
 		if "token" != endpoint && "authorize" != endpoint {
 			panic(errors.New("Can't resolve endpoint."))
 		}
@@ -52,6 +52,6 @@ var (
 		return "https://us.api.battle.net/"
 	}
 
-	AuthURL  = EndpointOauth2("authorize")
-	TokenURL = EndpointOauth2("token")
+	AuthURL  = endpointOauth2("authorize")
+	TokenURL = endpointOauth2("token")
 )
