@@ -52,6 +52,8 @@ var (
 		return "https://us.api.battle.net/"
 	}
 
+	endpointData = API() + "data/"
+
 	AuthURL  = endpointOauth2("authorize")
 	TokenURL = endpointOauth2("token")
 )
