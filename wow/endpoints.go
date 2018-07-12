@@ -17,12 +17,12 @@ var (
 	Achievement = func(id int) string { return wowAPI + "achievement/" + strconv.Itoa(id) } // ACHIEVEMENT /WOW/ACHIEVEMENT/:ID
 
 	//	AUCTION
-	Auction           = wowAPI + "auction/"
-	AuctionDataStatus = func(realm string) string { return Auction + "data/" + realm } // AUCTION DATA STATUS /WOW/AUCTION/DATA/:REALM
+	endpointAuction   = wowAPI + "auction/"
+	AuctionDataStatus = func(realm string) string { return endpointAuction + "data/" + realm } // AUCTION DATA STATUS /WOW/AUCTION/DATA/:REALM
 
 	//	BOSS
 	BossMasterList = wowAPI + "boss/"                                                 // MASTER LIST /WOW/BOSS/
-	Boss           = func(id int) string { return BossMasterList + strconv.Itoa(id) } // BOSS /WOW/BOSS/:BOSSID
+	BossInfo       = func(id int) string { return BossMasterList + strconv.Itoa(id) } // BOSS /WOW/BOSS/:BOSSID
 
 	//	CHALLENGE MODE
 	endpointChallenge = wowAPI + "challenge/"
