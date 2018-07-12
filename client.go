@@ -12,7 +12,7 @@ import (
 )
 
 // ClientVersion defines the most up-to-date version of the GoBattleNet client.
-const ClientVersion = "alpha"
+const ClientVersion = "1.0"
 
 // BNetClient defines the client for calling the Battle.net API.
 type BNetClient struct {
