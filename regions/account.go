@@ -1,4 +1,4 @@
-package models
+package regions
 
 // BnetUser provides the battletag and ID number for a Battle.net account.
 type BnetUser struct {

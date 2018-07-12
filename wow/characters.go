@@ -1,6 +1,6 @@
-package models
+package wow
 
-// CharacterSpec represents the character specilization information 
+// CharacterSpec represents the character specilization information
 // for a particular WoW character from a given WoW profile.
 type CharacterSpec struct {
 	Name            string `json:"name"`
@@ -29,7 +29,6 @@ type Character struct {
 }
 
 // Characters type represents a Character slice.
-type Characters struct{
+type Characters struct {
 	CharacterList []Character `json:"characters"`
 }
-
