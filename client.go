@@ -21,18 +21,12 @@ type BNetClient struct {
 	locale    locale.Locale
 }
 
-// BNetSettings defines settings for a BNetClient.
-type BNetSettings struct {
-	Client *http.Client
-	Locale locale.Locale
-}
-
 // New creates a new BNetClient. Passing different interface types can cause
 // different behaviors. See function definiton for more details.
 func New(args ...interface{}) (c *BNetClient, err error) {
 	c = &BNetClient{
 		userAgent: "GoBattleNet/" + ClientVersion,
-		client:    &http.Client{Timeout: (20 * time.Second)},
+		client:    &http.Client{Timeout: (10 * time.Second)},
 		locale:    locale.AmericanEnglish,
 	}
 
@@ -56,7 +50,17 @@ func New(args ...interface{}) (c *BNetClient, err error) {
 			return nil, errors.New(fmt.Sprintf("Type %v is not supported.", t))
 		}
 	}
-	panic(errors.New(fmt.Sprintf("Unresolved arguments...")))
+	return nil, errors.New("Unresolved constructor.")
+}
+
+// Locale gets the client's locale.
+func (c *BNetClient) Locale() locale.Locale {
+	return c.locale
+}
+
+// SetLocale sets the client's locale.
+func (c *BNetClient) SetLocale(locale locale.Locale) {
+	c.locale = locale
 }
 
 // Convert an HTTP response from a given URL to the supplied interface.
