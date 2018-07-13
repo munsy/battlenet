@@ -1,7 +1,5 @@
 package sc2
 
-package sc2
-
 type Career struct {
 	PrimaryRace      string `json:"primaryRace"`
 	TerranWins       int    `json:"terranWins"`
