@@ -34,7 +34,7 @@ type SwarmLevels struct {
 	Protoss Protoss `json:"protoss"`
 }
 
-type Portrait struct {
+type Icon struct {
 	X      int    `json:"x"`
 	Y      int    `json:"y"`
 	W      int    `json:"w"`
@@ -59,14 +59,7 @@ type Rewards struct {
 	Earned   []int64       `json:"earned"`
 }
 
-type CategoryPoints struct {
-	Num4325377 int `json:"4325377"`
-	Num4325379 int `json:"4325379"`
-	Num4325410 int `json:"4325410"`
-	Num4330138 int `json:"4330138"`
-	Num4364473 int `json:"4364473"`
-	Num4386911 int `json:"4386911"`
-}
+type CategoryPoints interface{}
 
 type Points struct {
 	TotalPoints    int            `json:"totalPoints"`
@@ -83,14 +76,14 @@ type Achievements struct {
 	Achievements []Achievement `json:"achievements"`
 }
 
-type Profile struct {
+type Character struct {
 	ID           int          `json:"id"`
 	Realm        int          `json:"realm"`
 	DisplayName  string       `json:"displayName"`
 	ClanName     string       `json:"clanName"`
 	ClanTag      string       `json:"clanTag"`
 	ProfilePath  string       `json:"profilePath"`
-	Portrait     Portrait     `json:"portrait"`
+	Portrait     Icon         `json:"portrait"`
 	Career       Career       `json:"career"`
 	SwarmLevels  SwarmLevels  `json:"swarmLevels"`
 	Campaign     Campaign     `json:"campaign"`
