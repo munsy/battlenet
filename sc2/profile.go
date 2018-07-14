@@ -91,3 +91,39 @@ type Character struct {
 	Rewards      Rewards      `json:"rewards"`
 	Achievements Achievements `json:"achievements"`
 }
+
+type LadderData struct {
+	LadderName       string `json:"ladderName"`
+	LadderID         int    `json:"ladderId"`
+	Division         int    `json:"division"`
+	Rank             int    `json:"rank"`
+	League           string `json:"league"`
+	MatchMakingQueue string `json:"matchMakingQueue"`
+	Wins             int    `json:"wins"`
+	Losses           int    `json:"losses"`
+	Showcase         bool   `json:"showcase"`
+}
+
+type SeasonData struct {
+	Ladder     []LadderData  `json:"ladder"`
+	Characters []Character   `json:"characters"`
+	NonRanked  []interface{} `json:"nonRanked"`
+}
+
+type LadderSeasons struct {
+	CurrentSeason     []SeasonData  `json:"currentSeason"`
+	PreviousSeason    []SeasonData  `json:"previousSeason"`
+	ShowcasePlacement []interface{} `json:"showcasePlacement"`
+}
+
+type Match struct {
+	Map      string `json:"map"`
+	Type     string `json:"type"`
+	Decision string `json:"decision"`
+	Speed    string `json:"speed"`
+	Date     int    `json:"date"`
+}
+
+type MatchHistory struct {
+	Matches []Match `json:"matches"`
+}
