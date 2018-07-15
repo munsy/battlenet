@@ -3,6 +3,7 @@ package battlenet
 // ClientVersion defines the most up-to-date version of the GoBattleNet client.
 const ClientVersion = "1.0"
 
+// Client is the interface for each individual game type to implement.
 type Client interface {
 	// Locale gets the client's locale.
 	Locale() locale.Locale

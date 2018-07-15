@@ -77,15 +77,15 @@ func (c *D3Client) UserAgent() string {
 	return c.userAgent
 }
 
-// Convert an HTTP response from a given URL to the supplied interface.
+// Convert an HTTP response from a given endpoint to the supplied interface.
 // This function expects the body to contain the associated JSON response
-// from the given URL and will return an error if it fails to properly unmarshal.
-func (c *D3Client) get(url string, v interface{}) error {
+// from the given endpoint and will return an error if it fails to properly unmarshal.
+func (c *D3Client) get(endpoint string, v interface{}) error {
 	if nil == v {
 		return errors.New("No interface supplied.")
 	}
 
-	response, err := http.Get(url)
+	response, err := http.Get(endpoint)
 	if nil != err {
 		return err
 	}

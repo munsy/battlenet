@@ -22,9 +22,9 @@ type Character struct {
 	Level             int           `json:"level"`
 	AchievementPoints int           `json:"achievementPoints"`
 	Thumbnail         string        `json:"thumbnail"`
-	Spec              CharacterSpec `json:"spec"`
-	Guild             string        `json:"guild"`
-	GuildRealm        string        `json:"guildRealm"`
+	Spec              CharacterSpec `json:"spec,omitempty"`
+	Guild             string        `json:"guild,omitempty"`
+	GuildRealm        string        `json:"guildRealm,omitempty"`
 	LastModified      int           `json:"lastModified"`
 }
 
