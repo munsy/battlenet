@@ -19,6 +19,7 @@ const (
 	D3
 )
 
+// New returns a new Battle.net API client, according to the type passed to it.
 func New(t ClientType, args ...interface{}) (*Client, error) {
 	var c *Client
 	var err error
@@ -38,7 +39,7 @@ func New(t ClientType, args ...interface{}) (*Client, error) {
 		break
 	default:
 		c = nil
-		err = errors.New(fmt.Sprintf("%v is not supported.", t))
+		err = ErrorUnsupportedArgument
 		break
 	}
 

@@ -1,7 +1,5 @@
 package wow
 
-// https://us.api.battle.net/wow/guild/stormrage/Casual%20Cupcake?fields=members&locale=en_US&apikey= + os.Getenv("BNETKEY")
-
 // GuildInfo contains all the information for a guild's members,
 // Battlegroup, achievement points, emblem, etc.
 type GuildInfo struct {

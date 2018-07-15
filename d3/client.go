@@ -45,7 +45,7 @@ func New(args ...interface{}) (c *D3Client, err error) {
 		case locale.Locale:
 			c.locale = t
 			break
-		case BNetSettings:
+		case battlenet.BNetSettings:
 			c.client = t.Client
 			c.locale = t.Locale
 			c.token = t.Token
