@@ -51,7 +51,7 @@ func New(args ...interface{}) (c *WoWClient, err error) {
 			c.token = t.Token
 			break
 		default:
-			return nil, errors.New(fmt.Sprintf("Type %v is not supported.", t))
+			return nil, battlenet.ErrorUnsupportedArgument
 		}
 	}
 	return c, nil
@@ -82,7 +82,7 @@ func (c *WoWClient) UserAgent() string {
 // from the given endpoint and will return an error if it fails to properly unmarshal.
 func (c *WoWClient) get(endpoint string, v interface{}) error {
 	if nil == v {
-		return errors.New("No interface supplied.")
+		return battlenet.ErrorNoInterfaceSupplied
 	}
 
 	response, err := http.Get(endpoint)
