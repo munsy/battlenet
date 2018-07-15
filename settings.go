@@ -10,4 +10,5 @@ import (
 type BNetSettings struct {
 	Client *http.Client
 	Locale locale.Locale
+	Token  string
 }

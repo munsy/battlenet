@@ -19,6 +19,7 @@ type BNetClient struct {
 	userAgent string
 	client    *http.Client
 	locale    locale.Locale
+	token     string
 }
 
 // New creates a new BNetClient. Passing different interface types can cause
@@ -28,6 +29,7 @@ func New(args ...interface{}) (c *BNetClient, err error) {
 		userAgent: "GoBattleNet/" + ClientVersion,
 		client:    &http.Client{Timeout: (10 * time.Second)},
 		locale:    locale.AmericanEnglish,
+		token:     "",
 	}
 
 	if nil == args {
@@ -36,21 +38,25 @@ func New(args ...interface{}) (c *BNetClient, err error) {
 
 	for _, arg := range args {
 		switch t := arg.(type) {
+		case string:
+			c.token = t
+			break
 		case *http.Client:
 			c.client = t
-			return c, nil
+			break
 		case locale.Locale:
 			c.locale = t
-			return c, nil
+			break
 		case BNetSettings:
 			c.client = t.Client
 			c.locale = t.Locale
-			return c, nil
+			c.token = t.Token
+			break
 		default:
 			return nil, errors.New(fmt.Sprintf("Type %v is not supported.", t))
 		}
 	}
-	return nil, errors.New("Unresolved constructor.")
+	return c, nil
 }
 
 // Locale gets the client's locale.
