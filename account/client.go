@@ -15,6 +15,7 @@ type AccountClient struct {
 	userAgent string
 	client    *http.Client
 	locale    locale.Locale
+	region    regions.Region
 	token     string
 }
 
@@ -25,6 +26,7 @@ func New(args ...interface{}) (c *AccountClient, err error) {
 		userAgent: "GoBattleNetAccount/" + battlenet.ClientVersion,
 		client:    &http.Client{Timeout: (10 * time.Second)},
 		locale:    locale.AmericanEnglish,
+		region:    regions.US,
 		token:     "",
 	}
 
@@ -75,44 +77,7 @@ func (c *AccountClient) UserAgent() string {
 	return c.userAgent
 }
 
-func (c *AccountClient) BattleID(region string) (*BattleID, error) {
-	var bid *BattleID
-
+// SetRegion sets the client's region.
+func (c *AccountClient) SetRegion(region regions.Region) {
 	regions.SetRegion(region)
-
-	err := c.get(regions.EndpointUser, bid)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return bid, nil
-}
-
-func (c *AccountClient) Sc2OauthProfile(region string) (*sc2.Character, error) {
-	var character *sc2.Character
-
-	regions.SetRegion(region)
-
-	err := c.get(endpointSc2User, character)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return character, nil
-}
-
-func (c *AccountClient) WoWOauthProfile() (*wow.Characters, error) {
-	var character *wow.Character
-
-	regions.SetRegion(region)
-
-	err := c.get(endpointWowCharacters, character)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return character, nil
 }

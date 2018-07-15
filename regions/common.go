@@ -3,6 +3,8 @@ package regions
 import (
 	"errors"
 	"strings"
+
+	"github.com/munsy/gobattlenet"
 )
 
 // Region can be one of: "us", "eu", "apac", or "cn"
@@ -15,7 +17,7 @@ func SetRegion(r string) {
 var (
 	endpointOauth2 = func(endpoint string) string {
 		if "token" != endpoint && "authorize" != endpoint {
-			panic(errors.New("Can't resolve endpoint."))
+			panic(battlenet.ErrorUnresolvedEndpoint)
 		}
 
 		r := strings.ToLower(region)

@@ -1,0 +1,40 @@
+package account
+
+// BattleID returns the Battle.net ID and BattleTag.
+func (c *AccountClient) BattleID(region string) (*BattleID, error) {
+	var bid *BattleID
+
+	err := c.get(regions.EndpointUser, bid)
+
+	if nil != err {
+		return nil, err
+	}
+
+	return bid, nil
+}
+
+// Sc2OauthProfile returns details about a character.
+func (c *AccountClient) Sc2OauthProfile(region string) (*sc2.Character, error) {
+	var character *sc2.Character
+
+	err := c.get(endpointSc2User, character)
+
+	if nil != err {
+		return nil, err
+	}
+
+	return character, nil
+}
+
+// WoWOauthProfile returns details about the WoW account.
+func (c *AccountClient) WoWOauthProfile() (*wow.Characters, error) {
+	var character *wow.Character
+
+	err := c.get(endpointWowCharacters, character)
+
+	if nil != err {
+		return nil, err
+	}
+
+	return character, nil
+}
