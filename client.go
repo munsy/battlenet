@@ -14,7 +14,7 @@ type ClientType int
 
 const (
 	Account ClientType = iota
-	Wow
+	WoW
 	Sc2
 	D3
 )
@@ -34,7 +34,7 @@ func New(t ClientType, args ...interface{}) (*Client, error) {
 	case Sc2:
 		c, err = sc2.New(args), nil
 		break
-	case Wow:
+	case WoW:
 		c, err = wow.New(args), nil
 		break
 	default:

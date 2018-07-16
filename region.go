@@ -74,6 +74,7 @@ func (r Region) API() string {
 	return url
 }
 
+// Helper for building OAuth2 URLs.
 func (r Region) oauthHelper(endpoint string) string {
 	var url string
 	switch r {
