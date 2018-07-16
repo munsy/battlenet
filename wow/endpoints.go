@@ -6,32 +6,31 @@ import (
 	"github.com/munsy/gobattlenet/regions"
 )
 
+// r battlenet.Region,
 var (
-	wowAPI = regions.API() + "wow/"
-
-	//	PROFILE
-	User         = wowAPI + "user/"
-	OauthProfile = User + "characters" // WOW OAUTH PROFILE /WOW/USER/CHARACTERS
+	endpointWow = func(r battlenet.Region) string { return r.API() + "wow/" }
 
 	//	ACHIEVEMENT
-	Achievement = func(id int) string { return wowAPI + "achievement/" + strconv.Itoa(id) } // ACHIEVEMENT /WOW/ACHIEVEMENT/:ID
+	Achievement = func(r battlenet.Region, id int) string { return endpointWow(r) + "achievement/" + strconv.Itoa(id) } // ACHIEVEMENT /WOW/ACHIEVEMENT/:ID
 
 	//	AUCTION
-	endpointAuction   = wowAPI + "auction/"
-	AuctionDataStatus = func(realm string) string { return endpointAuction + "data/" + realm } // AUCTION DATA STATUS /WOW/AUCTION/DATA/:REALM
+	endpointAuction           = func(r battlenet.Region) string { return endpointWow(r) + "auction/" }
+	endpointAuctionDataStatus = func(r battlenet.Region, realm string) string { return endpointAuction(r) + "data/" + realm } // AUCTION DATA STATUS /WOW/AUCTION/DATA/:REALM
 
 	//	BOSS
-	BossMasterList = wowAPI + "boss/"                                                 // MASTER LIST /WOW/BOSS/
-	BossInfo       = func(id int) string { return BossMasterList + strconv.Itoa(id) } // BOSS /WOW/BOSS/:BOSSID
+	endpointBossMasterList = func(r battlenet.Region) string { return endpointWow(r) + "boss/" }                             // MASTER LIST /WOW/BOSS/
+	endpointBossInfo       = func(r battlenet.Region, id int) string { return endpointBossMasterList(r) + strconv.Itoa(id) } // BOSS /WOW/BOSS/:BOSSID
 
 	//	CHALLENGE MODE
-	endpointChallenge = wowAPI + "challenge/"
-	RealmLeaderboard  = func(realm string) string { return endpointChallenge + realm } // REALM LEADERBOARD /WOW/CHALLENGE/:REALM
-	RegionLeaderboard = endpointChallenge + "region"                                   // REGION LEADERBOARD /WOW/CHALLENGE/REGION
+	endpointChallenge         = func(r battlenet.Region) string { return endpointWow(r) + "challenge/" }
+	endpointRealmLeaderboard  = func(r battlenet.Region, realm string) string { return endpointChallenge(r) + realm } // REALM LEADERBOARD /WOW/CHALLENGE/:REALM
+	endpointRegionLeaderboard = func(r battlenet.Region) string { return endpointChallenge(r) + "region" }            // REGION LEADERBOARD /WOW/CHALLENGE/REGION
 
 	//	CHARACTER PROFILE
-	endpointCharacter = wowAPI + "character/"
-	CharacterProfile  = func(realm, characterName string) string { return endpointCharacter + realm + "/" + characterName } // CHARACTER PROFILE 	/WOW/CHARACTER/:REALM/:CHARACTERNAME
+	endpointCharacter        = func(r battlenet.Region) string { return endpointWow(r) + "character/" }
+	endpointCharacterProfile = func(r battlenet.Region, realm, characterName string) string {
+		return endpointCharacter(r) + realm + "/" + characterName
+	} // CHARACTER PROFILE 	/WOW/CHARACTER/:REALM/:CHARACTERNAME
 	// ACHIEVEMENTS 	/WOW/CHARACTER/:REALM/:CHARACTERNAME // Implement the rest differently?
 	// APPEARANCE 		/WOW/CHARACTER/:REALM/:CHARACTERNAME
 	// FEED 			/WOW/CHARACTER/:REALM/:CHARACTERNAME
@@ -53,100 +52,114 @@ var (
 	// AUDIT 			/WOW/CHARACTER/:REALM/:CHARACTERNAME
 
 	//	GUILD PROFILE
-	endpointGuild = wowAPI + "guild/"
-	GuildProfile  = func(realm, guildName string) string { return endpointGuild + realm + "/" + guildName } // GUILD PROFILE 	/WOW/GUILD/:REALM/:GUILDNAME
+	endpointGuild        = func(r battlenet.Region) string { return endpointWow(r) + "guild/" }
+	endpointGuildProfile = func(r battlenet.Region, realm, guildName string) string {
+		return endpointGuild(r) + realm + "/" + guildName
+	} // GUILD PROFILE 	/WOW/GUILD/:REALM/:GUILDNAME
 	// MEMBERS 			/WOW/GUILD/:REALM/:GUILDNAME // implement the rest differently?
 	// ACHIEVEMENTS 	/WOW/GUILD/:REALM/:GUILDNAME
 	// NEWS 			/WOW/GUILD/:REALM/:GUILDNAME
 	// CHALLENGE 		/WOW/GUILD/:REALM/:GUILDNAME
 
 	//	ITEM
-	endpointItem = wowAPI + "item/"
-	Item         = func(itemID int) string { return endpointItem + strconv.Itoa(itemID) }        // ITEM 		/WOW/ITEM/:ITEMID
-	ItemSet      = func(setID int) string { return endpointItem + "set/" + strconv.Itoa(setID) } // ITEM SET 	/WOW/ITEM/SET/:SETID
+	endpointItem    = func(r battlenet.Region) string { return endpointWow(r) + "item/" }
+	endpointItemID  = func(r battlenet.Region, itemID int) string { return endpointItem(r) + strconv.Itoa(itemID) }        // ITEM 		/WOW/ITEM/:ITEMID
+	endpointItemSet = func(r battlenet.Region, setID int) string { return endpointItem(r) + "set/" + strconv.Itoa(setID) } // ITEM SET 	/WOW/ITEM/SET/:SETID
 
 	//	MOUNT
-	Mount = wowAPI + "mount/" // MASTER LIST /WOW/MOUNT/
+	endpointMount = func(r battlenet.Region) string { return endpointWow(r) + "mount/" } // MASTER LIST /WOW/MOUNT/
 
 	//	PET
-	PetMasterList = wowAPI + "pet/"                                                                            // MASTER LIST 	/WOW/PET/
-	PetAbilities  = func(abilityID int) string { return PetMasterList + "ability/" + strconv.Itoa(abilityID) } // ABILITIES 		/WOW/PET/ABILITY/:ABILITYID
-	PetSpecies    = func(speciesID int) string { return PetMasterList + "species/" + strconv.Itoa(speciesID) } // SPECIES 		/WOW/PET/SPECIES/:SPECIESID
-	PetStats      = func(speciesID int) string { return PetMasterList + "stats/" + strconv.Itoa(speciesID) }   // STATS 			/WOW/PET/STATS/:SPECIESID
+	endpointPetMasterList = func(r battlenet.Region) string { return endpointWow(r) + "pet/" } // MASTER LIST 	/WOW/PET/
+	endpointPetAbilities  = func(r battlenet.Region, abilityID int) string {
+		return endpointPetMasterList(r) + "ability/" + strconv.Itoa(abilityID)
+	} // ABILITIES 		/WOW/PET/ABILITY/:ABILITYID
+	endpointPetSpecies = func(r battlenet.Region, speciesID int) string {
+		return endpointPetMasterList(r) + "species/" + strconv.Itoa(speciesID)
+	} // SPECIES 		/WOW/PET/SPECIES/:SPECIESID
+	endpointPetStats = func(r battlenet.Region, speciesID int) string {
+		return endpointPetMasterList(r) + "stats/" + strconv.Itoa(speciesID)
+	} // STATS 			/WOW/PET/STATS/:SPECIESID
 
 	//	PVP
-	endpointPvp  = wowAPI + "leaderboard/"
-	Leaderboards = func(bracket string) string { return endpointPvp + bracket } // LEADERBOARDS /WOW/LEADERBOARD/:BRACKET
+	endpointPvp          = func(r battlenet.Region) string { return endpointWow(r) + "leaderboard/" }
+	endpointLeaderboards = func(r battlenet.Region, bracket string) string { return endpointPvp(r) + bracket } // LEADERBOARDS /WOW/LEADERBOARD/:BRACKET
 
 	//	QUEST
-	endpointQuest = wowAPI + "quest/"
-	Quest         = func(questID int) string { return endpointQuest + strconv.Itoa(questID) } // QUEST /WOW/QUEST/:QUESTID
+	endpointQuest   = func(r battlenet.Region) string { return endpointWow(r) + "quest/" }
+	endpointQuestID = func(r battlenet.Region, questID int) string { return endpointQuest(r) + strconv.Itoa(questID) } // QUEST /WOW/QUEST/:QUESTID
 
 	//	REALM STATUS
-	endpointRealm = wowAPI + "realm/"
-	RealmStatus   = endpointRealm + "status" // REALM STATUS /WOW/REALM/STATUS
+	endpointRealm       = func(r battlenet.Region) string { return endpointWow(r) + "realm/" }
+	endpointRealmStatus = endpointRealm(r) + "status" // REALM STATUS /WOW/REALM/STATUS
 
 	//	RECIPE
-	endpointRecipe = wowAPI + "recipe/"
-	Recipe         = func(recipeID int) string { return endpointRecipe + strconv.Itoa(recipeID) } // RECIPE /WOW/RECIPE/:RECIPEID
+	endpointRecipe   = func(r battlenet.Region) string { return endpointWow(r) + "recipe/" }
+	endpointRecipeID = func(r battlenet.Region, recipeID int) string { return endpointRecipe(r) + strconv.Itoa(recipeID) } // RECIPE /WOW/RECIPE/:RECIPEID
 
 	//	SPELL
-	endpointSpell = wowAPI + "spell/"
-	Spell         = func(spellID int) string { return endpointSpell + strconv.Itoa(spellID) } // SPELL /WOW/SPELL/:SPELLID
+	endpointSpell   = func(r battlenet.Region) string { return endpointWow(r) + "spell/" }
+	endpointSpellID = func(r battlenet.Region, spellID int) string { return endpointSpell(r) + strconv.Itoa(spellID) } // SPELL /WOW/SPELL/:SPELLID
 
 	//	ZONE
-	ZoneMasterList = wowAPI + "zone/"                                                         // MASTER LIST 	/WOW/ZONE/
-	Zone           = func(zoneID int) string { return ZoneMasterList + strconv.Itoa(zoneID) } // ZONE 		/WOW/ZONE/:ZONEID
+	endpointZoneMasterList = func(r battlenet.Region) string { return endpointWow(r) + "zone/" }                                     // MASTER LIST 	/WOW/ZONE/
+	endpointZone           = func(r battlenet.Region, zoneID int) string { return endpointZoneMasterList(r) + strconv.Itoa(zoneID) } // ZONE 		/WOW/ZONE/:ZONEID
 
 	//	DATA RESOURCES
-	endpointData          = wowAPI + "data/"
-	endpointDataCharacter = endpointData + "character/"
-	endpointDataGuild     = endpointData + "guild/"
-	Battlegroups          = endpointData + "battlegroups/"         // BATTLEGROUPS 			/WOW/DATA/BATTLEGROUPS/
-	CharacterRaces        = endpointDataCharacter + "races"        // CHARACTER RACES 		/WOW/DATA/CHARACTER/RACES
-	CharacterClasses      = endpointDataCharacter + "classes"      // CHARACTER CLASSES 		/WOW/DATA/CHARACTER/CLASSES
-	CharacterAchievements = endpointDataCharacter + "achievements" // CHARACTER ACHIEVEMENTS 	/WOW/DATA/CHARACTER/ACHIEVEMENTS
-	GuildRewards          = endpointDataGuild + "rewards"          // GUILD REWARDS 			/WOW/DATA/GUILD/REWARDS
-	GuildPerks            = endpointDataGuild + "perks"            // GUILD PERKS 			/WOW/DATA/GUILD/PERKS
-	GuildAchievements     = endpointDataGuild + "achievements"     // GUILD ACHIEVEMENTS 		/WOW/DATA/GUILD/ACHIEVEMENTS
-	ItemClasses           = endpointData + "item/classes"          // ITEM CLASSES 			/WOW/DATA/ITEM/CLASSES
-	Talents               = endpointData + "talents"               // TALENTS 				/WOW/DATA/TALENTS
-	PetTypes              = endpointData + "pet/types"             // PET TYPES 				/WOW/DATA/PET/TYPES
+	endpointData                  = func(r battlenet.Region) string { return endpointWow(r) + "data/" }
+	endpointDataCharacter         = func(r battlenet.Region) string { return endpointData(r) + "character/" }
+	endpointDataGuild             = func(r battlenet.Region) string { return endpointData(r) + "guild/" }
+	endpointBattlegroups          = func(r battlenet.Region) string { return endpointData(r) + "battlegroups/" }         // BATTLEGROUPS 			/WOW/DATA/BATTLEGROUPS/
+	endpointCharacterRaces        = func(r battlenet.Region) string { return endpointDataCharacter(r) + "races" }        // CHARACTER RACES 		/WOW/DATA/CHARACTER/RACES
+	endpointCharacterClasses      = func(r battlenet.Region) string { return endpointDataCharacter(r) + "classes" }      // CHARACTER CLASSES 		/WOW/DATA/CHARACTER/CLASSES
+	endpointCharacterAchievements = func(r battlenet.Region) string { return endpointDataCharacter(r) + "achievements" } // CHARACTER ACHIEVEMENTS 	/WOW/DATA/CHARACTER/ACHIEVEMENTS
+	endpointGuildRewards          = func(r battlenet.Region) string { return endpointDataGuild(r) + "rewards" }          // GUILD REWARDS 			/WOW/DATA/GUILD/REWARDS
+	endpointGuildPerks            = func(r battlenet.Region) string { return endpointDataGuild(r) + "perks" }            // GUILD PERKS 			/WOW/DATA/GUILD/PERKS
+	endpointGuildAchievements     = func(r battlenet.Region) string { return endpointDataGuild(r) + "achievements" }     // GUILD ACHIEVEMENTS 		/WOW/DATA/GUILD/ACHIEVEMENTS
+	endpointItemClasses           = func(r battlenet.Region) string { return endpointData(r) + "item/classes" }          // ITEM CLASSES 			/WOW/DATA/ITEM/CLASSES
+	endpointTalents               = func(r battlenet.Region) string { return endpointData(r) + "talents" }               // TALENTS 				/WOW/DATA/TALENTS
+	endpointPetTypes              = func(r battlenet.Region) string { return endpointData(r) + "pet/types" }             // PET TYPES 				/WOW/DATA/PET/TYPES
 
 	//	WOW GAME DATA API
 	//	CONNECTED REALM
-	GetConnectedRealmIndex = "/connected-realm/"                 // GETCONNECTEDREALMINDEX 	/CONNECTED-REALM/
-	GetConnectedRealm      = func(connectedRealmID int) string { // GETCONNECTEDREALM 		/CONNECTED-REALM/{CONNECTEDREALMID}
-		return GetConnectedRealmIndex + strconv.Itoa(connectedRealmID)
+	endpointGetConnectedRealmIndex = func(r battlenet.Region) string { return r.API() + "/connected-realm/" } // GETCONNECTEDREALMINDEX /CONNECTED-REALM/
+	endpointGetConnectedRealm      = func(r battlenet.Region, connectedRealmID int) string {                  // GETCONNECTEDREALM 		/CONNECTED-REALM/{CONNECTEDREALMID}
+		return endpointGetConnectedRealmIndex(r) + strconv.Itoa(connectedRealmID)
 	}
 
 	//	MYTHIC KEYSTONE LEADERBOARD
-	GetMythicLeaderboardIndex = func(connectedRealmID int) string { // GETMYTHICLEADERBOARDINDEX 	/CONNECTED-REALM/{CONNECTEDREALMID}/MYTHIC-LEADERBOARD/
-		return GetConnectedRealm(connectedRealmID) + "/mythic-leaderboard/"
+	endpointGetMythicLeaderboardIndex = func(r battlenet.Region, connectedRealmID int) string { // GETMYTHICLEADERBOARDINDEX 	/CONNECTED-REALM/{CONNECTEDREALMID}/MYTHIC-LEADERBOARD/
+		return endpointGetConnectedRealm(r, connectedRealmID) + "/mythic-leaderboard/"
 	}
-	GetMythicLeaderboard = func(connectedRealmID, dungeonID, period int) string { // GETMYTHICLEADERBOARD 	/CONNECTED-REALM/{CONNECTEDREALMID}/MYTHIC-LEADERBOARD/{DUNGEONID}/PERIOD/{PERIOD}
-		return GetMythicLeaderboardIndex(connectedRealmID) + strconv.Itoa(dungeonID) + "/period/" + strconv.Itoa(period)
+	endpointGetMythicLeaderboard = func(r battlenet.Region, connectedRealmID, dungeonID, period int) string { // GETMYTHICLEADERBOARD 	/CONNECTED-REALM/{CONNECTEDREALMID}/MYTHIC-LEADERBOARD/{DUNGEONID}/PERIOD/{PERIOD}
+		return endpointGetMythicLeaderboardIndex(r, connectedRealmID) + strconv.Itoa(dungeonID) + "/period/" + strconv.Itoa(period)
 	}
 
 	//	MYTHIC CHALLENGE MODE
-	GetMythicChallengeModeIndex = "/mythic-challenge-mode/" // GETMYTHICCHALLENGEMODEINDEX /MYTHIC-CHALLENGE-MODE/
+	endpointGetMythicChallengeModeIndex = func(r battlenet.Region) string { return r.API() + "/mythic-challenge-mode/" } // GETMYTHICCHALLENGEMODEINDEX /MYTHIC-CHALLENGE-MODE/
 
 	//	PLAYABLE CLASS
-	GetPlayableClassesIndex = "/playable-class/"                                                                  // GETPLAYABLECLASSESINDEX /PLAYABLE-CLASS/
-	GetPlayableClass        = func(classID int) string { return GetPlayableClassesIndex + strconv.Itoa(classID) } // GETPLAYABLECLASS 		 /PLAYABLE-CLASS/{CLASSID}
+	endpointGetPlayableClassesIndex = func(r battlenet.Region) string { return r.API() + "/playable-class/" } // GETPLAYABLECLASSESINDEX /PLAYABLE-CLASS/
+	endpointGetPlayableClass        = func(r battlenet.Region, classID int) string {
+		return endpointGetPlayableClassesIndex(r) + strconv.Itoa(classID)
+	} // GETPLAYABLECLASS 		 /PLAYABLE-CLASS/{CLASSID}
 
 	//	PLAYABLE SPECIALIZATION
-	GetPlayableSpecializationIndex = "/playable-specialization/"                                                              // GETPLAYABLESPECIALIZATIONINDEX /PLAYABLE-SPECIALIZATION/
-	GetPlayableSpecialization      = func(specID int) string { return GetPlayableSpecializationIndex + strconv.Itoa(specID) } // GETPLAYABLESPECIALIZATION 		/PLAYABLE-SPECIALIZATION/{SPECID}
+	endpointGetPlayableSpecializationIndex = func(r battlenet.Region) string { return r.API() + "/playable-specialization/" } // GETPLAYABLESPECIALIZATIONINDEX /PLAYABLE-SPECIALIZATION/
+	endpointGetPlayableSpecialization      = func(r battlenet.Region, specID int) string {
+		return endpointGetPlayableSpecializationIndex(r) + strconv.Itoa(specID)
+	} // GETPLAYABLESPECIALIZATION 		/PLAYABLE-SPECIALIZATION/{SPECID}
 
 	//	REALM
-	GetRealmIndex = "/realm/"                                                          // GETREALMINDEX 	/REALM/
-	GetRealm      = func(realmslug string) string { return GetRealmIndex + realmslug } // GETREALM 		/REALM/{REALMSLUG}
+	endpointGetRealmIndex = func(r battlenet.Region) string { return r.API() + "/realm/" }                                    // GETREALMINDEX 	/REALM/
+	endpointGetRealm      = func(r battlenet.Region, realmslug string) string { return endpointGetRealmIndex(r) + realmslug } // GETREALM 		/REALM/{REALMSLUG}
 
 	//	REGION
-	GetRegionIndex = "/region/"                                                                   // GETREGIONINDEX 	/REGION/
-	GetRegion      = func(regionID int) string { return GetRegionIndex + strconv.Itoa(regionID) } // GETREGION 		/REGION/{REGIONID}
+	endpointGetRegionIndex = func(r battlenet.Region) string { return r.API() + "/region/" } // GETREGIONINDEX 	/REGION/
+	endpointGetRegion      = func(r battlenet.Region, regionID int) string {
+		return endpointGetRegionIndex(r) + strconv.Itoa(regionID)
+	} // GETREGION 		/REGION/{REGIONID}
 
 	//	WOW TOKEN
-	GetTokenIndex = "/token/" // GETTOKENINDEX /TOKEN/
+	endpointGetTokenIndex = func(r battlenet.Region) string { return r.API() + "/token/" } // GETTOKENINDEX /TOKEN/
 )
