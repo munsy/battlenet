@@ -4,7 +4,7 @@ package sc2
 	Starcraft related API methods should go in here.
 */
 
-// Profile returns the Sc2 Profile.
+// Character returns the Sc2 character profile.
 func (c *SC2Client) Character(region, name string, profileID int) (*Character, error) {
 	var character *Character
 
@@ -56,7 +56,7 @@ func (c *SC2Client) Ladder(id int) (*Ladder, error) {
 	return ladder, nil
 }
 
-// Ladder returns Sc2 ladder data.
+// Achievements returns Sc2 achievement data.
 func (c *SC2Client) Achievements(id int) (*AchievementsData, error) {
 	var achievements *AchievementsData
 
@@ -69,7 +69,7 @@ func (c *SC2Client) Achievements(id int) (*AchievementsData, error) {
 	return achievements, nil
 }
 
-// Ladder returns Sc2 ladder data.
+// Rewards returns Sc2 reward data.
 func (c *SC2Client) Rewards(id int) (*RewardsData, error) {
 	var rewards *RewardsData
 

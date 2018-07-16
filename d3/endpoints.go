@@ -47,12 +47,12 @@ var (
 	hero            = func(r battlenet.Region, acct string, heroID int) string {                              // 	GETAPIHERO 		/D3/PROFILE/{ACCOUNT}/HERO/{HEROID}
 		return account(r, acct) + "/hero/" + strconv.Itoa(heroID)
 	}
-	detailedHeroItems = func(r battlenet.Region, account string, heroID int) string {
+	detailedHeroItems = func(r battlenet.Region, account string, heroID int) string { // GETAPIDETAILEDHEROITEMS 	/D3/PROFILE/{ACCOUNT}/HERO/{HEROID}/ITEMS
 		return hero(r, account, heroID) + "/items"
-	} // GETAPIDETAILEDHEROITEMS 	/D3/PROFILE/{ACCOUNT}/HERO/{HEROID}/ITEMS
-	detailedFollowerItems = func(r battlenet.Region, account string, heroID int) string {
+	}
+	detailedFollowerItems = func(r battlenet.Region, account string, heroID int) string { // GETAPIDETAILEDFOLLOWERITEMS /D3/PROFILE/{ACCOUNT}/HERO/{HEROID}/FOLLOWER-ITEMS
 		return hero(r, account, heroID) + "/follower-items"
-	} // GETAPIDETAILEDFOLLOWERITEMS /D3/PROFILE/{ACCOUNT}/HERO/{HEROID}/FOLLOWER-ITEMS
+	}
 
 	//  GAME DATA API
 	endpointD3Data    = func(r battlenet.Region) string { return r.API() + "/data/" }
