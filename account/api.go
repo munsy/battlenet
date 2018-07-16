@@ -1,5 +1,9 @@
 package account
 
+/*
+	Account related API methods should go in here.
+*/
+
 // BattleID returns the Battle.net ID and BattleTag.
 func (c *AccountClient) BattleID(region string) (*BattleID, error) {
 	var bid *BattleID
