@@ -7,7 +7,7 @@ import (
 	"github.com/munsy/gobattlenet"
 )
 
-// Region can be one of: "us", "eu", "apac", or "cn"
+// Region can be one of: "us", "eu", "kr", "tw", "sea", or "cn"
 var region string
 
 func SetRegion(r string) {
