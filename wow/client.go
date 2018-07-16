@@ -17,6 +17,7 @@ type WoWClient struct {
 	userAgent string
 	client    *http.Client
 	locale    locale.Locale
+	region    battlenet.Region
 	key       string
 }
 
@@ -27,7 +28,8 @@ func New(args ...interface{}) (c *WoWClient, err error) {
 		userAgent: "GoBattleNetWow/" + battlenet.ClientVersion,
 		client:    &http.Client{Timeout: (10 * time.Second)},
 		locale:    locale.AmericanEnglish,
-		token:     "",
+		region:    battlenet.US,
+		key:       "",
 	}
 
 	if nil == args {
@@ -45,10 +47,14 @@ func New(args ...interface{}) (c *WoWClient, err error) {
 		case locale.Locale:
 			c.locale = t
 			break
+		case battlenet.Region:
+			c.region = t
+			break
 		case battlenet.BNetSettings:
 			c.client = t.Client
 			c.locale = t.Locale
-			c.token = t.Token
+			c.region = t.Region
+			c.key = t.Key
 			break
 		default:
 			return nil, battlenet.ErrorUnsupportedArgument

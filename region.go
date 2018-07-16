@@ -11,6 +11,10 @@ const (
 	CN
 )
 
+func (r Region) Int() int {
+	return int(r)
+}
+
 func (r Region) String() string {
 	var region string
 	switch r {
@@ -47,9 +51,17 @@ func (r Region) API() string {
 	var url string
 	switch r {
 	case US:
+		url = "https://" + r.String() + ".api.battle.net/"
+		break
 	case EU:
+		url = "https://" + r.String() + ".api.battle.net/"
+		break
 	case KR:
+		url = "https://" + r.String() + ".api.battle.net/"
+		break
 	case TW:
+		url = "https://" + r.String() + ".api.battle.net/"
+		break
 	case SEA:
 		url = "https://" + r.String() + ".api.battle.net/"
 		break
@@ -66,9 +78,17 @@ func (r Region) oauthHelper(endpoint string) string {
 	var url string
 	switch r {
 	case US:
+		url = "https://" + r.String() + ".battle.net/oauth/" + endpoint
+		break
 	case EU:
+		url = "https://" + r.String() + ".battle.net/oauth/" + endpoint
+		break
 	case KR:
+		url = "https://" + r.String() + ".battle.net/oauth/" + endpoint
+		break
 	case TW:
+		url = "https://" + r.String() + ".battle.net/oauth/" + endpoint
+		break
 	case SEA:
 		url = "https://" + r.String() + ".battle.net/oauth/" + endpoint
 		break

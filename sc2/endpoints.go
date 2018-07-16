@@ -11,8 +11,8 @@ var (
 	sc2 = regions.API() + "sc2/"
 	// PROFILE
 	endpointProfile = sc2 + "profile/"
-	user            = endpointProfile + "user"                          // SC2 OAUTH PROFILE 	/SC2/PROFILE/USER
-	profile         = func(profileID int, region, name string) string { // PROFILE				/SC2/PROFILE/:ID/:REGION/:NAME/
+	user            = endpointProfile + "user"                                              // SC2 OAUTH PROFILE 	/SC2/PROFILE/USER
+	profile         = func(r battlenet.Region, profileID int, region, name string) string { // PROFILE				/SC2/PROFILE/:ID/:REGION/:NAME/
 		return endpointProfile + strconv.Itoa(profileID) + "/" + region + "/" + name + "/"
 	}
 	ladderProfile = func(profileID int, region, name string) string { // LADDERS 	/SC2/PROFILE/:ID/:REGION/:NAME/LADDERS

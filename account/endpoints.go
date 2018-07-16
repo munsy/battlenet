@@ -5,15 +5,19 @@ import (
 )
 
 var (
+	// Community Oauth Profile API
+	endpointAccount = func(r battlenet.Region) string { return r.API() + "account/" }
+	endpointUser    = func(r battlenet.Region) string { return endpointAccount(r) + "user" } // /ACCOUNT/USER
+
 	// SC2 API
-	sc2 = regions.API() + "sc2/"
+	sc2 = func(r battlenet.Region) string { return r.API() + "sc2/" }
 	// SC2 PROFILE
-	endpointSc2Profile = sc2 + "profile/"
-	endpointSc2User    = endpointSc2Profile + "user" // SC2 OAUTH PROFILE 	/SC2/PROFILE/USER
+	endpointSc2Profile = func(r battlenet.Region) string { return sc2(r) + "profile/" }
+	endpointSc2User    = func(r battlenet.Region) string { return endpointSc2Profile(r) + "user" } // SC2 OAUTH PROFILE 	/SC2/PROFILE/USER
 
 	// WOW API
-	wow = regions.API() + "wow/"
+	wow = func(r battlenet.Region) string { return r.API() + "wow/" }
 	//	WOW PROFILE
-	endpointWowUser       = wow + "user/"
-	endpointWowCharacters = User + "characters" // WOW OAUTH PROFILE /WOW/USER/CHARACTERS
+	endpointWowUser       = func(r battlenet.Region) string { return wow(r) + "user/" }
+	endpointWowCharacters = func(r battlenet.Region) string { return endpointWowUser(r) + "characters" } // WOW OAUTH PROFILE /WOW/USER/CHARACTERS
 )

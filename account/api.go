@@ -4,7 +4,7 @@ package account
 func (c *AccountClient) BattleID(region string) (*BattleID, error) {
 	var bid *BattleID
 
-	err := c.get(regions.EndpointUser, bid)
+	err := c.get(endpointUser(c.region), bid)
 
 	if nil != err {
 		return nil, err
@@ -17,7 +17,7 @@ func (c *AccountClient) BattleID(region string) (*BattleID, error) {
 func (c *AccountClient) Sc2OauthProfile(region string) (*sc2.Character, error) {
 	var character *sc2.Character
 
-	err := c.get(endpointSc2User, character)
+	err := c.get(endpointSc2User(c.region), character)
 
 	if nil != err {
 		return nil, err
@@ -30,7 +30,7 @@ func (c *AccountClient) Sc2OauthProfile(region string) (*sc2.Character, error) {
 func (c *AccountClient) WoWOauthProfile() (*wow.Characters, error) {
 	var character *wow.Character
 
-	err := c.get(endpointWowCharacters, character)
+	err := c.get(endpointWowCharacters(c.region), character)
 
 	if nil != err {
 		return nil, err

@@ -2,8 +2,6 @@ package battlenet // import "github.com/munsy/gobattlenet"
 
 import (
 	"golang.org/x/oauth2"
-
-	"github.com/munsy/gobattlenet/regions"
 )
 
 // Endpoint is Battle.net's OAuth 2.0 endpoint.

@@ -3,6 +3,7 @@ package battlenet
 import (
 	"net/http"
 
+	"github.com/munsy/gobattlenet"
 	"github.com/munsy/gobattlenet/locale"
 )
 
@@ -10,5 +11,6 @@ import (
 type BNetSettings struct {
 	Client *http.Client
 	Locale locale.Locale
+	Region battlenet.Region
 	Key    string
 }

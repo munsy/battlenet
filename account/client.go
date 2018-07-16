@@ -15,7 +15,7 @@ type AccountClient struct {
 	userAgent string
 	client    *http.Client
 	locale    locale.Locale
-	region    regions.Region
+	region    battlenet.Region
 	token     string
 }
 
@@ -26,7 +26,7 @@ func New(args ...interface{}) (c *AccountClient, err error) {
 		userAgent: "GoBattleNetAccount/" + battlenet.ClientVersion,
 		client:    &http.Client{Timeout: (10 * time.Second)},
 		locale:    locale.AmericanEnglish,
-		region:    regions.US,
+		region:    battlenet.US,
 		token:     "",
 	}
 
@@ -45,10 +45,14 @@ func New(args ...interface{}) (c *AccountClient, err error) {
 		case locale.Locale:
 			c.locale = t
 			break
+		case battlenet.Region:
+			c.region = t
+			break
 		case battlenet.BNetSettings:
 			c.client = t.Client
 			c.locale = t.Locale
-			c.token = t.Token
+			c.region = t.Region
+			c.token = t.Key
 			break
 		default:
 			return nil, battlenet.ErrorUnsupportedArgument
@@ -75,9 +79,4 @@ func (c *AccountClient) SetKey(token string) {
 // UserAgent returns the client's user agent.
 func (c *AccountClient) UserAgent() string {
 	return c.userAgent
-}
-
-// SetRegion sets the client's region.
-func (c *AccountClient) SetRegion(region regions.Region) {
-	regions.SetRegion(region)
 }
