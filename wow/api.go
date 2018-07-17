@@ -93,7 +93,10 @@ func (c *WoWClient) RegionLeaderboard() (*Thing, error) {
 }
 
 // CHARACTER PROFILE API
-// CharacterProfile
+// CharacterProfile is the primary way to access character information. This Character Profile API can be used to fetch a single character at a
+// time through an HTTP GET request to a URL describing the character profile resource. By default, a basic dataset will be returned and with each
+// request and zero or more additional fields can be retrieved. To access this API, craft a resource URL pointing to the character who's information
+// is to be retrieved.
 func (c *WoWClient) CharacterProfile(characterName string) (*Thing, error) {
 	var thing *Thing
 
@@ -107,7 +110,12 @@ func (c *WoWClient) CharacterProfile(characterName string) (*Thing, error) {
 }
 
 // GUILD PROFILE API
-// GuildProfile
+// GuildProfile is the primary way to access guild information. This guild profile API can be used to fetch a single guild at a time through an HTTP GET
+// request to a url describing the guild profile resource. By default, a basic dataset will be returned and with each request and zero or more additional
+// fields can be retrieved.
+//
+// There are no required query string parameters when accessing this resource, although the fields query string parameter can optionally be passed to indicate
+// that one or more of the optional datasets is to be retrieved. Those additional fields are listed in the method titled "Optional Fields".
 func (c *WoWClient) GuildProfile(guildName string) (*Thing, error) {
 	var thing *Thing
 
@@ -121,7 +129,7 @@ func (c *WoWClient) GuildProfile(guildName string) (*Thing, error) {
 }
 
 // ITEM API
-// Item
+// Item provides detailed item information. This includes item set information if this item is part of a set.
 func (c *WoWClient) Item(itemID int) (*Thing, error) {
 	var thing *Thing
 
@@ -134,7 +142,7 @@ func (c *WoWClient) Item(itemID int) (*Thing, error) {
 	return thing, nil
 }
 
-// ItemSet
+// ItemSet provides detailed item information. This includes item set information if this item is part of a set.
 func (c *WoWClient) ItemSet(steID int) (*Thing, error) {
 	var thing *Thing
 
@@ -148,7 +156,7 @@ func (c *WoWClient) ItemSet(steID int) (*Thing, error) {
 }
 
 // MOUNT API
-// MountMasterList
+// MountMasterList returns a list of all supported mounts.
 func (c *WoWClient) MountMasterList() (*Thing, error) {
 	var thing *Thing
 
@@ -162,7 +170,7 @@ func (c *WoWClient) MountMasterList() (*Thing, error) {
 }
 
 // PET API
-// PetMasterList
+// PetMasterList returns a list of all supported battle and vanity pets.
 func (c *WoWClient) PetMasterList() (*Thing, error) {
 	var thing *Thing
 
@@ -175,7 +183,8 @@ func (c *WoWClient) PetMasterList() (*Thing, error) {
 	return thing, nil
 }
 
-// PetAbilities
+// PetAbilities provides data about a individual battle pet ability ID. We do not provide the tooltip for the ability
+// yet. We are working on a better way to provide this since it depends on your pet's species, level and quality rolls.
 func (c *WoWClient) PetAbilities(abilityID int) (*Thing, error) {
 	var thing *Thing
 
@@ -188,7 +197,8 @@ func (c *WoWClient) PetAbilities(abilityID int) (*Thing, error) {
 	return thing, nil
 }
 
-// PetSpecies
+// PetSpecies provides the data about an individual pet species. The species IDs can be found your character profile using
+// the options pets field. Each species also has data about what it's 6 abilities are.
 func (c *WoWClient) PetSpecies(speciesID int) (*Thing, error) {
 	var thing *Thing
 
@@ -201,7 +211,7 @@ func (c *WoWClient) PetSpecies(speciesID int) (*Thing, error) {
 	return thing, nil
 }
 
-// PetStats
+// PetStats retrieves detailed information about the given species of pet.
 func (c *WoWClient) PetStats(speciesID int) (*Thing, error) {
 	var thing *Thing
 
@@ -215,7 +225,7 @@ func (c *WoWClient) PetStats(speciesID int) (*Thing, error) {
 }
 
 // PVP API
-// PvpLeaderboards
+// PvpLeaderboards provides leaderboard information for the 2v2, 3v3, 5v5 and Rated Battleground leaderboards.
 func (c *WoWClient) PvpLeaderboards(bracket string) (*Thing, error) {
 	var thing *Thing
 
@@ -229,7 +239,7 @@ func (c *WoWClient) PvpLeaderboards(bracket string) (*Thing, error) {
 }
 
 // QUEST API
-// Quest
+// Quest retrieves metadata for a given quest.
 func (c *WoWClient) Quest(questID int) (*Thing, error) {
 	var thing *Thing
 
@@ -243,7 +253,18 @@ func (c *WoWClient) Quest(questID int) (*Thing, error) {
 }
 
 // REALM STATUS API
-// RealmStatus
+// RealmStatus allows developers to retrieve realm status information. This information is limited to whether or not the
+// realm is up, the type and state of the realm, the current population, and the status of the two world PvP zones.
+//
+// There are no required query string parameters when accessing this resource, although the optional realms parameter can
+// be used to limit the realms returned to a specific set of realms.
+//
+// PvP Area Status Fields
+//
+// area - An internal id of this zone.
+// controlling-faction - Which faction is controlling the zone at the moment. Possible values are: 0) Alliance, 1) Horde, 2) Neutral
+// status - The current status of the zone. The possible values are: -1) Unknown, 0) Idle, 1) Populating, 2) Active, 3) Concluded,
+// next - A timestamp of when the next battle starts.
 func (c *WoWClient) RealmStatus() (*Thing, error) {
 	var thing *Thing
 
@@ -257,7 +278,7 @@ func (c *WoWClient) RealmStatus() (*Thing, error) {
 }
 
 // RECIPE API
-// Recipe
+// Recipe provides basic recipe information.
 func (c *WoWClient) Recipe(recipeID int) (*Thing, error) {
 	var thing *Thing
 
@@ -271,7 +292,7 @@ func (c *WoWClient) Recipe(recipeID int) (*Thing, error) {
 }
 
 // SPELL API
-// Spell
+// Spell provides some information about spells.
 func (c *WoWClient) Spell(spellID int) (*Thing, error) {
 	var thing *Thing
 
@@ -285,7 +306,8 @@ func (c *WoWClient) Spell(spellID int) (*Thing, error) {
 }
 
 // ZONE API
-// ZoneMasterList
+// ZoneMasterList returns a list of all supported zones and their bosses. A 'zone' in this context should be considered a dungeon, or a
+// raid, not a zone as in a world zone. A 'boss' in this context should be considered a boss encounter, which may include more than one NPC.
 func (c *WoWClient) ZoneMasterList() (*Thing, error) {
 	var thing *Thing
 
@@ -298,7 +320,7 @@ func (c *WoWClient) ZoneMasterList() (*Thing, error) {
 	return thing, nil
 }
 
-// Zone
+// Zone provides some information about zones.
 func (c *WoWClient) Zone(zoneID int) (*Thing, error) {
 	var thing *Thing
 
@@ -312,7 +334,7 @@ func (c *WoWClient) Zone(zoneID int) (*Thing, error) {
 }
 
 // DATA RESOURCES
-// Battlegroups
+// Battlegroups provides the list of battlegroups for this region
 func (c *WoWClient) Battlegroups() (*Thing, error) {
 	var thing *Thing
 
@@ -325,7 +347,7 @@ func (c *WoWClient) Battlegroups() (*Thing, error) {
 	return thing, nil
 }
 
-// CharacterRaces
+// CharacterRaces provides a list of each race and their associated faction, name, unique ID, and skin.
 func (c *WoWClient) CharacterRaces() (*Thing, error) {
 	var thing *Thing
 
@@ -338,7 +360,7 @@ func (c *WoWClient) CharacterRaces() (*Thing, error) {
 	return thing, nil
 }
 
-// CharacterClasses
+// CharacterClasses provides a list of character classes.
 func (c *WoWClient) CharacterClasses() (*Thing, error) {
 	var thing *Thing
 
@@ -351,7 +373,7 @@ func (c *WoWClient) CharacterClasses() (*Thing, error) {
 	return thing, nil
 }
 
-// CharacterAchievements
+// CharacterAchievements provides a list of all of the achievements that characters can earn as well as the category structure and hierarchy.
 func (c *WoWClient) CharacterAchievements() (*Thing, error) {
 	var thing *Thing
 
@@ -364,7 +386,7 @@ func (c *WoWClient) CharacterAchievements() (*Thing, error) {
 	return thing, nil
 }
 
-// GuildRewards
+// GuildRewards provides a list of all guild rewards.
 func (c *WoWClient) GuildRewards() (*Thing, error) {
 	var thing *Thing
 
@@ -377,7 +399,7 @@ func (c *WoWClient) GuildRewards() (*Thing, error) {
 	return thing, nil
 }
 
-// GuildPerks
+// GuildPerks provides a list of all guild perks.
 func (c *WoWClient) GuildPerks() (*Thing, error) {
 	var thing *Thing
 
@@ -390,7 +412,7 @@ func (c *WoWClient) GuildPerks() (*Thing, error) {
 	return thing, nil
 }
 
-// GuildAchievements
+// GuildAchievements provides a list of all of the achievements that guilds can earn as well as the category structure and hierarchy.
 func (c *WoWClient) GuildAchievements() (*Thing, error) {
 	var thing *Thing
 
@@ -403,7 +425,7 @@ func (c *WoWClient) GuildAchievements() (*Thing, error) {
 	return thing, nil
 }
 
-// ItemClasses
+// ItemClasses provides a list of item classes.
 func (c *WoWClient) ItemClasses() (*Thing, error) {
 	var thing *Thing
 
@@ -416,7 +438,7 @@ func (c *WoWClient) ItemClasses() (*Thing, error) {
 	return thing, nil
 }
 
-// Talents
+// Talents provides a list of talents, specs and glyphs for each class.
 func (c *WoWClient) Talents() (*Thing, error) {
 	var thing *Thing
 
@@ -429,7 +451,7 @@ func (c *WoWClient) Talents() (*Thing, error) {
 	return thing, nil
 }
 
-// PetTypes
+// PetTypes provides a list of different pet types (including what they are strong and weak against).
 func (c *WoWClient) PetTypes() (*Thing, error) {
 	var thing *Thing
 
