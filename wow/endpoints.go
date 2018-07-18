@@ -3,7 +3,7 @@ package wow
 import (
 	"strconv"
 
-	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/gobattlenet"
 )
 
 // r battlenet.Region,
@@ -11,7 +11,7 @@ var (
 	endpointWow = func(r battlenet.Region) string { return r.API() + "wow/" }
 
 	//	ACHIEVEMENT
-	Achievement = func(r battlenet.Region, id int) string { return endpointWow(r) + "achievement/" + strconv.Itoa(id) } // ACHIEVEMENT /WOW/ACHIEVEMENT/:ID
+	endpointAchievement = func(r battlenet.Region, id int) string { return endpointWow(r) + "achievement/" + strconv.Itoa(id) } // ACHIEVEMENT /WOW/ACHIEVEMENT/:ID
 
 	//	AUCTION
 	endpointAuction           = func(r battlenet.Region) string { return endpointWow(r) + "auction/" }

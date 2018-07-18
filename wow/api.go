@@ -6,16 +6,16 @@ package wow
 
 // ACHIEVEMENT API
 // Achievement provides data about an individual achievement.
-func (c *WoWClient) Achievement(id int) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) Achievement(id int) (*Achievement, error) {
+	var achievement *Achievement
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointAchievement(c.region, id), achievement)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return achievement, nil
 }
 
 // AUCTION API
@@ -23,16 +23,16 @@ func (c *WoWClient) Achievement(id int) (*Thing, error) {
 // a two step process that involves checking a per-realm index file to determine if a recent dump has been
 // generated and then fetching the most recently generated dump file if necessary.
 // AuctionDataStatus provides a per-realm list of recently generated auction house data dumps.
-func (c *WoWClient) AuctionDataStatus(realm string) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) AuctionDataStatus(realm string) (*File, error) {
+	var file *File
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointAuctionDataStatus(c.region, realm), file)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return file, nil
 }
 
 // BOSS API
