@@ -23,7 +23,7 @@ func (c *WoWClient) Achievement(id int) (*Achievement, error) {
 // a two step process that involves checking a per-realm index file to determine if a recent dump has been
 // generated and then fetching the most recently generated dump file if necessary.
 // AuctionDataStatus provides a per-realm list of recently generated auction house data dumps.
-func (c *WoWClient) AuctionDataStatus(realm string) (*File, error) {
+func (c *WoWClient) AuctionDataStatus(realm string) (*AuctionJSONFileData, error) {
 	var file *File
 
 	err := c.get(endpointAuctionDataStatus(c.region, realm), file)
@@ -32,7 +32,15 @@ func (c *WoWClient) AuctionDataStatus(realm string) (*File, error) {
 		return nil, err
 	}
 
-	return file, nil
+	var auctionData *AuctionJSONFileData
+
+	err = c.get(file.URL, auctionData)
+
+	if nil != err {
+		return nil, err
+	}
+
+	return auctionData, nil
 }
 
 // BOSS API
