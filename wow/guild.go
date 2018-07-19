@@ -1,17 +1,54 @@
 package wow
 
-// GuildInfo contains all the information for a guild's members,
+// GuildProfile contains all the information for a guild's members,
 // Battlegroup, achievement points, emblem, etc.
-type GuildInfo struct {
-	LastModified      int          `json:"lastModified"`
-	Name              string       `json:"name"`
-	Realm             string       `json:"realm"`
-	Battlegroup       string       `json:"battlegroup"`
-	Level             int          `json:"level"`
-	Side              int          `json:"side"`
-	AchievementPoints int          `json:"achievementPoints"`
-	Members           GuildMembers `json:"members"`
-	Emblem            EmblemInfo   `json:"emblem"`
+type GuildProfile struct {
+	LastModified      int             `json:"lastModified"`
+	Name              string          `json:"name"`
+	Realm             string          `json:"realm"`
+	Battlegroup       string          `json:"battlegroup"`
+	Level             int             `json:"level"`
+	Side              int             `json:"side"`
+	AchievementPoints int             `json:"achievementPoints"`
+	Members           GuildMembers    `json:"members"`
+	Emblem            EmblemInfo      `json:"emblem"`
+	News              []GuildNews     `json:"news"`
+	Challenge         []ChallengeData `json:"challenge"`
+}
+
+type GuildNews struct {
+	Type        string      `json:"type"`
+	Character   string      `json:"character"`
+	Timestamp   int64       `json:"timestamp"`
+	ItemID      int         `json:"itemId,omitempty"`
+	Context     string      `json:"context"`
+	BonusLists  []int       `json:"bonusLists"`
+	Achievement Achievement `json:"achievement,omitempty"`
+}
+
+type MapRankingCriteria struct {
+	Time         int  `json:"time"`
+	Hours        int  `json:"hours"`
+	Minutes      int  `json:"minutes"`
+	Seconds      int  `json:"seconds"`
+	Milliseconds int  `json:"milliseconds"`
+	IsPositive   bool `json:"isPositive"`
+}
+
+type MapData struct {
+	ID               int                `json:"id"`
+	Name             string             `json:"name"`
+	Slug             string             `json:"slug"`
+	HasChallengeMode bool               `json:"hasChallengeMode"`
+	BronzeCriteria   MapRankingCriteria `json:"bronzeCriteria"`
+	SilverCriteria   MapRankingCriteria `json:"silverCriteria"`
+	GoldCriteria     MapRankingCriteria `json:"goldCriteria"`
+}
+
+type ChallengeData struct {
+	Realm  Realm         `json:"realm"`
+	Map    MapData       `json:"map"`
+	Groups []interface{} `json:"groups"`
 }
 
 // EmblemInfo contains information about a guild's emblem.

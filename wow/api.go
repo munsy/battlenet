@@ -75,10 +75,12 @@ func (c *WoWClient) Boss(bossID int) (*Boss, error) {
 // time through an HTTP GET request to a URL describing the character profile resource. By default, a basic dataset will be returned and with each
 // request and zero or more additional fields can be retrieved. To access this API, craft a resource URL pointing to the character who's information
 // is to be retrieved.
+// Optional fields:
+// achievements,appearance,feed,guild,hunterPets,items,mounts,pets,petSlots,professions,progression,pvp,quests,reputation,statistics,stats,talents,titles,audit
 func (c *WoWClient) CharacterProfile(characterName string) (*Thing, error) {
 	var thing *Thing
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointCharacterProfile(c.region), thing)
 
 	if nil != err {
 		return nil, err
@@ -94,16 +96,16 @@ func (c *WoWClient) CharacterProfile(characterName string) (*Thing, error) {
 //
 // There are no required query string parameters when accessing this resource, although the fields query string parameter can optionally be passed to indicate
 // that one or more of the optional datasets is to be retrieved. Those additional fields are listed in the method titled "Optional Fields".
-func (c *WoWClient) GuildProfile(guildName string) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) GuildProfile(guildName string) (*GuildProfile, error) {
+	var profile *GuildProfile
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointGuildProfile(c.region), profile)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return profile, nil
 }
 
 // ITEM API

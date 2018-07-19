@@ -1,8 +1,12 @@
 package wow
 
 type Realm struct {
-	Name string `json:"name"`
-	Slug string `json:"slug"`
+	Name            string   `json:"name"`
+	Slug            string   `json:"slug"`
+	Battlegroup     string   `json:"battlegroup"`
+	Locale          string   `json:"locale"`
+	Timezone        string   `json:"timezone"`
+	ConnectedRealms []string `json:"connected_realms"`
 }
 
 type BonusList struct {
