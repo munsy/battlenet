@@ -45,59 +45,29 @@ func (c *WoWClient) AuctionDataStatus(realm string) (*AuctionJSONFileData, error
 
 // BOSS API
 // BossMasterList lists all supported bosses. A 'boss' in this context should be considered a boss encounter, which may include more than one NPC.
-func (c *WoWClient) BossMasterList() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) BossMasterList() (*BossMasterList, error) {
+	var bosses *BossMasterList
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointBossMasterList(c.region), bosses)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return bosses, nil
 }
 
-// Boss provides information about bosses. A 'boss' in this context should be considered a boss encounter, which may include more than one NPC.
-func (c *WoWClient) Boss(bossID int) (*Thing, error) {
-	var thing *Thing
+// Boss provides information about a boss. A 'boss' in this context should be considered a boss encounter, which may include more than one NPC.
+func (c *WoWClient) Boss(bossID int) (*Boss, error) {
+	var boss *Boss
 
-	err := c.get(thing(c.region), thing)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return thing, nil
-}
-
-// CHALLENGE MODE API
-// RealmLeaderboard has data for all 9 challenge mode maps (currently). The map field includes the current medal times for each dungeon.
-// Inside each ladder we provide data about each character that was part of each run. The character data includes the current cached spec
-// of the character while the member field includes the spec of the character during the challenge mode run.
-func (c *WoWClient) RealmLeaderboard(realm string) (*Thing, error) {
-	var thing *Thing
-
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointBossInfo(c.region, bossID), boss)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
-}
-
-// RegionLeaderboard has the exact same data format as the realm leaderboards except there is no realm field. It is simply the top 100 results
-// gathered for each map for all of the available realm leaderboards in a region.
-func (c *WoWClient) RegionLeaderboard() (*Thing, error) {
-	var thing *Thing
-
-	err := c.get(thing(c.region), thing)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return thing, nil
+	return boss, nil
 }
 
 // CHARACTER PROFILE API

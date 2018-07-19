@@ -21,11 +21,6 @@ var (
 	endpointBossMasterList = func(r battlenet.Region) string { return endpointWow(r) + "boss/" }                             // MASTER LIST /WOW/BOSS/
 	endpointBossInfo       = func(r battlenet.Region, id int) string { return endpointBossMasterList(r) + strconv.Itoa(id) } // BOSS /WOW/BOSS/:BOSSID
 
-	//	CHALLENGE MODE
-	endpointChallenge         = func(r battlenet.Region) string { return endpointWow(r) + "challenge/" }
-	endpointRealmLeaderboard  = func(r battlenet.Region, realm string) string { return endpointChallenge(r) + realm } // REALM LEADERBOARD /WOW/CHALLENGE/:REALM
-	endpointRegionLeaderboard = func(r battlenet.Region) string { return endpointChallenge(r) + "region" }            // REGION LEADERBOARD /WOW/CHALLENGE/REGION
-
 	//	CHARACTER PROFILE
 	endpointCharacter        = func(r battlenet.Region) string { return endpointWow(r) + "character/" }
 	endpointCharacterProfile = func(r battlenet.Region, realm, characterName string) string {
