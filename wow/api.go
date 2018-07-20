@@ -220,16 +220,16 @@ func (c *WoWClient) PvpLeaderboards(bracket string) (*Thing, error) {
 
 // QUEST API
 // Quest retrieves metadata for a given quest.
-func (c *WoWClient) Quest(questID int) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) Quest(questID int) (*Quest, error) {
+	var quest *Quest
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointQuestID(c.region, questID), quest)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return quest, nil
 }
 
 // REALM STATUS API
@@ -246,15 +246,15 @@ func (c *WoWClient) Quest(questID int) (*Thing, error) {
 // status - The current status of the zone. The possible values are: -1) Unknown, 0) Idle, 1) Populating, 2) Active, 3) Concluded,
 // next - A timestamp of when the next battle starts.
 func (c *WoWClient) RealmStatus() (*Thing, error) {
-	var thing *Thing
+	var status *Thing
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(thing(c.region), status)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return status, nil
 }
 
 // RECIPE API
