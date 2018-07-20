@@ -137,71 +137,71 @@ func (c *WoWClient) ItemSet(setID int) (*ItemSet, error) {
 
 // MOUNT API
 // MountMasterList returns a list of all supported mounts.
-func (c *WoWClient) MountMasterList() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) MountMasterList() (*MountList, error) {
+	var list *MountList
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointMount(c.region), list)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return list, nil
 }
 
 // PET API
 // PetMasterList returns a list of all supported battle and vanity pets.
-func (c *WoWClient) PetMasterList() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) PetMasterList() (*PetData, error) {
+	var data *PetData
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointPetMasterList(c.region), data)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return data, nil
 }
 
 // PetAbilities provides data about a individual battle pet ability ID. We do not provide the tooltip for the ability
 // yet. We are working on a better way to provide this since it depends on your pet's species, level and quality rolls.
-func (c *WoWClient) PetAbilities(abilityID int) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) PetAbilities(abilityID int) (*PetAbility, error) {
+	var ability *PetAbility
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointPetAbilities(c.region, abilityID), ability)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return ability, nil
 }
 
 // PetSpecies provides the data about an individual pet species. The species IDs can be found your character profile using
 // the options pets field. Each species also has data about what it's 6 abilities are.
-func (c *WoWClient) PetSpecies(speciesID int) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) PetSpecies(speciesID int) (*PetSpecies, error) {
+	var species *PetSpecies
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointPetSpecies(c.region, speciesID), species)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return species, nil
 }
 
 // PetStats retrieves detailed information about the given species of pet.
-func (c *WoWClient) PetStats(speciesID int) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) PetStats(speciesID int) (*PetStats, error) {
+	var stats *PetStats
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointPetStats(c.region, speciesID), stats)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return stats, nil
 }
 
 // PVP API
