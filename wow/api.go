@@ -77,16 +77,16 @@ func (c *WoWClient) Boss(bossID int) (*Boss, error) {
 // is to be retrieved.
 // Optional fields:
 // achievements,appearance,feed,guild,hunterPets,items,mounts,pets,petSlots,professions,progression,pvp,quests,reputation,statistics,stats,talents,titles,audit
-func (c *WoWClient) CharacterProfile(characterName string) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) CharacterProfile(realm, characterName string) (*CharacterData, error) {
+	var data *CharacterData
 
-	err := c.get(endpointCharacterProfile(c.region), thing)
+	err := c.get(endpointCharacterProfile(c.region, realm, characterName), data)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return data, nil
 }
 
 // GUILD PROFILE API
@@ -110,29 +110,29 @@ func (c *WoWClient) GuildProfile(guildName string) (*GuildProfile, error) {
 
 // ITEM API
 // Item provides detailed item information. This includes item set information if this item is part of a set.
-func (c *WoWClient) Item(itemID int) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) Item(itemID int) (*Item, error) {
+	var item *Item
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointItemID(c.region), item)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return item, nil
 }
 
 // ItemSet provides detailed item information. This includes item set information if this item is part of a set.
-func (c *WoWClient) ItemSet(steID int) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) ItemSet(setID int) (*ItemSet, error) {
+	var set *ItemSet
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointItemSet(c.region, setID), set)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return set, nil
 }
 
 // MOUNT API
