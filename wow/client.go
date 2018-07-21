@@ -1,23 +1,26 @@
 package wow
 
 import (
-	"encoding/json"
-	"errors"
-	"fmt"
-	"io/ioutil"
+	//"encoding/json"
+	//"errors"
+	//"fmt"
+	//"io/ioutil"
 	"net/http"
 	"time"
 
-	"github.com/munsy/gobattlenet"
 	"github.com/munsy/gobattlenet/locale"
+	"github.com/munsy/gobattlenet/regions"
 )
+
+// ClientVersion defines the most up-to-date version of the GoBattleNet client.
+const ClientVersion = "1.0"
 
 // WowClient implements the battlenet.Client interface.
 type WoWClient struct {
 	userAgent string
 	client    *http.Client
 	locale    locale.Locale
-	region    battlenet.Region
+	region    regions.Region
 	key       string
 }
 
@@ -25,10 +28,10 @@ type WoWClient struct {
 // can cause different behaviors. See function definiton for more details.
 func New(args ...interface{}) (c *WoWClient, err error) {
 	c = &WoWClient{
-		userAgent: "GoBattleNetWow/" + battlenet.ClientVersion,
+		userAgent: "GoBattleNetWow/" + ClientVersion,
 		client:    &http.Client{Timeout: (10 * time.Second)},
 		locale:    locale.AmericanEnglish,
-		region:    battlenet.US,
+		region:    regions.US,
 		key:       "",
 	}
 
@@ -47,7 +50,7 @@ func New(args ...interface{}) (c *WoWClient, err error) {
 		case locale.Locale:
 			c.locale = t
 			break
-		case battlenet.Region:
+		case regions.Region:
 			c.region = t
 			break
 		case battlenet.BNetSettings:

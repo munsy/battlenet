@@ -10,12 +10,15 @@ import (
 	"github.com/munsy/gobattlenet/wow"
 )
 
+// ClientVersion defines the most up-to-date version of the GoBattleNet client.
+const ClientVersion = "1.0"
+
 // AccountClient implements the battlenet.Client interface.
 type AccountClient struct {
 	userAgent string
 	client    *http.Client
 	locale    locale.Locale
-	region    battlenet.Region
+	region    regions.Region
 	token     string
 }
 
@@ -23,10 +26,10 @@ type AccountClient struct {
 // different behaviors. See function definiton for more details.
 func New(args ...interface{}) (c *AccountClient, err error) {
 	c = &AccountClient{
-		userAgent: "GoBattleNetAccount/" + battlenet.ClientVersion,
+		userAgent: "GoBattleNetAccount/" + ClientVersion,
 		client:    &http.Client{Timeout: (10 * time.Second)},
 		locale:    locale.AmericanEnglish,
-		region:    battlenet.US,
+		region:    regions.US,
 		token:     "",
 	}
 
@@ -45,7 +48,7 @@ func New(args ...interface{}) (c *AccountClient, err error) {
 		case locale.Locale:
 			c.locale = t
 			break
-		case battlenet.Region:
+		case regions.Region:
 			c.region = t
 			break
 		case battlenet.BNetSettings:
