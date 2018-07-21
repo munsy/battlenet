@@ -315,131 +315,131 @@ func (c *WoWClient) Zone(zoneID int) (*Zone, error) {
 
 // DATA RESOURCES
 // Battlegroups provides the list of battlegroups for this region
-func (c *WoWClient) Battlegroups() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) Battlegroups() (*BattleGroupsData, error) {
+	var battlegroup *BattleGroupData
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointBattlegroups(c.region), battlegroup)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return battlegroup, nil
 }
 
 // CharacterRaces provides a list of each race and their associated faction, name, unique ID, and skin.
-func (c *WoWClient) CharacterRaces() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) CharacterRaces() (*CharacterRacesData, error) {
+	var races *CharacterRaces
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointCharacterRaces(c.region), races)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return races, nil
 }
 
 // CharacterClasses provides a list of character classes.
-func (c *WoWClient) CharacterClasses() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) CharacterClasses() (*CharacterClassesData, error) {
+	var classes *CharacterClasses
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointCharacterClasses(c.region), classes)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return classes, nil
 }
 
 // CharacterAchievements provides a list of all of the achievements that characters can earn as well as the category structure and hierarchy.
-func (c *WoWClient) CharacterAchievements() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) CharacterAchievements() (*CharacterAchievementData, error) {
+	var data *CharacterAchievementData
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointCharacterAchievements(c.region), data)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return data, nil
 }
 
 // GuildRewards provides a list of all guild rewards.
-func (c *WoWClient) GuildRewards() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) GuildRewards() (*GuildRewardsData, error) {
+	var data *GuildRewardsData
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointGuildRewards(c.region), data)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return data, nil
 }
 
 // GuildPerks provides a list of all guild perks.
-func (c *WoWClient) GuildPerks() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) GuildPerks() (*GuildPerksData, error) {
+	var data *GuildPerks
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointGuildPerks(c.region), data)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return data, nil
 }
 
 // GuildAchievements provides a list of all of the achievements that guilds can earn as well as the category structure and hierarchy.
-func (c *WoWClient) GuildAchievements() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) GuildAchievements() (*GuildAchievementsData, error) {
+	var data *GuildAchievements
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointGuildAchievements(c.region), data)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return data, nil
 }
 
 // ItemClasses provides a list of item classes.
-func (c *WoWClient) ItemClasses() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) ItemClasses() (*ItemClassesData, error) {
+	var data *ItemClasses
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointItemClasses(c.region), data)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return data, nil
 }
 
 // Talents provides a list of talents, specs and glyphs for each class.
-func (c *WoWClient) Talents() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) Talents() (*TalentsData, error) {
+	var data *Talents
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointTalents(c.region), data)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return data, nil
 }
 
 // PetTypes provides a list of different pet types (including what they are strong and weak against).
-func (c *WoWClient) PetTypes() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) PetTypes() (*PetTypesData, error) {
+	var data *PetTypes
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointPetTypes(c.region), data)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return data, nil
 }
