@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 
@@ -31,8 +30,7 @@ func init() {
 
 func main() {
 	if len(os.Args) < 2 {
-		flag.PrintDefaults()
-		os.Exit(1)
+		printDefaultsAndQuit()
 	}
 
 	switch os.Args[1] {
@@ -47,8 +45,7 @@ func main() {
 	case "wow":
 		wowCommand.Parse(os.Args[2:])
 	default:
-		flag.PrintDefaults()
-		os.Exit(1)
+		printDefaultsAndQuit()
 	}
 
 	if configCommand.Parsed() {
@@ -68,7 +65,35 @@ func main() {
 	}
 }
 
+func printDefaultsAndQuit() {
+	if len(os.Args) < 2 {
+		fmt.Print("[ERROR] No arguments supplied. ")
+	} else {
+		fmt.Print("[ERROR] Invalid argument. ")
+	}
+	fmt.Println("Possible arguments are:")
+	fmt.Println("\t- config (Configuration settings)")
+	fmt.Println("\t- account (Account API access)")
+	fmt.Println("\t- d3 (Diablo III API access)")
+	fmt.Println("\t- sc2 (Starcraft II API access)")
+	fmt.Println("\t- wow (World of Warcraft API access)")
+	os.Exit(1)
+}
+
 func parseConfigCommand() {
+	if *keyFlag != "" {
+		config.Key = *keyFlag
+	}
+	if *tokenFlag != "" {
+		config.Token = *tokenFlag
+	}
+	if *regionFlag != "" {
+		config.Region = *regionFlag
+	}
+	if *localeFlag != "" {
+		config.Locale = *localeFlag
+	}
+
 	if *writeFlag == true {
 		checkTokenFlag()
 		checkKeyFlag()

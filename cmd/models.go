@@ -76,20 +76,20 @@ func (c Config) Settings(cmdType string) settings.BNetSettings {
 		s.Locale = locale.TraditionalChinese
 		break
 	default:
-		fmt.Println("\tInvalid type. Possible types are:")
-		fmt.Println("\t\ten_US")
-		fmt.Println("\t\tpt_BR")
-		fmt.Println("\t\ten_GB")
-		fmt.Println("\t\tes_ES")
-		fmt.Println("\t\tpt_PT")
-		fmt.Println("\t\tes_MX")
-		fmt.Println("\t\tzh_CN")
-		fmt.Println("\t\tfr_FR")
-		fmt.Println("\t\tde_DE")
-		fmt.Println("\t\tit_IT")
-		fmt.Println("\t\tko_KR")
-		fmt.Println("\t\tru_RU")
-		fmt.Println("\t\tzh_TW")
+		fmt.Println("Invalid type. Possible types are:")
+		fmt.Println("\t- en_US (American English)")
+		fmt.Println("\t- pt_BR (Brazilian Portugues)")
+		fmt.Println("\t- en_GB (British English)")
+		fmt.Println("\t- es_ES (Castilian Spanish)")
+		fmt.Println("\t- pt_PT (European Portuguese)")
+		fmt.Println("\t- es_MX (Mexican Spanish)")
+		fmt.Println("\t- zh_CN (Simplified Chinese)")
+		fmt.Println("\t- fr_FR (Standard French)")
+		fmt.Println("\t- de_DE (Standard German)")
+		fmt.Println("\t- it_IT (Standard Italian)")
+		fmt.Println("\t- ko_KR (Standard Korean)")
+		fmt.Println("\t- ru_RU (Standard Russian)")
+		fmt.Println("\t- zh_TW (Traditional Chinese)")
 		os.Exit(1)
 	}
 
@@ -113,13 +113,13 @@ func (c Config) Settings(cmdType string) settings.BNetSettings {
 		s.Region = regions.CN
 		break
 	default:
-		fmt.Println("\tInvalid type. Possible types are:")
-		fmt.Println("\t\tus")
-		fmt.Println("\t\teu")
-		fmt.Println("\t\tkr")
-		fmt.Println("\t\ttw")
-		fmt.Println("\t\tsea")
-		fmt.Println("\t\tcn")
+		fmt.Println("Invalid type. Possible types are:")
+		fmt.Println("\t- us (United States)")
+		fmt.Println("\t- eu (Europe)")
+		fmt.Println("\t- kr (Korea)")
+		fmt.Println("\t- tw (Taiwan)")
+		fmt.Println("\t- sea (Oceanic)")
+		fmt.Println("\t- cn (China)")
 		os.Exit(1)
 	}
 
