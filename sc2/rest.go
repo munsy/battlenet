@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/munsy/gobattlenet/internal"
 )
 
 // Convert an HTTP response from a given endpoint to the supplied interface.
@@ -11,7 +13,7 @@ import (
 // from the given endpoint and will return an error if it fails to properly unmarshal.
 func (c *SC2Client) get(endpoint string, v interface{}) error {
 	if nil == v {
-		return battlenet.ErrorNoInterfaceSupplied
+		return internal.ErrorNoInterfaceSupplied
 	}
 
 	response, err := http.Get(endpoint)

@@ -23,6 +23,14 @@ func (r Region) String() string {
 	return region
 }
 
+func (r Region) Int() int {
+	return int(r)
+}
+
+func (r Region) Itoa() string {
+	return string(r.Int())
+}
+
 // AuthURL returns the URL for OAuth authorization.
 func (r Region) AuthURL() string {
 	return r.oauthHelper("authorize")
