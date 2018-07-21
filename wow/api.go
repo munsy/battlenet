@@ -245,10 +245,10 @@ func (c *WoWClient) Quest(questID int) (*Quest, error) {
 // controlling-faction - Which faction is controlling the zone at the moment. Possible values are: 0) Alliance, 1) Horde, 2) Neutral
 // status - The current status of the zone. The possible values are: -1) Unknown, 0) Idle, 1) Populating, 2) Active, 3) Concluded,
 // next - A timestamp of when the next battle starts.
-func (c *WoWClient) RealmStatus() (*Thing, error) {
-	var status *Thing
+func (c *WoWClient) RealmStatus() (*RealmStatus, error) {
+	var status *RealmStatus
 
-	err := c.get(thing(c.region), status)
+	err := c.get(endpointRealmStatus(c.region), status)
 
 	if nil != err {
 		return nil, err
@@ -259,58 +259,58 @@ func (c *WoWClient) RealmStatus() (*Thing, error) {
 
 // RECIPE API
 // Recipe provides basic recipe information.
-func (c *WoWClient) Recipe(recipeID int) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) Recipe(recipeID int) (*Recipe, error) {
+	var recipe *Recipe
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointRecipeID(c.region, recipeID), recipe)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return recipe, nil
 }
 
 // SPELL API
 // Spell provides some information about spells.
-func (c *WoWClient) Spell(spellID int) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) Spell(spellID int) (*Spell, error) {
+	var spell *Spell
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointSpellID(c.region, spellID), spell)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return spell, nil
 }
 
 // ZONE API
 // ZoneMasterList returns a list of all supported zones and their bosses. A 'zone' in this context should be considered a dungeon, or a
 // raid, not a zone as in a world zone. A 'boss' in this context should be considered a boss encounter, which may include more than one NPC.
-func (c *WoWClient) ZoneMasterList() (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) ZoneMasterList() (*ZoneMasterList, error) {
+	var list *ZoneMasterList
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointZoneMasterList(c.region), list)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return list, nil
 }
 
 // Zone provides some information about zones.
-func (c *WoWClient) Zone(zoneID int) (*Thing, error) {
-	var thing *Thing
+func (c *WoWClient) Zone(zoneID int) (*Zone, error) {
+	var zone *Zone
 
-	err := c.get(thing(c.region), thing)
+	err := c.get(endpointZone(c.region, zoneID), zone)
 
 	if nil != err {
 		return nil, err
 	}
 
-	return thing, nil
+	return zone, nil
 }
 
 // DATA RESOURCES
