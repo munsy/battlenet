@@ -2,29 +2,19 @@ package main
 
 import (
 	"flag"
-	"fmt"
-	"os"
+	"log"
 )
 
-var tokenFlag = flag.String("t", "", "Set the OAuth2 token for Battle.net profile API access.")
-var keyFlag = flag.String("k", "", "Set the Battle.net client key for API access.")
-
-func checkTokenFlag() {
-	if *tokenFlag == "" {
-		fmt.Println("Token not set.")
-		os.Exit(1)
-	}
-}
-
-func checkKeyFlag() {
-	if *keyFlag == "" {
-		fmt.Println("Key not set.")
-		os.Exit(1)
-	}
-}
+var config Config
 
 func init() {
-
+	readTOML(*configFlag)
+	if *keyFlag == "" {
+		*keyFlag = config.Key
+	}
+	if *tokenFlag == "" {
+		*tokenFlag = config.Token
+	}
 }
 
 func main() {
@@ -32,4 +22,10 @@ func main() {
 
 	checkTokenFlag()
 	checkKeyFlag()
+
+	if *writeFlag == true {
+		log.Fatal(writeTOML(*keyFlag, *tokenFlag))
+	}
+
+	return // more soon
 }
