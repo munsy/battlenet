@@ -1,4 +1,4 @@
-package battlenet
+package internal
 
 import (
 	"errors"

@@ -34,6 +34,6 @@ type CharacterClass struct {
 
 // Get API Skill
 type CharacterAPISkill struct {
-	Skill Skill  `json:"skill"`
-	Runes []Rune `json:"runes"`
+	Skill Skill   `json:"skill"`
+	Runes []Skill `json:"runes"`
 }

@@ -1,5 +1,10 @@
 package account
 
+import (
+	"github.com/munsy/gobattlenet/sc2"
+	"github.com/munsy/gobattlenet/wow"
+)
+
 /*
 	Account related API methods should go in here.
 */

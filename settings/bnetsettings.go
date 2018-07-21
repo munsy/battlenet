@@ -1,4 +1,4 @@
-package battlenet
+package settings
 
 import (
 	"net/http"

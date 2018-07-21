@@ -11,7 +11,7 @@ type ItemAttributeData struct {
 }
 
 type RandomAffix struct {
-	OneOf []One `json:"oneOf"`
+	OneOf []ItemAttributeData `json:"oneOf"`
 }
 
 type ItemAttribute struct {

@@ -1,15 +1,13 @@
 package d3
 
 import (
-	"encoding/json"
-	"errors"
-	"fmt"
-	"io/ioutil"
 	"net/http"
 	"time"
 
-	"github.com/munsy/gobattlenet"
+	"github.com/munsy/gobattlenet/internal"
 	"github.com/munsy/gobattlenet/locale"
+	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/gobattlenet/settings"
 )
 
 // WowClient implements the battlenet.Client interface.
@@ -17,7 +15,7 @@ type D3Client struct {
 	userAgent string
 	client    *http.Client
 	locale    locale.Locale
-	region    battlenet.Region
+	region    regions.Region
 	key       string
 }
 
@@ -25,11 +23,11 @@ type D3Client struct {
 // can cause different behaviors. See function definiton for more details.
 func New(args ...interface{}) (c *D3Client, err error) {
 	c = &D3Client{
-		userAgent: "GoBattleNetD3/" + battlenet.ClientVersion,
+		userAgent: "GoBattleNetD3/" + internal.ClientVersion,
 		client:    &http.Client{Timeout: (10 * time.Second)},
 		locale:    locale.AmericanEnglish,
-		region:    battlenet.US,
-		token:     "",
+		region:    regions.US,
+		key:       "",
 	}
 
 	if nil == args {
@@ -47,17 +45,17 @@ func New(args ...interface{}) (c *D3Client, err error) {
 		case locale.Locale:
 			c.locale = t
 			break
-		case battlenet.Region:
+		case regions.Region:
 			c.region = t
 			break
-		case battlenet.BNetSettings:
+		case settings.BNetSettings:
 			c.client = t.Client
 			c.locale = t.Locale
 			c.region = t.Region
 			c.token = t.Token
 			break
 		default:
-			return nil, battlenet.ErrorUnsupportedArgument
+			return nil, internal.ErrorUnsupportedArgument
 		}
 	}
 	return c, nil

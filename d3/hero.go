@@ -52,7 +52,7 @@ type HeroItems struct {
 	OffHand     HeroItemData `json:"offHand"`
 }
 
-type FollowerHand struct {
+type FollowerHands struct {
 	MainHand TransmogItem `json:"mainHand"`
 	OffHand  TransmogItem `json:"offHand"`
 }
@@ -66,7 +66,7 @@ type FollowerStats struct {
 type HeroFollower struct {
 	Slug   string        `json:"slug"`
 	Level  int           `json:"level"`
-	Items  FollowerHand  `json:"items"`
+	Items  FollowerHands `json:"items"`
 	Stats  FollowerStats `json:"stats"`
 	Skills []interface{} `json:"skills"`
 }
