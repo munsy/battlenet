@@ -96,10 +96,10 @@ func (c *WoWClient) CharacterProfile(realm, characterName string) (*CharacterDat
 //
 // There are no required query string parameters when accessing this resource, although the fields query string parameter can optionally be passed to indicate
 // that one or more of the optional datasets is to be retrieved. Those additional fields are listed in the method titled "Optional Fields".
-func (c *WoWClient) GuildProfile(guildName string) (*GuildProfile, error) {
+func (c *WoWClient) GuildProfile(realm, guildName string) (*GuildProfile, error) {
 	var profile *GuildProfile
 
-	err := c.get(endpointGuildProfile(c.region), profile)
+	err := c.get(endpointGuildProfile(c.region, realm, guildName), profile)
 
 	if nil != err {
 		return nil, err
@@ -113,7 +113,7 @@ func (c *WoWClient) GuildProfile(guildName string) (*GuildProfile, error) {
 func (c *WoWClient) Item(itemID int) (*Item, error) {
 	var item *Item
 
-	err := c.get(endpointItemID(c.region), item)
+	err := c.get(endpointItemID(c.region, itemID), item)
 
 	if nil != err {
 		return nil, err
@@ -206,6 +206,7 @@ func (c *WoWClient) PetStats(speciesID int) (*PetStats, error) {
 
 // PVP API
 // PvpLeaderboards provides leaderboard information for the 2v2, 3v3, 5v5 and Rated Battleground leaderboards.
+/* Disabled until BFA.
 func (c *WoWClient) PvpLeaderboards(bracket string) (*Thing, error) {
 	var thing *Thing
 
@@ -217,6 +218,7 @@ func (c *WoWClient) PvpLeaderboards(bracket string) (*Thing, error) {
 
 	return thing, nil
 }
+*/
 
 // QUEST API
 // Quest retrieves metadata for a given quest.
@@ -316,7 +318,7 @@ func (c *WoWClient) Zone(zoneID int) (*Zone, error) {
 // DATA RESOURCES
 // Battlegroups provides the list of battlegroups for this region
 func (c *WoWClient) Battlegroups() (*BattleGroupsData, error) {
-	var battlegroup *BattleGroupData
+	var battlegroup *BattleGroupsData
 
 	err := c.get(endpointBattlegroups(c.region), battlegroup)
 
@@ -329,7 +331,7 @@ func (c *WoWClient) Battlegroups() (*BattleGroupsData, error) {
 
 // CharacterRaces provides a list of each race and their associated faction, name, unique ID, and skin.
 func (c *WoWClient) CharacterRaces() (*CharacterRacesData, error) {
-	var races *CharacterRaces
+	var races *CharacterRacesData
 
 	err := c.get(endpointCharacterRaces(c.region), races)
 
@@ -342,7 +344,7 @@ func (c *WoWClient) CharacterRaces() (*CharacterRacesData, error) {
 
 // CharacterClasses provides a list of character classes.
 func (c *WoWClient) CharacterClasses() (*CharacterClassesData, error) {
-	var classes *CharacterClasses
+	var classes *CharacterClassesData
 
 	err := c.get(endpointCharacterClasses(c.region), classes)
 
@@ -354,8 +356,8 @@ func (c *WoWClient) CharacterClasses() (*CharacterClassesData, error) {
 }
 
 // CharacterAchievements provides a list of all of the achievements that characters can earn as well as the category structure and hierarchy.
-func (c *WoWClient) CharacterAchievements() (*CharacterAchievementData, error) {
-	var data *CharacterAchievementData
+func (c *WoWClient) CharacterAchievements() (*CharacterAchievementsData, error) {
+	var data *CharacterAchievementsData
 
 	err := c.get(endpointCharacterAchievements(c.region), data)
 
@@ -381,7 +383,7 @@ func (c *WoWClient) GuildRewards() (*GuildRewardsData, error) {
 
 // GuildPerks provides a list of all guild perks.
 func (c *WoWClient) GuildPerks() (*GuildPerksData, error) {
-	var data *GuildPerks
+	var data *GuildPerksData
 
 	err := c.get(endpointGuildPerks(c.region), data)
 
@@ -394,7 +396,7 @@ func (c *WoWClient) GuildPerks() (*GuildPerksData, error) {
 
 // GuildAchievements provides a list of all of the achievements that guilds can earn as well as the category structure and hierarchy.
 func (c *WoWClient) GuildAchievements() (*GuildAchievementsData, error) {
-	var data *GuildAchievements
+	var data *GuildAchievementsData
 
 	err := c.get(endpointGuildAchievements(c.region), data)
 
@@ -407,7 +409,7 @@ func (c *WoWClient) GuildAchievements() (*GuildAchievementsData, error) {
 
 // ItemClasses provides a list of item classes.
 func (c *WoWClient) ItemClasses() (*ItemClassesData, error) {
-	var data *ItemClasses
+	var data *ItemClassesData
 
 	err := c.get(endpointItemClasses(c.region), data)
 
@@ -420,7 +422,7 @@ func (c *WoWClient) ItemClasses() (*ItemClassesData, error) {
 
 // Talents provides a list of talents, specs and glyphs for each class.
 func (c *WoWClient) Talents() (*TalentsData, error) {
-	var data *Talents
+	var data *TalentsData
 
 	err := c.get(endpointTalents(c.region), data)
 
@@ -433,7 +435,7 @@ func (c *WoWClient) Talents() (*TalentsData, error) {
 
 // PetTypes provides a list of different pet types (including what they are strong and weak against).
 func (c *WoWClient) PetTypes() (*PetTypesData, error) {
-	var data *PetTypes
+	var data *PetTypesData
 
 	err := c.get(endpointPetTypes(c.region), data)
 

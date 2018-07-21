@@ -10,14 +10,14 @@ var (
 	endpointUser    = func(r regions.Region) string { return endpointAccount(r) + "user" } // /ACCOUNT/USER
 
 	// SC2 API
-	sc2 = func(r regions.Region) string { return r.API() + "sc2/" }
+	endpointSc2 = func(r regions.Region) string { return r.API() + "sc2/" }
 	// SC2 PROFILE
-	endpointSc2Profile = func(r regions.Region) string { return sc2(r) + "profile/" }
+	endpointSc2Profile = func(r regions.Region) string { return endpointSc2(r) + "profile/" }
 	endpointSc2User    = func(r regions.Region) string { return endpointSc2Profile(r) + "user" } // SC2 OAUTH PROFILE 	/SC2/PROFILE/USER
 
 	// WOW API
-	wow = func(r regions.Region) string { return r.API() + "wow/" }
+	endpointWow = func(r regions.Region) string { return r.API() + "wow/" }
 	//	WOW PROFILE
-	endpointWowUser       = func(r regions.Region) string { return wow(r) + "user/" }
+	endpointWowUser       = func(r regions.Region) string { return endpointWow(r) + "user/" }
 	endpointWowCharacters = func(r regions.Region) string { return endpointWowUser(r) + "characters" } // WOW OAUTH PROFILE /WOW/USER/CHARACTERS
 )

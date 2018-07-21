@@ -1,15 +1,13 @@
 package wow
 
 import (
-	//"encoding/json"
-	//"errors"
-	//"fmt"
-	//"io/ioutil"
 	"net/http"
 	"time"
 
+	"github.com/munsy/gobattlenet/internal"
 	"github.com/munsy/gobattlenet/locale"
 	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/gobattlenet/settings"
 )
 
 // ClientVersion defines the most up-to-date version of the GoBattleNet client.
@@ -42,7 +40,7 @@ func New(args ...interface{}) (c *WoWClient, err error) {
 	for _, arg := range args {
 		switch t := arg.(type) {
 		case string:
-			c.token = t
+			c.key = t
 			break
 		case *http.Client:
 			c.client = t
@@ -53,14 +51,14 @@ func New(args ...interface{}) (c *WoWClient, err error) {
 		case regions.Region:
 			c.region = t
 			break
-		case battlenet.BNetSettings:
+		case settings.BNetSettings:
 			c.client = t.Client
 			c.locale = t.Locale
 			c.region = t.Region
 			c.key = t.Key
 			break
 		default:
-			return nil, battlenet.ErrorUnsupportedArgument
+			return nil, internal.ErrorUnsupportedArgument
 		}
 	}
 	return c, nil

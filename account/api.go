@@ -37,7 +37,7 @@ func (c *AccountClient) Sc2OauthProfile(region string) (*sc2.Character, error) {
 
 // WoWOauthProfile returns details about the WoW account.
 func (c *AccountClient) WoWOauthProfile() (*wow.Characters, error) {
-	var character *wow.Character
+	var character *wow.Characters
 
 	err := c.get(endpointWowCharacters(c.region), character)
 

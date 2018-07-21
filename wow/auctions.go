@@ -1,6 +1,6 @@
 package wow
 
-type Realm struct {
+type AuctionRealm struct {
 	Name            string   `json:"name"`
 	Slug            string   `json:"slug"`
 	Battlegroup     string   `json:"battlegroup"`
@@ -48,6 +48,6 @@ type AuctionFileQueryData struct {
 }
 
 type AuctionJSONFileData struct {
-	Realms   []Realm   `json:"realms"`
-	Auctions []Auction `json:"auctions"`
+	Realms   []AuctionRealm `json:"realms"`
+	Auctions []Auction      `json:"auctions"`
 }

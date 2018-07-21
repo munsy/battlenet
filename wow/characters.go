@@ -62,19 +62,6 @@ type CharacterAchievementCriteria struct {
 	Max         int    `json:"max"`
 }
 
-type CharacterAchievement struct {
-	ID          int                            `json:"id"`
-	Title       string                         `json:"title"`
-	Points      int                            `json:"points"`
-	Description string                         `json:"description"`
-	Reward      string                         `json:"reward"`
-	RewardItems []interface{}                  `json:"rewardItems"`
-	Icon        string                         `json:"icon"`
-	Criteria    []CharacterAchievementCriteria `json:"criteria"`
-	AccountWide bool                           `json:"accountWide"`
-	FactionID   int                            `json:"factionId"`
-}
-
 type CharacterFeedItem struct {
 	Type           string                       `json:"type"`
 	Timestamp      int64                        `json:"timestamp"`

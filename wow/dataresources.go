@@ -38,33 +38,21 @@ type AchievementCriteria struct {
 	Max         int    `json:"max"`
 }
 
-type CharacterAchievement struct {
-	ID          int                   `json:"id"`
-	Title       string                `json:"title"`
-	Points      int                   `json:"points"`
-	Description string                `json:"description"`
-	RewardItems []interface{}         `json:"rewardItems"`
-	Icon        string                `json:"icon"`
-	Criteria    []AchievementCriteria `json:"criteria"`
-	AccountWide bool                  `json:"accountWide"`
-	FactionID   int                   `json:"factionId"`
-}
-
 type CharacterAchievementCategory struct {
 	ID           int                    `json:"id"`
 	Achievements []CharacterAchievement `json:"achievements"`
 	Name         string                 `json:"name"`
 }
 
-type CharacterAchievements struct {
+type CharacterAchievementData struct {
 	ID           int                            `json:"id"`
 	Achievements []CharacterAchievement         `json:"achievements,omitempty"`
 	Name         string                         `json:"name"`
 	Categories   []CharacterAchievementCategory `json:"categories,omitempty"`
 }
 
-type CharacterAchievementData struct {
-	Achievements []CharacterAchievements `json:"achievements"`
+type CharacterAchievementsData struct {
+	Achievements []CharacterAchievementData `json:"achievements"`
 }
 
 type GuildRewardItem struct {
@@ -102,25 +90,6 @@ type GuildRewardsItemStat struct {
 }
 
 type GuildRewardsItem struct {
-}
-
-type GuildRewardsItemAppearance struct {
-	ID                   int                           `json:"id"`
-	Name                 string                        `json:"name"`
-	Icon                 string                        `json:"icon"`
-	Quality              int                           `json:"quality"`
-	ItemLevel            int                           `json:"itemLevel"`
-	TooltipParams        GuildRewardsItemTooltipParams `json:"tooltipParams"`
-	Stats                []GuildRewardsItemStat        `json:"stats"`
-	Armor                int                           `json:"armor"`
-	Context              string                        `json:"context"`
-	BonusLists           []interface{}                 `json:"bonusLists"`
-	ArtifactID           int                           `json:"artifactId"`
-	DisplayInfoID        int                           `json:"displayInfoId"`
-	ArtifactAppearanceID int                           `json:"artifactAppearanceId"`
-	ArtifactTraits       []interface{}                 `json:"artifactTraits"`
-	Relics               []interface{}                 `json:"relics"`
-	Appearance           GuildRewardsItemAppearance    `json:"appearance"`
 }
 
 type GuildRewardAchievement struct {

@@ -1,14 +1,13 @@
 package account
 
 import (
-	"errors"
-	"fmt"
+	"net/http"
+	"time"
 
 	"github.com/munsy/gobattlenet/internal"
 	"github.com/munsy/gobattlenet/locale"
 	"github.com/munsy/gobattlenet/regions"
-	"github.com/munsy/gobattlenet/sc2"
-	"github.com/munsy/gobattlenet/wow"
+	"github.com/munsy/gobattlenet/settings"
 )
 
 // AccountClient implements the battlenet.Client interface.
@@ -49,7 +48,7 @@ func New(args ...interface{}) (c *AccountClient, err error) {
 		case regions.Region:
 			c.region = t
 			break
-		case battlenet.BNetSettings:
+		case settings.BNetSettings:
 			c.client = t.Client
 			c.locale = t.Locale
 			c.region = t.Region
