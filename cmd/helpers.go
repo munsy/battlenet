@@ -37,6 +37,25 @@ func checkLocaleFlag() {
 	}
 }
 
+func checkAllGameConfigs() {
+	checkKeyFlag()
+	checkRegionFlag()
+	checkLocaleFlag()
+}
+
+func checkAllAccountConfigs() {
+	checkTokenFlag()
+	checkRegionFlag()
+	checkLocaleFlag()
+}
+
+func checkAllConfigs() {
+	checkKeyFlag()
+	checkTokenFlag()
+	checkRegionFlag()
+	checkLocaleFlag()
+}
+
 func writeTOML(key, token, region, locale string) error {
 	var inputs = Config{
 		key,
@@ -60,7 +79,5 @@ func writeTOML(key, token, region, locale string) error {
 
 func readTOML(filename string) {
 	if _, err := toml.DecodeFile(filename, &config); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
 	}
 }

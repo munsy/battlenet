@@ -80,13 +80,23 @@ func printDefaultsAndQuit() {
 	os.Exit(1)
 }
 
+func printConfigCommandsAndQuit() {
+	if len(os.Args) < 3 {
+		fmt.Println("[ERROR] No arguments supplied.")
+	} else {
+		fmt.Print("[ERROR] Invalid argument. ")
+	}
+	fmt.Println("Possible arguments are:")
+	configCommand.PrintDefaults()
+	os.Exit(1)
+
+}
+
 func parseConfigCommand() {
-	if *keyFlag != "" {
-		config.Key = *keyFlag
+	if len(os.Args) < 3 {
+		printConfigCommandsAndQuit()
 	}
-	if *tokenFlag != "" {
-		config.Token = *tokenFlag
-	}
+
 	if *regionFlag != "" {
 		config.Region = *regionFlag
 	}
@@ -95,10 +105,7 @@ func parseConfigCommand() {
 	}
 
 	if *writeFlag == true {
-		checkTokenFlag()
-		checkKeyFlag()
-		checkRegionFlag()
-		checkLocaleFlag()
+		checkAllConfigs()
 
 		err := writeTOML(*keyFlag, *tokenFlag, *regionFlag, *localeFlag)
 		if nil != err {
@@ -106,10 +113,13 @@ func parseConfigCommand() {
 		} else {
 			fmt.Println("Write successful.")
 		}
+	} else {
+		printConfigCommandsAndQuit()
 	}
 }
 
 func parseAccountCommand() {
+	checkAllAccountConfigs()
 	client, err := account.New(config.Settings("token"))
 
 	if nil != err {
@@ -123,7 +133,8 @@ func parseAccountCommand() {
 			panic(err)
 		}
 
-		fmt.Print("%v\n", response)
+		fmt.Print("ID: %v\n", response.ID)
+		fmt.Print("BattleTag: %v\n", response.BattleTag)
 	} else if *accountSc2ProfileFlag == true {
 		response, err := client.Sc2OauthProfile()
 
@@ -146,6 +157,7 @@ func parseAccountCommand() {
 }
 
 func parseD3Command() {
+	checkAllGameConfigs()
 	client, err := d3.New(config.Settings("key"))
 
 	if nil != err {
@@ -156,6 +168,7 @@ func parseD3Command() {
 }
 
 func parseSC2Command() {
+	checkAllGameConfigs()
 	client, err := sc2.New(config.Settings("key"))
 
 	if nil != err {
@@ -166,6 +179,7 @@ func parseSC2Command() {
 }
 
 func parseWoWCommand() {
+	checkAllGameConfigs()
 	client, err := wow.New(config.Settings("key"))
 
 	if nil != err {

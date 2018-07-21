@@ -12,8 +12,8 @@ import (
 )
 
 type Config struct {
-	Token  string
 	Key    string
+	Token  string
 	Region string
 	Locale string
 }
