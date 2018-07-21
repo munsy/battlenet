@@ -1,5 +1,6 @@
 package battlenet
 
+/*
 import (
 	"errors"
 	"fmt"
@@ -9,7 +10,7 @@ import (
 	"github.com/munsy/gobattlenet/sc2"
 	"github.com/munsy/gobattlenet/wow"
 )
-
+*/
 type ClientType int
 
 const (
@@ -20,6 +21,7 @@ const (
 )
 
 // New returns a new Battle.net API client, according to the type passed to it.
+/*
 func New(t ClientType, args ...interface{}) (*Client, error) {
 	var c *Client
 	var err error
@@ -45,3 +47,4 @@ func New(t ClientType, args ...interface{}) (*Client, error) {
 
 	return c, err
 }
+*/

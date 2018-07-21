@@ -1,19 +1,6 @@
-package battlenet
+package regions
 
 type Region int
-
-const (
-	US Region = iota
-	EU
-	KR
-	TW
-	SEA
-	CN
-)
-
-func (r Region) Int() int {
-	return int(r)
-}
 
 func (r Region) String() string {
 	var region string
@@ -51,22 +38,22 @@ func (r Region) API() string {
 	var url string
 	switch r {
 	case US:
-		url = "https://" + r.String() + ".api.battle.net/"
+		url = urlHead + r.String() + urlTail
 		break
 	case EU:
-		url = "https://" + r.String() + ".api.battle.net/"
+		url = urlHead + r.String() + urlTail
 		break
 	case KR:
-		url = "https://" + r.String() + ".api.battle.net/"
+		url = urlHead + r.String() + urlTail
 		break
 	case TW:
-		url = "https://" + r.String() + ".api.battle.net/"
+		url = urlHead + r.String() + urlTail
 		break
 	case SEA:
-		url = "https://" + r.String() + ".api.battle.net/"
+		url = urlHead + r.String() + urlTail
 		break
 	case CN:
-		url = "https://api.battlenet.com.cn/"
+		url = urlCN
 		break
 	default:
 		panic(ErrorUnresolvedEndpoint)
@@ -79,22 +66,22 @@ func (r Region) oauthHelper(endpoint string) string {
 	var url string
 	switch r {
 	case US:
-		url = "https://" + r.String() + ".battle.net/oauth/" + endpoint
+		url = urlHead + r.String() + oauthTail + endpoint
 		break
 	case EU:
-		url = "https://" + r.String() + ".battle.net/oauth/" + endpoint
+		url = urlHead + r.String() + oauthTail + endpoint
 		break
 	case KR:
-		url = "https://" + r.String() + ".battle.net/oauth/" + endpoint
+		url = urlHead + r.String() + oauthTail + endpoint
 		break
 	case TW:
-		url = "https://" + r.String() + ".battle.net/oauth/" + endpoint
+		url = urlHead + r.String() + oauthTail + endpoint
 		break
 	case SEA:
-		url = "https://" + r.String() + ".battle.net/oauth/" + endpoint
+		url = urlHead + r.String() + oauthTail + endpoint
 		break
 	case CN:
-		url = "https://www.battlenet.com.cn/oauth/" + endpoint
+		url = oauthCN + endpoint
 		break
 	default:
 		panic(ErrorUnresolvedEndpoint)

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/munsy/gobattlenet"
+	"github.com/munsy/gobattlenet/locale"
 	"github.com/munsy/gobattlenet/regions"
 	"github.com/munsy/gobattlenet/sc2"
 	"github.com/munsy/gobattlenet/wow"
