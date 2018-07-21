@@ -10,7 +10,7 @@ import (
 */
 
 // BattleID returns the Battle.net ID and BattleTag.
-func (c *AccountClient) BattleID(region string) (*BattleID, error) {
+func (c *AccountClient) BattleID() (*BattleID, error) {
 	var bid *BattleID
 
 	err := c.get(endpointUser(c.region), bid)
@@ -23,7 +23,7 @@ func (c *AccountClient) BattleID(region string) (*BattleID, error) {
 }
 
 // Sc2OauthProfile returns details about a character.
-func (c *AccountClient) Sc2OauthProfile(region string) (*sc2.Character, error) {
+func (c *AccountClient) Sc2OauthProfile() (*sc2.Character, error) {
 	var character *sc2.Character
 
 	err := c.get(endpointSc2User(c.region), character)
