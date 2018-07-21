@@ -23,10 +23,26 @@ func checkKeyFlag() {
 	}
 }
 
-func writeTOML(key, token string) error {
+func checkRegionFlag() {
+	if *regionFlag == "" {
+		fmt.Println("Region not set.")
+		os.Exit(1)
+	}
+}
+
+func checkLocaleFlag() {
+	if *localeFlag == "" {
+		fmt.Println("Locale not set.")
+		os.Exit(1)
+	}
+}
+
+func writeTOML(key, token, region, locale string) error {
 	var inputs = Config{
 		key,
 		token,
+		region,
+		locale,
 	}
 
 	var buffer bytes.Buffer
