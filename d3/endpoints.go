@@ -12,14 +12,14 @@ var (
 	endpointData = func(r regions.Region) string { return endpointD3(r) + "data/" }
 
 	//  ACT
-	acts = func(r regions.Region) string { return endpointData(r) + "act" }                        // GETACTINDEX /D3/DATA/ACT
-	act  = func(r regions.Region, actID int) string { return acts(r) + "/" + strconv.Itoa(actID) } // GETACT 	 /D3/DATA/ACT/{ACTID}
+	endpointActs = func(r regions.Region) string { return endpointData(r) + "act" }                                // GETACTINDEX /D3/DATA/ACT
+	endpointAct  = func(r regions.Region, actID int) string { return endpointActs(r) + "/" + strconv.Itoa(actID) } // GETACT 	 /D3/DATA/ACT/{ACTID}
 
 	//  ARTISAN AND RECIPE
 	artisan         = func(r regions.Region) string { return endpointData(r) + "artisan/" }
 	endpointArtisan = func(r regions.Region, artisanSlug string) string { return artisan(r) + artisanSlug } // GETARTISAN 	/D3/DATA/ARTISAN/{ARTISANSLUG}
 	endpointRecipe  = func(r regions.Region, artisanSlug, recipeSlug string) string {                       // GETRECIPE 	/D3/DATA/ARTISAN/{ARTISANSLUG}/RECIPE/{RECIPESLUG}
-		return artisan(r, artisanSlug) + "/" + recipeSlug
+		return endpointArtisan(r, artisanSlug) + "/" + recipeSlug
 	}
 
 	//  FOLLOWER
@@ -30,7 +30,7 @@ var (
 	characterClass         = func(r regions.Region) string { return endpointData(r) + "hero/" }
 	endpointCharacterClass = func(r regions.Region, classSlug string) string { return characterClass(r) + classSlug } // GETCHARACTERCLASS 	/D3/DATA/HERO/{CLASSSLUG}
 	endpointSkill          = func(r regions.Region, classSlug, skillSlug string) string {                             // GETAPISKILL 		/D3/DATA/HERO/{CLASSSLUG}/SKILL/{SKILLSLUG}
-		return characterClass(r, classSlug) + "/skill/" + skillSlug
+		return endpointCharacterClass(r, classSlug) + "/skill/" + skillSlug
 	}
 
 	//  ITEM TYPE
@@ -44,7 +44,7 @@ var (
 	endpointItem = func(r regions.Region, itemSlugAndID string) string { return item(r) + itemSlugAndID } // GETITEM /D3/DATA/ITEM/{ITEMSLUGANDID}
 
 	//  PROFILE
-	profile         = endpointD3 + "profile/"
+	profile         = func(r regions.Region) string { return endpointD3(r) + "profile/" }
 	endpointAccount = func(r regions.Region, account string) string { return profile(r) + account } // 	GETAPIACCOUNT	/D3/PROFILE/{ACCOUNT}/
 	endpointHero    = func(r regions.Region, account string, heroID int) string {                   // 	GETAPIHERO 		/D3/PROFILE/{ACCOUNT}/HERO/{HEROID}
 		return endpointAccount(r, account) + "/hero/" + strconv.Itoa(heroID)

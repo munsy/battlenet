@@ -1,6 +1,6 @@
 package d3
 
-type ItemType struct {
+type ItemMetadata struct {
 	TwoHanded bool   `json:"twoHanded"`
 	ID        string `json:"id"`
 }
@@ -32,7 +32,7 @@ type Item struct {
 	FlavorText             string        `json:"flavorText"`
 	FlavorTextHTML         string        `json:"flavorTextHtml"`
 	TypeName               string        `json:"typeName"`
-	Type                   ItemType      `json:"type"`
+	Type                   ItemMetadata  `json:"type"`
 	Damage                 string        `json:"damage"`
 	Dps                    string        `json:"dps"`
 	DamageHTML             string        `json:"damageHtml"`

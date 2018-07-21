@@ -8,7 +8,7 @@ package d3
 func (c *D3Client) ActIndex() (*ActIndex, error) {
 	var index *ActIndex
 
-	err := c.get(acts(c.region), index)
+	err := c.get(endpointActs(c.region), index)
 
 	if nil != err {
 		return nil, err
@@ -21,7 +21,7 @@ func (c *D3Client) ActIndex() (*ActIndex, error) {
 func (c *D3Client) Act(actID int) (*Act, error) {
 	var act *Act
 
-	err := c.get(act(c.region, actID), act)
+	err := c.get(endpointAct(c.region, actID), act)
 
 	if nil != err {
 		return nil, err
@@ -34,7 +34,7 @@ func (c *D3Client) Act(actID int) (*Act, error) {
 func (c *D3Client) Artisan(artisanSlug string) (*Artisan, error) {
 	var artisan *Artisan
 
-	err := c.get(artisan(c.region, artisanSlug), artisan)
+	err := c.get(endpointArtisan(c.region, artisanSlug), artisan)
 
 	if nil != err {
 		return nil, err
@@ -47,7 +47,7 @@ func (c *D3Client) Artisan(artisanSlug string) (*Artisan, error) {
 func (c *D3Client) Recipe(artisanSlug, recipeSlug string) (*Recipe, error) {
 	var recipe *Recipe
 
-	err := c.get(recipe(c.region, artisanSlug, recipeSlug), recipe)
+	err := c.get(endpointRecipe(c.region, artisanSlug, recipeSlug), recipe)
 
 	if nil != err {
 		return nil, err
@@ -60,7 +60,7 @@ func (c *D3Client) Recipe(artisanSlug, recipeSlug string) (*Recipe, error) {
 func (c *D3Client) Follower(followerSlug string) (*Follower, error) {
 	var follower *Follower
 
-	err := c.get(follower(c.region, followerSlug), follower)
+	err := c.get(endpointFollower(c.region, followerSlug), follower)
 
 	if nil != err {
 		return nil, err
@@ -73,7 +73,7 @@ func (c *D3Client) Follower(followerSlug string) (*Follower, error) {
 func (c *D3Client) CharacterClass(classSlug string) (*CharacterClass, error) {
 	var cc *CharacterClass
 
-	err := c.get(characterClass(c.region, classSlug), cc)
+	err := c.get(endpointCharacterClass(c.region, classSlug), cc)
 
 	if nil != err {
 		return nil, err
@@ -86,7 +86,7 @@ func (c *D3Client) CharacterClass(classSlug string) (*CharacterClass, error) {
 func (c *D3Client) CharacterSkill(classSlug, skillSlug string) (*CharacterAPISkill, error) {
 	var cs *CharacterAPISkill
 
-	err := c.get(skill(c.region, classSlug, skillSlug), cs)
+	err := c.get(endpointSkill(c.region, classSlug, skillSlug), cs)
 
 	if nil != err {
 		return nil, err
@@ -99,7 +99,7 @@ func (c *D3Client) CharacterSkill(classSlug, skillSlug string) (*CharacterAPISki
 func (c *D3Client) ItemTypeIndex() (*ItemTypeIndex, error) {
 	var index *ItemTypeIndex
 
-	err := c.get(itemTypeIndex(c.region), index)
+	err := c.get(endpointItemTypeIndex(c.region), index)
 
 	if nil != err {
 		return nil, err
@@ -112,7 +112,7 @@ func (c *D3Client) ItemTypeIndex() (*ItemTypeIndex, error) {
 func (c *D3Client) ItemType(itemTypeSlug string) (*ItemType, error) {
 	var it *ItemType
 
-	err := c.get(itemType(c.region, itemTypeSlug), it)
+	err := c.get(endpointItemType(c.region, itemTypeSlug), it)
 
 	if nil != err {
 		return nil, err
@@ -125,7 +125,7 @@ func (c *D3Client) ItemType(itemTypeSlug string) (*ItemType, error) {
 func (c *D3Client) Item(itemSlugAndID string) (*Item, error) {
 	var item *Item
 
-	err := c.get(item(c.region, itemSlugAndID), item)
+	err := c.get(endpointItem(c.region, itemSlugAndID), item)
 
 	if nil != err {
 		return nil, err
@@ -138,7 +138,7 @@ func (c *D3Client) Item(itemSlugAndID string) (*Item, error) {
 func (c *D3Client) Account(account string) (*Account, error) {
 	var acct *Account
 
-	err := c.get(account(c.region, account), acct)
+	err := c.get(endpointAccount(c.region, account), acct)
 
 	if nil != err {
 		return nil, err
@@ -151,7 +151,7 @@ func (c *D3Client) Account(account string) (*Account, error) {
 func (c *D3Client) Hero(account string, heroID int) (*Hero, error) {
 	var hero *Hero
 
-	err := c.get(hero(c.region, account, heroID), hero)
+	err := c.get(endpointHero(c.region, account, heroID), hero)
 
 	if nil != err {
 		return nil, err
@@ -164,7 +164,7 @@ func (c *D3Client) Hero(account string, heroID int) (*Hero, error) {
 func (c *D3Client) HeroItems(account string, heroID int) (*HeroItems, error) {
 	var items *HeroItems
 
-	err := c.get(detailedHeroItems(c.region, account, heroID), items)
+	err := c.get(endpointDetailedHeroItems(c.region, account, heroID), items)
 
 	if nil != err {
 		return nil, err
@@ -177,7 +177,7 @@ func (c *D3Client) HeroItems(account string, heroID int) (*HeroItems, error) {
 func (c *D3Client) FollowerItems(account string, heroID int) (*HeroFollowers, error) {
 	var followers *HeroFollowers
 
-	err := c.get(detailedFollowerItems(c.region, account, heroID), followers)
+	err := c.get(endpointDetailedFollowerItems(c.region, account, heroID), followers)
 
 	if nil != err {
 		return nil, err

@@ -37,7 +37,7 @@ func New(args ...interface{}) (c *D3Client, err error) {
 	for _, arg := range args {
 		switch t := arg.(type) {
 		case string:
-			c.token = t
+			c.key = t
 			break
 		case *http.Client:
 			c.client = t
@@ -52,7 +52,7 @@ func New(args ...interface{}) (c *D3Client, err error) {
 			c.client = t.Client
 			c.locale = t.Locale
 			c.region = t.Region
-			c.token = t.Token
+			c.key = t.Key
 			break
 		default:
 			return nil, internal.ErrorUnsupportedArgument
