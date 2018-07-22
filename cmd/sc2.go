@@ -20,5 +20,5 @@ func parseSC2Command() {
 		panic(err)
 	}
 
-	fmt.Print("%v\n", client)
+	fmt.Printf("%v\n", client)
 }
