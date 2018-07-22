@@ -31,23 +31,16 @@ type CharacterClassesData struct {
 	Classes []CharacterClass `json:"classes"`
 }
 
-type AchievementCriteria struct {
-	ID          int    `json:"id"`
-	Description string `json:"description"`
-	OrderIndex  int    `json:"orderIndex"`
-	Max         int    `json:"max"`
-}
-
 type CharacterAchievementCategory struct {
-	ID           int                    `json:"id"`
-	Achievements []CharacterAchievement `json:"achievements"`
-	Name         string                 `json:"name"`
+	ID           int           `json:"id"`
+	Name         string        `json:"name"`
+	Achievements []Achievement `json:"achievements"`
 }
 
 type CharacterAchievementData struct {
 	ID           int                            `json:"id"`
-	Achievements []CharacterAchievement         `json:"achievements,omitempty"`
 	Name         string                         `json:"name"`
+	Achievements []Achievement                  `json:"achievements,omitempty"`
 	Categories   []CharacterAchievementCategory `json:"categories,omitempty"`
 }
 
@@ -92,25 +85,12 @@ type GuildRewardsItemStat struct {
 type GuildRewardsItem struct {
 }
 
-type GuildRewardAchievement struct {
-	ID          int                   `json:"id"`
-	Title       string                `json:"title"`
-	Points      int                   `json:"points"`
-	Description string                `json:"description"`
-	Reward      string                `json:"reward"`
-	RewardItems []GuildRewardsItem    `json:"rewardItems"`
-	Icon        string                `json:"icon"`
-	Criteria    []AchievementCriteria `json:"criteria"`
-	AccountWide bool                  `json:"accountWide"`
-	FactionID   int                   `json:"factionId"`
-}
-
 type GuildRewards struct {
-	MinGuildLevel    int                    `json:"minGuildLevel"`
-	MinGuildRepLevel int                    `json:"minGuildRepLevel"`
-	Achievement      GuildRewardAchievement `json:"achievement,omitempty"`
-	Item             GuildRewardItem        `json:"item"`
-	Races            []int                  `json:"races,omitempty"`
+	MinGuildLevel    int             `json:"minGuildLevel"`
+	MinGuildRepLevel int             `json:"minGuildRepLevel"`
+	Achievement      Achievement     `json:"achievement,omitempty"`
+	Item             GuildRewardItem `json:"item"`
+	Races            []int           `json:"races,omitempty"`
 }
 
 type GuildRewardsData struct {
@@ -135,29 +115,16 @@ type GuildPerksData struct {
 	Perks []GuildPerk `json:"perks"`
 }
 
-type GuildAchievementsList struct {
-	ID          int                   `json:"id"`
-	Title       string                `json:"title"`
-	Points      int                   `json:"points"`
-	Description string                `json:"description"`
-	RewardItems []interface{}         `json:"rewardItems"`
-	Icon        string                `json:"icon"`
-	Criteria    []AchievementCriteria `json:"criteria"`
-	AccountWide bool                  `json:"accountWide"`
-	FactionID   int                   `json:"factionId"`
-	Reward      string                `json:"reward,omitempty"`
-}
-
 type GuildAchievementsCategories struct {
-	ID           int                     `json:"id"`
-	Achievements []GuildAchievementsList `json:"achievements"`
-	Name         string                  `json:"name"`
+	ID           int           `json:"id"`
+	Name         string        `json:"name"`
+	Achievements []Achievement `json:"achievements"`
 }
 
 type GuildAchievements struct {
 	ID           int                           `json:"id"`
-	Achievements []GuildAchievementsList       `json:"achievements"`
 	Name         string                        `json:"name"`
+	Achievements []Achievement                 `json:"achievements"`
 	Categories   []GuildAchievementsCategories `json:"categories,omitempty"`
 }
 

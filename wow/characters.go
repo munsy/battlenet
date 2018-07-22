@@ -55,24 +55,17 @@ type CharacterGuild struct {
 	Emblem            CharacterGuildEmblem `json:"emblem"`
 }
 
-type CharacterAchievementCriteria struct {
-	ID          int    `json:"id"`
-	Description string `json:"description"`
-	OrderIndex  int    `json:"orderIndex"`
-	Max         int    `json:"max"`
-}
-
 type CharacterFeedItem struct {
-	Type           string                       `json:"type"`
-	Timestamp      int64                        `json:"timestamp"`
-	ItemID         int                          `json:"itemId,omitempty"`
-	Context        string                       `json:"context,omitempty"`
-	BonusLists     []int                        `json:"bonusLists,omitempty"`
-	Achievement    CharacterAchievement         `json:"achievement,omitempty"`
-	FeatOfStrength bool                         `json:"featOfStrength,omitempty"`
-	Criteria       CharacterAchievementCriteria `json:"criteria,omitempty"`
-	Quantity       int                          `json:"quantity,omitempty"`
-	Name           string                       `json:"name,omitempty"`
+	Type           string      `json:"type"`
+	Timestamp      int64       `json:"timestamp"`
+	ItemID         int         `json:"itemId,omitempty"`
+	Context        string      `json:"context,omitempty"`
+	BonusLists     []int       `json:"bonusLists,omitempty"`
+	Achievement    Achievement `json:"achievement,omitempty"`
+	FeatOfStrength bool        `json:"featOfStrength,omitempty"`
+	Criteria       Criteria    `json:"criteria,omitempty"`
+	Quantity       int         `json:"quantity,omitempty"`
+	Name           string      `json:"name,omitempty"`
 }
 
 type CharacterItemSlotTooltipParams struct {

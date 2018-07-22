@@ -1,11 +1,12 @@
 package wow
 
+// Achievement represents a single World of Warcraft achievement for a character.
 type Achievement struct {
 	ID          int          `json:"id"`
 	Title       string       `json:"title"`
 	Points      int          `json:"points"`
 	Description string       `json:"description"`
-	Reward      string       `json:"reward"`
+	Reward      string       `json:"reward,omitempty"`
 	RewardItems []RewardItem `json:"rewardItems"`
 	Icon        string       `json:"icon"`
 	Criteria    []Criteria   `json:"criteria"`
@@ -39,6 +40,7 @@ type RewardItem struct {
 	Appearance           Appearance    `json:"appearance"`
 }
 
+// Criteria represents the criteria for a single World of Warcraft achievement.
 type Criteria struct {
 	ID          int    `json:"id"`
 	Description string `json:"description"`

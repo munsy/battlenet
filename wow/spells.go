@@ -1,5 +1,6 @@
 package wow
 
+// Spell is a representation of a World of Warcraft spell.
 type Spell struct {
 	ID          int    `json:"id"`
 	Name        string `json:"name"`
