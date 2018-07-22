@@ -9,6 +9,7 @@ import (
 
 var (
 	sc2Command = flag.NewFlagSet("sc2", flag.ExitOnError)
+	sc2Flag    = sc2Command.Bool("bid", false, "Description.")
 )
 
 func parseSC2Command() {

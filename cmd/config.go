@@ -51,5 +51,4 @@ func printConfigCommandsAndQuit() {
 	fmt.Println("Possible arguments are:")
 	configCommand.PrintDefaults()
 	os.Exit(1)
-
 }

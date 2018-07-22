@@ -9,6 +9,7 @@ import (
 
 var (
 	wowCommand = flag.NewFlagSet("wow", flag.ExitOnError)
+	wowFlag    = wowCommand.Bool("bid", false, "Description.")
 )
 
 func parseWoWCommand() {
