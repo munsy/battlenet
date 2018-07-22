@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 
 	"github.com/munsy/gobattlenet/wow"
 )
@@ -21,4 +22,15 @@ func parseWoWCommand() {
 	}
 
 	fmt.Printf("%v\n", client)
+}
+
+func printWoWCommandsAndQuit() {
+	if len(os.Args) < 3 {
+		fmt.Println("[ERROR] No arguments supplied.")
+	} else {
+		fmt.Print("[ERROR] Invalid argument. ")
+	}
+	fmt.Println("Possible arguments are:")
+	wowCommand.PrintDefaults()
+	os.Exit(1)
 }

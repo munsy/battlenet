@@ -5,7 +5,7 @@ package sc2
 */
 
 // Character returns the Sc2 character profile.
-func (c *SC2Client) Character(region, name string, profileID int) (*Character, error) {
+func (c *SC2Client) Character(name string, profileID int) (*Character, error) {
 	var character *Character
 
 	err := c.get(endpointProfile(c.region, profileID, c.region.Itoa(), name), &character)
@@ -18,7 +18,7 @@ func (c *SC2Client) Character(region, name string, profileID int) (*Character, e
 }
 
 // LadderSeasons returns the Sc2 profile's ladder seasons.
-func (c *SC2Client) LadderSeasons(region, name string, profileID int) (*LadderSeasons, error) {
+func (c *SC2Client) LadderSeasons(name string, profileID int) (*LadderSeasons, error) {
 	var ladderSeasons *LadderSeasons
 
 	err := c.get(endpointLadderProfile(c.region, profileID, c.region.Itoa(), name), &ladderSeasons)
@@ -31,7 +31,7 @@ func (c *SC2Client) LadderSeasons(region, name string, profileID int) (*LadderSe
 }
 
 // MatchHistory returns the Sc2 profile's match history.
-func (c *SC2Client) MatchHistory(region, name string, profileID int) (*MatchHistory, error) {
+func (c *SC2Client) MatchHistory(name string, profileID int) (*MatchHistory, error) {
 	var matchHistory *MatchHistory
 
 	err := c.get(endpointMatchHistory(c.region, profileID, c.region.Itoa(), name), &matchHistory)
