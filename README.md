@@ -1,6 +1,6 @@
 GoBattleNet
 ===========
-
+[![Go Report Card](https://goreportcard.com/badge/github.com/munsy/gobattlenet)](https://goreportcard.com/report/github.com/munsy/gobattlenet) 
 Bindings for Battle.net's API written in Golang.
 
 ## Versions
