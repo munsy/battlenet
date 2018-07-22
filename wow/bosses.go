@@ -1,5 +1,6 @@
 package wow
 
+// BossNPC represents a World of Warcraft NPC related to a boss.
 type BossNPC struct {
 	ID                int    `json:"id"`
 	Name              string `json:"name"`
@@ -7,11 +8,13 @@ type BossNPC struct {
 	CreatureDisplayID int    `json:"creatureDisplayId"`
 }
 
+// BossLocation represents a World of Warcraft boss location.
 type BossLocation struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
+// Boss represents a World of Warcraft boss.
 type Boss struct {
 	ID                    int          `json:"id"`
 	Name                  string       `json:"name"`
@@ -29,6 +32,7 @@ type Boss struct {
 	Location              BossLocation `json:"location,omitempty"`
 }
 
+// BossMasterList represents the World of Warcraft boss master list.
 type BossMasterList struct {
 	Bosses []Boss `json:"bosses"`
 }

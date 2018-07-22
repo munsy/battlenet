@@ -1,5 +1,6 @@
 package wow
 
+// ItemWeaponDamage represents a World of Warcraft weapon's damage.
 type ItemWeaponDamage struct {
 	Min      int `json:"min"`
 	Max      int `json:"max"`
@@ -7,28 +8,33 @@ type ItemWeaponDamage struct {
 	ExactMax int `json:"exactMax"`
 }
 
+// ItemWeaponInfo represents a World of Warcraft weapon's info.
 type ItemWeaponInfo struct {
 	Damage      ItemWeaponDamage `json:"damage"`
 	WeaponSpeed float64          `json:"weaponSpeed"`
 	Dps         float64          `json:"dps"`
 }
 
+// BonusStat represents a World of Warcraft bonus statistic.
 type BonusStat struct {
 	Stat   int `json:"stat"`
 	Amount int `json:"amount"`
 }
 
+// ItemSource represents a World of Warcraft item source.
 type ItemSource struct {
 	SourceID   int    `json:"sourceId"`
 	SourceType string `json:"sourceType"`
 }
 
+// ItemBonusSummary represents a World of Warcraft item bonus summary.
 type ItemBonusSummary struct {
 	DefaultBonusLists []interface{} `json:"defaultBonusLists"`
 	ChanceBonusLists  []interface{} `json:"chanceBonusLists"`
 	BonusChances      []interface{} `json:"bonusChances"`
 }
 
+// Item represents a World of Warcraft item.
 type Item struct {
 	ID                     int              `json:"id"`
 	DisenchantingSkillRank int              `json:"disenchantingSkillRank"`
@@ -73,11 +79,13 @@ type Item struct {
 	ArtifactID             int              `json:"artifactId"`
 }
 
+// ItemSetBonus represents a World of Warcraft item set bonus.
 type ItemSetBonus struct {
 	Description string `json:"description"`
 	Threshold   int    `json:"threshold"`
 }
 
+// ItemSet represents a World of Warcraft item set.
 type ItemSet struct {
 	ID         int            `json:"id"`
 	Name       string         `json:"name"`

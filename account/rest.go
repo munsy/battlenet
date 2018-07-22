@@ -13,7 +13,7 @@ import (
 // from the given endpoint and will return an error if it fails to properly unmarshal.
 func (c *AccountClient) get(endpoint string, v interface{}) error {
 	if nil == v {
-		return errors.NoInterfaceSupplied
+		return errors.ErrNoInterfaceSupplied
 	}
 
 	response, err := http.Get(endpoint + "?access_token=" + c.token)

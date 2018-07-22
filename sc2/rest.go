@@ -13,7 +13,7 @@ import (
 // from the given endpoint and will return an error if it fails to properly unmarshal.
 func (c *SC2Client) get(endpoint string, v interface{}) error {
 	if nil == v {
-		return errors.NoInterfaceSupplied
+		return errors.ErrNoInterfaceSupplied
 	}
 
 	response, err := http.Get(endpoint + "?locale=" + c.locale.String() + "&apikey=" + c.key)

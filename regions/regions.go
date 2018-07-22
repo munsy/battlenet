@@ -25,7 +25,7 @@ func (r Region) String() string {
 	case CN:
 		region = "cn"
 	default:
-		panic(errors.UnresolvedEndpoint)
+		panic(errors.ErrUnresolvedEndpoint)
 	}
 	return region
 }

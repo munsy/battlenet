@@ -55,7 +55,7 @@ func New(args ...interface{}) (c *AccountClient, err error) {
 			c.token = t.Key
 			break
 		default:
-			return nil, errors.UnsupportedArgument
+			return nil, errors.ErrUnsupportedArgument
 		}
 	}
 	return c, nil

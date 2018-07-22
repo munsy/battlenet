@@ -16,6 +16,7 @@ type GuildProfile struct {
 	Challenge         []ChallengeData `json:"challenge"`
 }
 
+// GuildNews represents news for a World of Warcraft guild.
 type GuildNews struct {
 	Type        string      `json:"type"`
 	Character   string      `json:"character"`
@@ -26,6 +27,7 @@ type GuildNews struct {
 	Achievement Achievement `json:"achievement,omitempty"`
 }
 
+// MapRankingCriteria represents ranking criteria for a World of Warcraft map.
 type MapRankingCriteria struct {
 	Time         int  `json:"time"`
 	Hours        int  `json:"hours"`
@@ -35,6 +37,7 @@ type MapRankingCriteria struct {
 	IsPositive   bool `json:"isPositive"`
 }
 
+// MapData represents data about a World of Warcraft map.
 type MapData struct {
 	ID               int                `json:"id"`
 	Name             string             `json:"name"`
@@ -45,6 +48,7 @@ type MapData struct {
 	GoldCriteria     MapRankingCriteria `json:"goldCriteria"`
 }
 
+// ChallengeData represents data about a World of Warcraft challenge.
 type ChallengeData struct {
 	Realm  Realm         `json:"realm"`
 	Map    MapData       `json:"map"`

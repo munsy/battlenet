@@ -55,7 +55,7 @@ func New(args ...interface{}) (c *D3Client, err error) {
 			c.key = t.Key
 			break
 		default:
-			return nil, errors.UnsupportedArgument
+			return nil, errors.ErrUnsupportedArgument
 		}
 	}
 	return c, nil
