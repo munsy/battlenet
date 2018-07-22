@@ -1,15 +1,17 @@
 package d3
 
-// Get API Detailed Follower Items
+// FollowerType
 type FollowerType struct {
 	TwoHanded bool   `json:"twoHanded"`
 	ID        string `json:"id"`
 }
 
+// FollowerAttributes represents Diablo III follower attributes.
 type FollowerAttributes struct {
 	Primary []string `json:"primary"`
 }
 
+// FollowerHand represents Diablo III follower hand data.
 type FollowerHand struct {
 	ID                     string             `json:"id"`
 	Name                   string             `json:"name"`
@@ -37,15 +39,18 @@ type FollowerHand struct {
 	IsSeasonRequiredToDrop bool   `json:"isSeasonRequiredToDrop"`
 }
 
+// DualWieldFollower represents Diablo III follower dual wielding data.
 type DualWieldFollower struct {
 	MainHand FollowerHand `json:"mainHand"`
 	OffHand  FollowerHand `json:"offHand"`
 }
 
+// SingleWieldFollower represents Diablo III follower single wielding data.
 type SingleWieldFollower struct {
 	MainHand FollowerHand `json:"mainHand"`
 }
 
+// DetailedFollowerItems represents detailed Diablo III follower items.
 type DetailedFollowerItems struct {
 	Templar     DualWieldFollower   `json:"templar"`
 	Scoundrel   SingleWieldFollower `json:"scoundrel"`

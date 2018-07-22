@@ -14,13 +14,16 @@ type Achievement struct {
 	FactionID   int          `json:"factionId"`
 }
 
+// TooltipParams represents tooltip parameters for a World of Warcraft achievement.
 type TooltipParams struct {
 	TimewalkerLevel int `json:"timewalkerLevel"`
 }
 
+// Appearance represents a World of Warcraft appearance.
 type Appearance struct {
 }
 
+// RewardItem represents a World of Warcraft reward item.
 type RewardItem struct {
 	ID                   int           `json:"id"`
 	Name                 string        `json:"name"`

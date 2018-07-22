@@ -1,5 +1,6 @@
 package sc2
 
+// RewardData represents a Starcraft II character's reward data.
 type RewardData struct {
 	Title         string `json:"title"`
 	ID            int64  `json:"id"`
@@ -7,6 +8,7 @@ type RewardData struct {
 	AchievementID int    `json:"achievementId"`
 }
 
+// RewardsData represents all of a Starcraft II character's reward data.
 type RewardsData struct {
 	Portraits     []RewardData `json:"portraits"`
 	TerranDecals  []RewardData `json:"terranDecals"`
@@ -16,6 +18,7 @@ type RewardsData struct {
 	Animations    []RewardData `json:"animations"`
 }
 
+// AchievementData represents a Starcraft II character's achievement data.
 type AchievementData struct {
 	Title         string `json:"title"`
 	Description   string `json:"description"`
@@ -25,12 +28,14 @@ type AchievementData struct {
 	Icon          Icon   `json:"icon"`
 }
 
+// Child represents a child Category.
 type Child struct {
 	Title                 string `json:"title"`
 	CategoryID            int    `json:"categoryId"`
 	FeaturedAchievementID int    `json:"featuredAchievementId"`
 }
 
+// Category represents a Starcraft II achievement category.
 type Category struct {
 	Title                 string  `json:"title"`
 	CategoryID            int     `json:"categoryId"`
@@ -38,6 +43,7 @@ type Category struct {
 	Children              []Child `json:"children,omitempty"`
 }
 
+// AchievementsData represents achievement data for Starcraft II.
 type AchievementsData struct {
 	Achievements []AchievementData `json:"achievements"`
 	Categories   []Category        `json:"categories"`

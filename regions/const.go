@@ -1,5 +1,6 @@
 package regions
 
+// All possible Blizzard regions for communicating with the Battle.net API.
 const (
 	US Region = iota
 	EU

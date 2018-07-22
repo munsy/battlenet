@@ -1,4 +1,4 @@
-// package battlenet provides clients for communicating with Blizzard's Battle.net APIs.
+// Package battlenet provides clients for communicating with Blizzard's Battle.net APIs.
 package battlenet
 
 import (
