@@ -1,3 +1,11 @@
 cmd/cmd.exe
 cmd/cmd
 cmd/config.toml
+examples/account/account.exe
+examples/account/account
+examples/d3/d3.exe
+examples/d3/d3
+examples/sc2/sc2.exe
+examples/sc2/sc2
+examples/wow/wow.exe
+examples/wow/wow
