@@ -1,5 +1,6 @@
 package wow
 
+// Realm represents a World of Warcraft realm.
 type Realm struct {
 	Type            string   `json:"type"`
 	Population      string   `json:"population"`
@@ -13,6 +14,7 @@ type Realm struct {
 	ConnectedRealms []string `json:"connected_realms"`
 }
 
+// RealmStatus represents the status of every World of Warcraft realm.
 type RealmStatus struct {
 	Realms []Realm `json:"realms"`
 }

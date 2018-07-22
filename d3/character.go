@@ -1,5 +1,6 @@
 package d3
 
+// Skill represents a Diablo III skill.
 type Skill struct {
 	Slug            string `json:"slug"`
 	Name            string `json:"name"`
@@ -11,17 +12,19 @@ type Skill struct {
 	FlavorText      string `json:"flavorText"`
 }
 
+// Skills represents Diablo III skills.
 type Skills struct {
 	Active  []Skill `json:"active"`
 	Passive []Skill `json:"passive"`
 }
 
+// SkillCategory represents a Diablo III skill category.
 type SkillCategory struct {
 	Slug string `json:"slug"`
 	Name string `json:"name"`
 }
 
-// Get character class
+// CharacterClass represents a Diablo III character class.
 type CharacterClass struct {
 	Slug            string          `json:"slug"`
 	Name            string          `json:"name"`
@@ -32,7 +35,7 @@ type CharacterClass struct {
 	Skills          Skills          `json:"skills"`
 }
 
-// Get API Skill
+// CharacterAPISkill represents a Diablo III character skill.
 type CharacterAPISkill struct {
 	Skill Skill   `json:"skill"`
 	Runes []Skill `json:"runes"`

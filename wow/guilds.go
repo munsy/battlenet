@@ -73,10 +73,10 @@ type GuildMember struct {
 	Rank      int             `json:"rank"`
 }
 
-// A list of characters that are a member of the guild. When the
-// members list is requested, a list of character objects is
-// returned. Each object in the returned members list contains
-// a character block as well as a rank field.
+// GuildMembers represents a list of characters that are a member
+// of the guild. When the members list is requested, a list of character
+// objects is returned. Each object in the returned members list
+// contains a character block as well as a rank field.
 type GuildMembers []GuildMember
 
 // GuildMemberInfo gives information for a member of the guild.

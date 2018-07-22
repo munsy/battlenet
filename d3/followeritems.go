@@ -1,6 +1,6 @@
 package d3
 
-// FollowerType
+// FollowerType represents a Diablo III follower type.
 type FollowerType struct {
 	TwoHanded bool   `json:"twoHanded"`
 	ID        string `json:"id"`

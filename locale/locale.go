@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+// Locale represents a Battle.net-defined locale.
 type Locale struct {
 	dialect  uint16
 	language uint16

@@ -1,5 +1,6 @@
 package wow
 
+// Pet represents World of Warcraft pet stats.
 type PetStats struct {
 	SpeciesID    int `json:"speciesId"`
 	BreedID      int `json:"breedId"`
@@ -10,6 +11,7 @@ type PetStats struct {
 	Speed        int `json:"speed"`
 }
 
+// Pet represents a World of Warcraft pet.
 type Pet struct {
 	CanBattle     bool     `json:"canBattle"`
 	CreatureID    int      `json:"creatureId"`
@@ -23,10 +25,12 @@ type Pet struct {
 	WeakAgainst   []string `json:"weakAgainst"`
 }
 
+// Pet represents World of Warcraft pet data.
 type PetData struct {
 	Pets []Pet `json:"pets"`
 }
 
+// Pet represents a World of Warcraft pet ability.
 type PetAbility struct {
 	Slot          int    `json:"slot"`
 	Order         int    `json:"order"`
@@ -41,6 +45,7 @@ type PetAbility struct {
 	HideHints     bool   `json:"hideHints"`
 }
 
+// Pet represents a World of Warcraft pet species.
 type PetSpecies struct {
 	SpeciesID   int          `json:"speciesId"`
 	PetTypeID   int          `json:"petTypeId"`

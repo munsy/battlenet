@@ -1,6 +1,6 @@
 package d3
 
-// Get artisan
+// ItemProduced represents a Diablo III item produced from a recipe.
 type ItemProduced struct {
 	ID   string `json:"id"`
 	Slug string `json:"slug"`
@@ -9,6 +9,7 @@ type ItemProduced struct {
 	Path string `json:"path"`
 }
 
+// ReagentItem represents a Diablo III reagent item.
 type ReagentItem struct {
 	ID   string `json:"id"`
 	Slug string `json:"slug"`
@@ -16,12 +17,14 @@ type ReagentItem struct {
 	Icon string `json:"icon"`
 	Path string `json:"path"`
 }
+
+// Reagent represents a Diablo III reagent.
 type Reagent struct {
 	Quantity int         `json:"quantity"`
 	Item     ReagentItem `json:"item"`
 }
 
-// Recipe is also returned from an endpoint.
+// Recipe represents a Diablo III recipe.
 type Recipe struct {
 	ID           string       `json:"id"`
 	Slug         string       `json:"slug"`
@@ -31,12 +34,14 @@ type Recipe struct {
 	ItemProduced ItemProduced `json:"itemProduced"`
 }
 
+// Tiers represents Diablo III tiers.
 type Tiers struct {
 	Tier           int      `json:"tier"`
 	TrainedRecipes []Recipe `json:"trainedRecipes"`
 	TaughtRecipes  []Recipe `json:"taughtRecipes"`
 }
 
+// Training represents Diablo III training.
 type Training struct {
 	Tiers []Tiers `json:"tiers"`
 }
