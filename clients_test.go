@@ -4,6 +4,8 @@ import (
 	"testing"
 )
 
+// make these better
+
 func TestNewAccountClient(t *testing.T) {
 	args := "test"
 	c, err := NewAccountClient(args)
