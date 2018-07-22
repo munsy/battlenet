@@ -10,7 +10,7 @@ import (
 	"github.com/munsy/gobattlenet/settings"
 )
 
-// AccountClient implements the battlenet.Client interface.
+// AccountClient allows the user to access the Battle.net Account API.
 type AccountClient struct {
 	userAgent string
 	client    *http.Client

@@ -10,10 +10,7 @@ import (
 	"github.com/munsy/gobattlenet/settings"
 )
 
-// ClientVersion defines the most up-to-date version of the GoBattleNet client.
-const ClientVersion = "1.0"
-
-// WowClient implements the battlenet.Client interface.
+// WowClient allows the user to access the World of Warcraft Battle.net API.
 type WoWClient struct {
 	userAgent string
 	client    *http.Client
@@ -26,7 +23,7 @@ type WoWClient struct {
 // can cause different behaviors. See function definiton for more details.
 func New(args ...interface{}) (c *WoWClient, err error) {
 	c = &WoWClient{
-		userAgent: "GoBattleNetWow/" + ClientVersion,
+		userAgent: "GoBattleNetWow/" + internal.ClientVersion,
 		client:    &http.Client{Timeout: (10 * time.Second)},
 		locale:    locale.AmericanEnglish,
 		region:    regions.US,

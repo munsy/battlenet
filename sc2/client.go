@@ -10,7 +10,7 @@ import (
 	"github.com/munsy/gobattlenet/settings"
 )
 
-// WowClient implements the battlenet.Client interface.
+// SC2Client allows the user to access the Starcraft II Battle.net API.
 type SC2Client struct {
 	userAgent string
 	client    *http.Client

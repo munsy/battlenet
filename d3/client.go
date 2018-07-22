@@ -10,7 +10,7 @@ import (
 	"github.com/munsy/gobattlenet/settings"
 )
 
-// WowClient implements the battlenet.Client interface.
+// D3Client allows the user to access the Diablo III Battle.net API.
 type D3Client struct {
 	userAgent string
 	client    *http.Client
