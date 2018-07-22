@@ -1,0 +1,22 @@
+sudo: false
+
+language: go
+
+go:
+  - 1.10.x
+  - 1.x
+
+notifications:
+  email: false
+
+install:
+  - go get github.com/munsy/gobattlenet
+  - go get github.com/go-test/deep
+  - go get -v .
+  - go get -v github.com/golang/lint/golint
+
+script:
+  - diff <(gofmt -d .) <(echo -n)
+  - go vet -x ./...
+  - golint -set_exit_status ./...
+  - go test -v -race ./...
