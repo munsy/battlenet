@@ -3,10 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-
-	"github.com/munsy/gobattlenet/d3"
-	"github.com/munsy/gobattlenet/sc2"
-	"github.com/munsy/gobattlenet/wow"
 )
 
 var config Config
@@ -77,75 +73,4 @@ func printDefaultsAndQuit() {
 	fmt.Println("\t- sc2 (Starcraft II API access)")
 	fmt.Println("\t- wow (World of Warcraft API access)")
 	os.Exit(1)
-}
-
-func printConfigCommandsAndQuit() {
-	if len(os.Args) < 3 {
-		fmt.Println("[ERROR] No arguments supplied.")
-	} else {
-		fmt.Print("[ERROR] Invalid argument. ")
-	}
-	fmt.Println("Possible arguments are:")
-	configCommand.PrintDefaults()
-	os.Exit(1)
-
-}
-
-func parseConfigCommand() {
-	if len(os.Args) < 3 {
-		printConfigCommandsAndQuit()
-	}
-
-	if *regionFlag != "" {
-		config.Region = *regionFlag
-	}
-	if *localeFlag != "" {
-		config.Locale = *localeFlag
-	}
-
-	if *writeFlag == true {
-		checkAllConfigs()
-
-		err := writeTOML(*keyFlag, *tokenFlag, *regionFlag, *localeFlag)
-		if nil != err {
-			fmt.Println("Write failed: " + err.Error())
-		} else {
-			fmt.Println("Write successful.")
-		}
-	} else {
-		printConfigCommandsAndQuit()
-	}
-}
-
-func parseD3Command() {
-	checkAllGameConfigs()
-	client, err := d3.New(config.Settings("key"))
-
-	if nil != err {
-		panic(err)
-	}
-
-	fmt.Print("%v\n", client)
-}
-
-func parseSC2Command() {
-	checkAllGameConfigs()
-	client, err := sc2.New(config.Settings("key"))
-
-	if nil != err {
-		panic(err)
-	}
-
-	fmt.Print("%v\n", client)
-}
-
-func parseWoWCommand() {
-	checkAllGameConfigs()
-	client, err := wow.New(config.Settings("key"))
-
-	if nil != err {
-		panic(err)
-	}
-
-	fmt.Print("%v\n", client)
 }

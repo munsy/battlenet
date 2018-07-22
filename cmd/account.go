@@ -1,10 +1,18 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 
 	"github.com/munsy/gobattlenet/account"
+)
+
+var (
+	accountCommand        = flag.NewFlagSet("account", flag.ExitOnError)
+	accountBattleIDFlag   = accountCommand.Bool("bid", false, "Display Battle.net ID and BattleTag.")
+	accountSc2ProfileFlag = accountCommand.Bool("sc2", false, "Display details about a Starcraft II character.")
+	accountWoWProfileFlag = accountCommand.Bool("wow", false, "Display details about a World of Warcraft profile.")
 )
 
 func parseAccountCommand() {
