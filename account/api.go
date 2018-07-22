@@ -13,7 +13,7 @@ import (
 func (c *AccountClient) BattleID() (*BattleID, error) {
 	var bid *BattleID
 
-	err := c.get(endpointUser(c.region), bid)
+	err := c.get(endpointUser(c.region), &bid)
 
 	if nil != err {
 		return nil, err
@@ -26,7 +26,7 @@ func (c *AccountClient) BattleID() (*BattleID, error) {
 func (c *AccountClient) Sc2OauthProfile() (*sc2.Character, error) {
 	var character *sc2.Character
 
-	err := c.get(endpointSc2User(c.region), character)
+	err := c.get(endpointSc2User(c.region), &character)
 
 	if nil != err {
 		return nil, err
@@ -39,7 +39,7 @@ func (c *AccountClient) Sc2OauthProfile() (*sc2.Character, error) {
 func (c *AccountClient) WoWOauthProfile() (*wow.Characters, error) {
 	var character *wow.Characters
 
-	err := c.get(endpointWowCharacters(c.region), character)
+	err := c.get(endpointWowCharacters(c.region), &character)
 
 	if nil != err {
 		return nil, err

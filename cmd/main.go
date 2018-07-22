@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/munsy/gobattlenet/account"
 	"github.com/munsy/gobattlenet/d3"
 	"github.com/munsy/gobattlenet/sc2"
 	"github.com/munsy/gobattlenet/wow"
@@ -115,44 +114,6 @@ func parseConfigCommand() {
 		}
 	} else {
 		printConfigCommandsAndQuit()
-	}
-}
-
-func parseAccountCommand() {
-	checkAllAccountConfigs()
-	client, err := account.New(config.Settings("token"))
-
-	if nil != err {
-		panic(err)
-	}
-
-	if *accountBattleIDFlag == true {
-		response, err := client.BattleID()
-
-		if nil != err {
-			panic(err)
-		}
-
-		fmt.Print("ID: %v\n", response.ID)
-		fmt.Print("BattleTag: %v\n", response.BattleTag)
-	} else if *accountSc2ProfileFlag == true {
-		response, err := client.Sc2OauthProfile()
-
-		if nil != err {
-			panic(err)
-		}
-
-		fmt.Print("%v\n", response)
-	} else if *accountWoWProfileFlag == true {
-		response, err := client.WoWOauthProfile()
-
-		if nil != err {
-			panic(err)
-		}
-
-		fmt.Print("%v\n", response)
-	} else {
-		accountCommand.PrintDefaults()
 	}
 }
 

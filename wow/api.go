@@ -9,7 +9,7 @@ package wow
 func (c *WoWClient) Achievement(id int) (*Achievement, error) {
 	var achievement *Achievement
 
-	err := c.get(endpointAchievement(c.region, id), achievement)
+	err := c.get(endpointAchievement(c.region, id), &achievement)
 
 	if nil != err {
 		return nil, err
@@ -26,7 +26,7 @@ func (c *WoWClient) Achievement(id int) (*Achievement, error) {
 func (c *WoWClient) AuctionDataStatus(realm string) (*AuctionJSONFileData, error) {
 	var file *File
 
-	err := c.get(endpointAuctionDataStatus(c.region, realm), file)
+	err := c.get(endpointAuctionDataStatus(c.region, realm), &file)
 
 	if nil != err {
 		return nil, err
@@ -34,7 +34,7 @@ func (c *WoWClient) AuctionDataStatus(realm string) (*AuctionJSONFileData, error
 
 	var auctionData *AuctionJSONFileData
 
-	err = c.get(file.URL, auctionData)
+	err = c.get(file.URL, &auctionData)
 
 	if nil != err {
 		return nil, err
@@ -48,7 +48,7 @@ func (c *WoWClient) AuctionDataStatus(realm string) (*AuctionJSONFileData, error
 func (c *WoWClient) BossMasterList() (*BossMasterList, error) {
 	var bosses *BossMasterList
 
-	err := c.get(endpointBossMasterList(c.region), bosses)
+	err := c.get(endpointBossMasterList(c.region), &bosses)
 
 	if nil != err {
 		return nil, err
@@ -61,7 +61,7 @@ func (c *WoWClient) BossMasterList() (*BossMasterList, error) {
 func (c *WoWClient) Boss(bossID int) (*Boss, error) {
 	var boss *Boss
 
-	err := c.get(endpointBossInfo(c.region, bossID), boss)
+	err := c.get(endpointBossInfo(c.region, bossID), &boss)
 
 	if nil != err {
 		return nil, err
@@ -80,7 +80,7 @@ func (c *WoWClient) Boss(bossID int) (*Boss, error) {
 func (c *WoWClient) CharacterProfile(realm, characterName string) (*CharacterData, error) {
 	var data *CharacterData
 
-	err := c.get(endpointCharacterProfile(c.region, realm, characterName), data)
+	err := c.get(endpointCharacterProfile(c.region, realm, characterName), &data)
 
 	if nil != err {
 		return nil, err
@@ -99,7 +99,7 @@ func (c *WoWClient) CharacterProfile(realm, characterName string) (*CharacterDat
 func (c *WoWClient) GuildProfile(realm, guildName string) (*GuildProfile, error) {
 	var profile *GuildProfile
 
-	err := c.get(endpointGuildProfile(c.region, realm, guildName), profile)
+	err := c.get(endpointGuildProfile(c.region, realm, guildName), &profile)
 
 	if nil != err {
 		return nil, err
@@ -113,7 +113,7 @@ func (c *WoWClient) GuildProfile(realm, guildName string) (*GuildProfile, error)
 func (c *WoWClient) Item(itemID int) (*Item, error) {
 	var item *Item
 
-	err := c.get(endpointItemID(c.region, itemID), item)
+	err := c.get(endpointItemID(c.region, itemID), &item)
 
 	if nil != err {
 		return nil, err
@@ -126,7 +126,7 @@ func (c *WoWClient) Item(itemID int) (*Item, error) {
 func (c *WoWClient) ItemSet(setID int) (*ItemSet, error) {
 	var set *ItemSet
 
-	err := c.get(endpointItemSet(c.region, setID), set)
+	err := c.get(endpointItemSet(c.region, setID), &set)
 
 	if nil != err {
 		return nil, err
@@ -140,7 +140,7 @@ func (c *WoWClient) ItemSet(setID int) (*ItemSet, error) {
 func (c *WoWClient) MountMasterList() (*MountList, error) {
 	var list *MountList
 
-	err := c.get(endpointMount(c.region), list)
+	err := c.get(endpointMount(c.region), &list)
 
 	if nil != err {
 		return nil, err
@@ -154,7 +154,7 @@ func (c *WoWClient) MountMasterList() (*MountList, error) {
 func (c *WoWClient) PetMasterList() (*PetData, error) {
 	var data *PetData
 
-	err := c.get(endpointPetMasterList(c.region), data)
+	err := c.get(endpointPetMasterList(c.region), &data)
 
 	if nil != err {
 		return nil, err
@@ -168,7 +168,7 @@ func (c *WoWClient) PetMasterList() (*PetData, error) {
 func (c *WoWClient) PetAbilities(abilityID int) (*PetAbility, error) {
 	var ability *PetAbility
 
-	err := c.get(endpointPetAbilities(c.region, abilityID), ability)
+	err := c.get(endpointPetAbilities(c.region, abilityID), &ability)
 
 	if nil != err {
 		return nil, err
@@ -182,7 +182,7 @@ func (c *WoWClient) PetAbilities(abilityID int) (*PetAbility, error) {
 func (c *WoWClient) PetSpecies(speciesID int) (*PetSpecies, error) {
 	var species *PetSpecies
 
-	err := c.get(endpointPetSpecies(c.region, speciesID), species)
+	err := c.get(endpointPetSpecies(c.region, speciesID), &species)
 
 	if nil != err {
 		return nil, err
@@ -195,7 +195,7 @@ func (c *WoWClient) PetSpecies(speciesID int) (*PetSpecies, error) {
 func (c *WoWClient) PetStats(speciesID int) (*PetStats, error) {
 	var stats *PetStats
 
-	err := c.get(endpointPetStats(c.region, speciesID), stats)
+	err := c.get(endpointPetStats(c.region, speciesID), &stats)
 
 	if nil != err {
 		return nil, err
@@ -225,7 +225,7 @@ func (c *WoWClient) PvpLeaderboards(bracket string) (*Thing, error) {
 func (c *WoWClient) Quest(questID int) (*Quest, error) {
 	var quest *Quest
 
-	err := c.get(endpointQuestID(c.region, questID), quest)
+	err := c.get(endpointQuestID(c.region, questID), &quest)
 
 	if nil != err {
 		return nil, err
@@ -250,7 +250,7 @@ func (c *WoWClient) Quest(questID int) (*Quest, error) {
 func (c *WoWClient) RealmStatus() (*RealmStatus, error) {
 	var status *RealmStatus
 
-	err := c.get(endpointRealmStatus(c.region), status)
+	err := c.get(endpointRealmStatus(c.region), &status)
 
 	if nil != err {
 		return nil, err
@@ -264,7 +264,7 @@ func (c *WoWClient) RealmStatus() (*RealmStatus, error) {
 func (c *WoWClient) Recipe(recipeID int) (*Recipe, error) {
 	var recipe *Recipe
 
-	err := c.get(endpointRecipeID(c.region, recipeID), recipe)
+	err := c.get(endpointRecipeID(c.region, recipeID), &recipe)
 
 	if nil != err {
 		return nil, err
@@ -278,7 +278,7 @@ func (c *WoWClient) Recipe(recipeID int) (*Recipe, error) {
 func (c *WoWClient) Spell(spellID int) (*Spell, error) {
 	var spell *Spell
 
-	err := c.get(endpointSpellID(c.region, spellID), spell)
+	err := c.get(endpointSpellID(c.region, spellID), &spell)
 
 	if nil != err {
 		return nil, err
@@ -293,7 +293,7 @@ func (c *WoWClient) Spell(spellID int) (*Spell, error) {
 func (c *WoWClient) ZoneMasterList() (*ZoneMasterList, error) {
 	var list *ZoneMasterList
 
-	err := c.get(endpointZoneMasterList(c.region), list)
+	err := c.get(endpointZoneMasterList(c.region), &list)
 
 	if nil != err {
 		return nil, err
@@ -306,7 +306,7 @@ func (c *WoWClient) ZoneMasterList() (*ZoneMasterList, error) {
 func (c *WoWClient) Zone(zoneID int) (*Zone, error) {
 	var zone *Zone
 
-	err := c.get(endpointZone(c.region, zoneID), zone)
+	err := c.get(endpointZone(c.region, zoneID), &zone)
 
 	if nil != err {
 		return nil, err
@@ -320,7 +320,7 @@ func (c *WoWClient) Zone(zoneID int) (*Zone, error) {
 func (c *WoWClient) Battlegroups() (*BattleGroupsData, error) {
 	var battlegroup *BattleGroupsData
 
-	err := c.get(endpointBattlegroups(c.region), battlegroup)
+	err := c.get(endpointBattlegroups(c.region), &battlegroup)
 
 	if nil != err {
 		return nil, err
@@ -333,7 +333,7 @@ func (c *WoWClient) Battlegroups() (*BattleGroupsData, error) {
 func (c *WoWClient) CharacterRaces() (*CharacterRacesData, error) {
 	var races *CharacterRacesData
 
-	err := c.get(endpointCharacterRaces(c.region), races)
+	err := c.get(endpointCharacterRaces(c.region), &races)
 
 	if nil != err {
 		return nil, err
@@ -346,7 +346,7 @@ func (c *WoWClient) CharacterRaces() (*CharacterRacesData, error) {
 func (c *WoWClient) CharacterClasses() (*CharacterClassesData, error) {
 	var classes *CharacterClassesData
 
-	err := c.get(endpointCharacterClasses(c.region), classes)
+	err := c.get(endpointCharacterClasses(c.region), &classes)
 
 	if nil != err {
 		return nil, err
@@ -359,7 +359,7 @@ func (c *WoWClient) CharacterClasses() (*CharacterClassesData, error) {
 func (c *WoWClient) CharacterAchievements() (*CharacterAchievementsData, error) {
 	var data *CharacterAchievementsData
 
-	err := c.get(endpointCharacterAchievements(c.region), data)
+	err := c.get(endpointCharacterAchievements(c.region), &data)
 
 	if nil != err {
 		return nil, err
@@ -372,7 +372,7 @@ func (c *WoWClient) CharacterAchievements() (*CharacterAchievementsData, error) 
 func (c *WoWClient) GuildRewards() (*GuildRewardsData, error) {
 	var data *GuildRewardsData
 
-	err := c.get(endpointGuildRewards(c.region), data)
+	err := c.get(endpointGuildRewards(c.region), &data)
 
 	if nil != err {
 		return nil, err
@@ -385,7 +385,7 @@ func (c *WoWClient) GuildRewards() (*GuildRewardsData, error) {
 func (c *WoWClient) GuildPerks() (*GuildPerksData, error) {
 	var data *GuildPerksData
 
-	err := c.get(endpointGuildPerks(c.region), data)
+	err := c.get(endpointGuildPerks(c.region), &data)
 
 	if nil != err {
 		return nil, err
@@ -398,7 +398,7 @@ func (c *WoWClient) GuildPerks() (*GuildPerksData, error) {
 func (c *WoWClient) GuildAchievements() (*GuildAchievementsData, error) {
 	var data *GuildAchievementsData
 
-	err := c.get(endpointGuildAchievements(c.region), data)
+	err := c.get(endpointGuildAchievements(c.region), &data)
 
 	if nil != err {
 		return nil, err
@@ -411,7 +411,7 @@ func (c *WoWClient) GuildAchievements() (*GuildAchievementsData, error) {
 func (c *WoWClient) ItemClasses() (*ItemClassesData, error) {
 	var data *ItemClassesData
 
-	err := c.get(endpointItemClasses(c.region), data)
+	err := c.get(endpointItemClasses(c.region), &data)
 
 	if nil != err {
 		return nil, err
@@ -424,7 +424,7 @@ func (c *WoWClient) ItemClasses() (*ItemClassesData, error) {
 func (c *WoWClient) Talents() (*TalentsData, error) {
 	var data *TalentsData
 
-	err := c.get(endpointTalents(c.region), data)
+	err := c.get(endpointTalents(c.region), &data)
 
 	if nil != err {
 		return nil, err
@@ -437,7 +437,7 @@ func (c *WoWClient) Talents() (*TalentsData, error) {
 func (c *WoWClient) PetTypes() (*PetTypesData, error) {
 	var data *PetTypesData
 
-	err := c.get(endpointPetTypes(c.region), data)
+	err := c.get(endpointPetTypes(c.region), &data)
 
 	if nil != err {
 		return nil, err

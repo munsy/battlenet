@@ -16,7 +16,10 @@ func (c *WoWClient) get(endpoint string, v interface{}) error {
 		return internal.ErrorNoInterfaceSupplied
 	}
 
-	response, err := http.Get(endpoint)
+	println("[DEBUG] Endpoint: ", endpoint)
+	println("[DEBUG] Full URL: ", endpoint+"?locale="+c.locale.String()+"&apikey="+c.key)
+
+	response, err := http.Get(endpoint + "?locale=" + c.locale.String() + "&apikey=" + c.key)
 	if nil != err {
 		return err
 	}
