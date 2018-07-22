@@ -20,7 +20,7 @@ type D3Client struct {
 }
 
 // New creates a new D3Client. Passing different interface values/types
-// can cause different behaviors. See function definiton for more details.
+// can cause different behaviors. See function definition for more details.
 func New(args ...interface{}) (c *D3Client, err error) {
 	c = &D3Client{
 		userAgent: "GoBattleNetD3/" + internal.ClientVersion,

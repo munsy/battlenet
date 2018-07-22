@@ -20,7 +20,7 @@ type AccountClient struct {
 }
 
 // New creates a new AccountClient. Passing different interface types can cause
-// different behaviors. See function definiton for more details.
+// different behaviors. See function definition for more details.
 func New(args ...interface{}) (c *AccountClient, err error) {
 	c = &AccountClient{
 		userAgent: "GoBattleNetAccount/" + internal.ClientVersion,

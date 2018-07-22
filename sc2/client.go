@@ -20,7 +20,7 @@ type SC2Client struct {
 }
 
 // New creates a new SC2Client. Passing different interface values/types
-// can cause different behaviors. See function definiton for more details.
+// can cause different behaviors. See function definition for more details.
 func New(args ...interface{}) (c *SC2Client, err error) {
 	c = &SC2Client{
 		userAgent: "GoBattleNetSC2/" + internal.ClientVersion,

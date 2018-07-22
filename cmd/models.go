@@ -78,7 +78,7 @@ func (c Config) Settings(cmdType string) settings.BNetSettings {
 	default:
 		fmt.Println("Invalid type. Possible types are:")
 		fmt.Println("\t- en_US (American English)")
-		fmt.Println("\t- pt_BR (Brazilian Portugues)")
+		fmt.Println("\t- pt_BR (Brazilian Portuguese)")
 		fmt.Println("\t- en_GB (British English)")
 		fmt.Println("\t- es_ES (Castilian Spanish)")
 		fmt.Println("\t- pt_PT (European Portuguese)")

@@ -14,7 +14,7 @@ func main() {
 	flag.Parse()
 
 	if *achievementFlag == 0 {
-		fmt.Println("Invalid achivement id.")
+		fmt.Println("Invalid achievement id.")
 		return
 	}
 

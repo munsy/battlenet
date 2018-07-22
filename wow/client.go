@@ -20,7 +20,7 @@ type WoWClient struct {
 }
 
 // New creates a new WoWClient. Passing different interface values/types
-// can cause different behaviors. See function definiton for more details.
+// can cause different behaviors. See function definition for more details.
 func New(args ...interface{}) (c *WoWClient, err error) {
 	c = &WoWClient{
 		userAgent: "GoBattleNetWow/" + internal.ClientVersion,
