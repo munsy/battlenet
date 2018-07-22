@@ -34,8 +34,7 @@ func parseAccountCommand() {
 			os.Exit(1)
 		}
 
-		fmt.Printf("ID: %v\n", response.ID)
-		fmt.Printf("BattleTag: %v\n", response.BattleTag)
+		printResult(response)
 	} else if *accountSc2ProfileFlag == true {
 		response, err := client.Sc2OauthProfile()
 
@@ -43,7 +42,7 @@ func parseAccountCommand() {
 			panic(err)
 		}
 
-		fmt.Print("%v\n", response)
+		printResult(response)
 	} else if *accountWoWProfileFlag == true {
 		response, err := client.WoWOauthProfile()
 
@@ -51,7 +50,7 @@ func parseAccountCommand() {
 			panic(err)
 		}
 
-		fmt.Print("%v\n", response)
+		printResult(response)
 	} else {
 		accountCommand.PrintDefaults()
 	}

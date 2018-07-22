@@ -5,9 +5,20 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"reflect"
 
 	"github.com/BurntSushi/toml"
 )
+
+func printResult(v interface{}) {
+	fields := reflect.ValueOf(v).Elem()
+	fieldTypes := fields.Type()
+
+	for i := 0; i < fields.NumField(); i++ {
+		field := fields.Field(i)
+		fmt.Printf("%s: %v\n", fieldTypes.Field(i).Name, field.Interface())
+	}
+}
 
 func checkTokenFlag() {
 	if *tokenFlag == "" {

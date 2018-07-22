@@ -16,9 +16,6 @@ func (c *SC2Client) get(endpoint string, v interface{}) error {
 		return internal.ErrorNoInterfaceSupplied
 	}
 
-	println("[DEBUG] Endpoint: ", endpoint)
-	println("[DEBUG] Full URL: ", endpoint+"?locale="+c.locale.String()+"&apikey="+c.key)
-
 	response, err := http.Get(endpoint + "?locale=" + c.locale.String() + "&apikey=" + c.key)
 	if nil != err {
 		return err

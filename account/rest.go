@@ -16,9 +16,6 @@ func (c *AccountClient) get(endpoint string, v interface{}) error {
 		return internal.ErrorNoInterfaceSupplied
 	}
 
-	println("[DEBUG] Endpoint: " + endpoint)
-	println("[DEBUG] Full URL: " + endpoint + "?access_token=" + c.token)
-
 	response, err := http.Get(endpoint + "?access_token=" + c.token)
 	if nil != err {
 		return err
