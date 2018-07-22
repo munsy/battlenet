@@ -1,6 +1,6 @@
 package sc2
 
-// Ladder represents a Starcraft II career.
+// Career represents a Starcraft II career.
 type Career struct {
 	PrimaryRace      string `json:"primaryRace"`
 	TerranWins       int    `json:"terranWins"`
@@ -10,7 +10,7 @@ type Career struct {
 	CareerTotalGames int    `json:"careerTotalGames"`
 }
 
-// Ladder represents the Starcraft II Terran race.
+// Terran represents the Starcraft II Terran race.
 type Terran struct {
 	Level          int `json:"level"`
 	TotalLevelXP   int `json:"totalLevelXP"`
