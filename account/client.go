@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/munsy/gobattlenet/internal"
 	"github.com/munsy/gobattlenet/locale"
+	"github.com/munsy/gobattlenet/pkg/errors"
 	"github.com/munsy/gobattlenet/regions"
 	"github.com/munsy/gobattlenet/settings"
 )
@@ -23,7 +23,7 @@ type AccountClient struct {
 // different behaviors. See function definition for more details.
 func New(args ...interface{}) (c *AccountClient, err error) {
 	c = &AccountClient{
-		userAgent: "GoBattleNetAccount/" + internal.ClientVersion,
+		userAgent: "GoBattleNetAccount/" + settings.ClientVersion,
 		client:    &http.Client{Timeout: (10 * time.Second)},
 		locale:    locale.AmericanEnglish,
 		region:    regions.US,
@@ -55,7 +55,7 @@ func New(args ...interface{}) (c *AccountClient, err error) {
 			c.token = t.Key
 			break
 		default:
-			return nil, internal.ErrorUnsupportedArgument
+			return nil, errors.UnsupportedArgument
 		}
 	}
 	return c, nil

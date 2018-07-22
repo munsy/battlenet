@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/munsy/gobattlenet/internal"
+	"github.com/munsy/gobattlenet/pkg/errors"
 )
 
 // Convert an HTTP response from a given endpoint to the supplied interface.
@@ -13,7 +13,7 @@ import (
 // from the given endpoint and will return an error if it fails to properly unmarshal.
 func (c *WoWClient) get(endpoint string, v interface{}) error {
 	if nil == v {
-		return internal.ErrorNoInterfaceSupplied
+		return errors.NoInterfaceSupplied
 	}
 
 	response, err := http.Get(endpoint + "?locale=" + c.locale.String() + "&apikey=" + c.key)
