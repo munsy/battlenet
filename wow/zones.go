@@ -1,10 +1,12 @@
 package wow
 
+// Location represents the location of a World of Warcraft object.
 type Location struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
+// ZoneBossNPC represents an NPC accompanying a World of Warcraft boss in a zone.
 type ZoneBossNPC struct {
 	ID                int    `json:"id"`
 	Name              string `json:"name"`
@@ -12,6 +14,7 @@ type ZoneBossNPC struct {
 	CreatureDisplayID int    `json:"creatureDisplayId"`
 }
 
+// ZoneBoss represents a World of Warcraft boss in a zone.
 type ZoneBoss struct {
 	ID                    int           `json:"id"`
 	Name                  string        `json:"name"`
@@ -28,6 +31,7 @@ type ZoneBoss struct {
 	Npcs                  []ZoneBossNPC `json:"npcs"`
 }
 
+// Zone contains data about a specific World of Warcraft zone.
 type Zone struct {
 	ID                    int        `json:"id"`
 	Name                  string     `json:"name"`
@@ -50,6 +54,7 @@ type Zone struct {
 	Bosses                []ZoneBoss `json:"bosses"`
 }
 
+// ZoneMasterList contains all of the possible World of Warcraft zones.
 type ZoneMasterList struct {
 	Zones []Zone `json:"zones"`
 }

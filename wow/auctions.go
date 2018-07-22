@@ -1,5 +1,6 @@
 package wow
 
+// AuctionRealm represents the World of Warcraft realm that the given auction is taking place on.
 type AuctionRealm struct {
 	Name            string   `json:"name"`
 	Slug            string   `json:"slug"`
@@ -9,15 +10,18 @@ type AuctionRealm struct {
 	ConnectedRealms []string `json:"connected_realms"`
 }
 
+// BonusList represents a World of Warcraft auction bonus list.
 type BonusList struct {
 	BonusListID int `json:"bonusListId"`
 }
 
+// Modifier holds data about a World of Warcraft auction modifier.
 type Modifier struct {
 	Type  int `json:"type"`
 	Value int `json:"value"`
 }
 
+// Auction contains data about a specific World of Warcraft auction.
 type Auction struct {
 	Auc          int         `json:"auc"`
 	Item         int         `json:"item"`
@@ -38,15 +42,18 @@ type Auction struct {
 	PetQualityID int         `json:"petQualityId,omitempty"`
 }
 
+// File contains World of Warcraft auction data for further parsing.
 type File struct {
 	URL          string `json:"url"`
 	LastModified int64  `json:"lastModified"`
 }
 
+// AuctionFileQueryData contains a list of World of Warcraft auction data files.
 type AuctionFileQueryData struct {
 	Files []File `json:"files"`
 }
 
+// AuctionJSONFileData is the JSON representation of a World of Warcraft auction data file's contents.
 type AuctionJSONFileData struct {
 	Realms   []AuctionRealm `json:"realms"`
 	Auctions []Auction      `json:"auctions"`

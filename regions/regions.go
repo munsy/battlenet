@@ -1,7 +1,10 @@
 package regions
 
+// Region can be one of: US, EU, KR, TW, SEA, or CN
 type Region int
 
+// String returns the region as a lowercase string.
+// If the region is invalid, the function causes a panic.
 func (r Region) String() string {
 	var region string
 	switch r {
@@ -23,10 +26,12 @@ func (r Region) String() string {
 	return region
 }
 
+// Int returns the region as an integer value.
 func (r Region) Int() int {
 	return int(r)
 }
 
+// Itoa returns the region's integer value as a string representation.
 func (r Region) Itoa() string {
 	return string(r.Int())
 }

@@ -10,7 +10,7 @@ import (
 	"github.com/munsy/gobattlenet/settings"
 )
 
-// WowClient allows the user to access the World of Warcraft Battle.net API.
+// WoWClient allows the user to access the World of Warcraft Battle.net API.
 type WoWClient struct {
 	userAgent string
 	client    *http.Client

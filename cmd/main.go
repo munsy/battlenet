@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-var config Config
+var config cmdConfig
 
 func init() {
 	readTOML(*configFlag)

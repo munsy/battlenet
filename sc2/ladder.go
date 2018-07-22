@@ -1,5 +1,6 @@
 package sc2
 
+// LadderMember represents a Starcraft II character's ladder data.
 type LadderMember struct {
 	Character      Character `json:"character"`
 	JoinTimestamp  int       `json:"joinTimestamp"`
@@ -11,6 +12,7 @@ type LadderMember struct {
 	FavoriteRaceP1 string    `json:"favoriteRaceP1"`
 }
 
+// Ladder contains all of the data for a Starcraft II ladder.
 type Ladder struct {
 	LadderMembers []LadderMember `json:"ladderMembers"`
 }

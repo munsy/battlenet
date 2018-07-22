@@ -68,7 +68,7 @@ func checkAllConfigs() {
 }
 
 func writeTOML(key, token, region, locale string) error {
-	var inputs = Config{
+	var inputs = cmdConfig{
 		key,
 		token,
 		region,

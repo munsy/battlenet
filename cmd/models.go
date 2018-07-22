@@ -11,14 +11,14 @@ import (
 	"github.com/munsy/gobattlenet/settings"
 )
 
-type Config struct {
+type cmdConfig struct {
 	Key    string
 	Token  string
 	Region string
 	Locale string
 }
 
-func (c Config) Settings(cmdType string) settings.BNetSettings {
+func (c cmdConfig) Settings(cmdType string) settings.BNetSettings {
 	var s settings.BNetSettings
 
 	s.Client = &http.Client{Timeout: (10 * time.Second)}
@@ -40,7 +40,7 @@ func (c Config) Settings(cmdType string) settings.BNetSettings {
 		s.Locale = locale.AmericanEnglish
 		break
 	case "pt_BR":
-		s.Locale = locale.BrazilianPortugues
+		s.Locale = locale.BrazilianPortuguese
 		break
 	case "en_GB":
 		s.Locale = locale.BritishEnglish

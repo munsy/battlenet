@@ -1,12 +1,13 @@
 package d3
 
-// Item type index
+// ItemTypeIndex holds all of the possible Diablo III item types.
 type ItemTypeIndex []struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
 	Path string `json:"path"`
 }
 
+// ItemType contains more information about each Diablo III item type.
 type ItemType []struct {
 	ID   string `json:"id"`
 	Slug string `json:"slug"`
