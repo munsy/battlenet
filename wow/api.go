@@ -4,7 +4,6 @@ package wow
 	World of Warcraft related API methods should go in here.
 */
 
-// ACHIEVEMENT API
 // Achievement provides data about an individual achievement.
 func (c *WoWClient) Achievement(id int) (*Achievement, error) {
 	var achievement *Achievement
@@ -18,11 +17,10 @@ func (c *WoWClient) Achievement(id int) (*Achievement, error) {
 	return achievement, nil
 }
 
-// AUCTION API
+// AuctionDataStatus provides a per-realm list of recently generated auction house data dumps.
 // Auction APIs currently provide rolling batches of data about current auctions. Fetching auction dumps is
 // a two step process that involves checking a per-realm index file to determine if a recent dump has been
 // generated and then fetching the most recently generated dump file if necessary.
-// AuctionDataStatus provides a per-realm list of recently generated auction house data dumps.
 func (c *WoWClient) AuctionDataStatus(realm string) (*AuctionJSONFileData, error) {
 	var file *File
 
@@ -43,7 +41,6 @@ func (c *WoWClient) AuctionDataStatus(realm string) (*AuctionJSONFileData, error
 	return auctionData, nil
 }
 
-// BOSS API
 // BossMasterList lists all supported bosses. A 'boss' in this context should be considered a boss encounter, which may include more than one NPC.
 func (c *WoWClient) BossMasterList() (*BossMasterList, error) {
 	var bosses *BossMasterList
@@ -70,7 +67,6 @@ func (c *WoWClient) Boss(bossID int) (*Boss, error) {
 	return boss, nil
 }
 
-// CHARACTER PROFILE API
 // CharacterProfile is the primary way to access character information. This Character Profile API can be used to fetch a single character at a
 // time through an HTTP GET request to a URL describing the character profile resource. By default, a basic dataset will be returned and with each
 // request and zero or more additional fields can be retrieved. To access this API, craft a resource URL pointing to the character who's information
@@ -89,7 +85,6 @@ func (c *WoWClient) CharacterProfile(realm, characterName string) (*CharacterDat
 	return data, nil
 }
 
-// GUILD PROFILE API
 // GuildProfile is the primary way to access guild information. This guild profile API can be used to fetch a single guild at a time through an HTTP GET
 // request to a url describing the guild profile resource. By default, a basic dataset will be returned and with each request and zero or more additional
 // fields can be retrieved.
@@ -108,7 +103,6 @@ func (c *WoWClient) GuildProfile(realm, guildName string) (*GuildProfile, error)
 	return profile, nil
 }
 
-// ITEM API
 // Item provides detailed item information. This includes item set information if this item is part of a set.
 func (c *WoWClient) Item(itemID int) (*Item, error) {
 	var item *Item
@@ -135,7 +129,6 @@ func (c *WoWClient) ItemSet(setID int) (*ItemSet, error) {
 	return set, nil
 }
 
-// MOUNT API
 // MountMasterList returns a list of all supported mounts.
 func (c *WoWClient) MountMasterList() (*MountList, error) {
 	var list *MountList
@@ -149,7 +142,6 @@ func (c *WoWClient) MountMasterList() (*MountList, error) {
 	return list, nil
 }
 
-// PET API
 // PetMasterList returns a list of all supported battle and vanity pets.
 func (c *WoWClient) PetMasterList() (*PetData, error) {
 	var data *PetData
@@ -204,7 +196,6 @@ func (c *WoWClient) PetStats(speciesID int) (*PetStats, error) {
 	return stats, nil
 }
 
-// PVP API
 // PvpLeaderboards provides leaderboard information for the 2v2, 3v3, 5v5 and Rated Battleground leaderboards.
 /* Disabled until BFA.
 func (c *WoWClient) PvpLeaderboards(bracket string) (*Thing, error) {
@@ -220,7 +211,6 @@ func (c *WoWClient) PvpLeaderboards(bracket string) (*Thing, error) {
 }
 */
 
-// QUEST API
 // Quest retrieves metadata for a given quest.
 func (c *WoWClient) Quest(questID int) (*Quest, error) {
 	var quest *Quest
@@ -234,7 +224,6 @@ func (c *WoWClient) Quest(questID int) (*Quest, error) {
 	return quest, nil
 }
 
-// REALM STATUS API
 // RealmStatus allows developers to retrieve realm status information. This information is limited to whether or not the
 // realm is up, the type and state of the realm, the current population, and the status of the two world PvP zones.
 //
@@ -259,7 +248,6 @@ func (c *WoWClient) RealmStatus() (*RealmStatus, error) {
 	return status, nil
 }
 
-// RECIPE API
 // Recipe provides basic recipe information.
 func (c *WoWClient) Recipe(recipeID int) (*Recipe, error) {
 	var recipe *Recipe
@@ -273,7 +261,6 @@ func (c *WoWClient) Recipe(recipeID int) (*Recipe, error) {
 	return recipe, nil
 }
 
-// SPELL API
 // Spell provides some information about spells.
 func (c *WoWClient) Spell(spellID int) (*Spell, error) {
 	var spell *Spell
@@ -287,7 +274,6 @@ func (c *WoWClient) Spell(spellID int) (*Spell, error) {
 	return spell, nil
 }
 
-// ZONE API
 // ZoneMasterList returns a list of all supported zones and their bosses. A 'zone' in this context should be considered a dungeon, or a
 // raid, not a zone as in a world zone. A 'boss' in this context should be considered a boss encounter, which may include more than one NPC.
 func (c *WoWClient) ZoneMasterList() (*ZoneMasterList, error) {
@@ -315,7 +301,6 @@ func (c *WoWClient) Zone(zoneID int) (*Zone, error) {
 	return zone, nil
 }
 
-// DATA RESOURCES
 // Battlegroups provides the list of battlegroups for this region
 func (c *WoWClient) Battlegroups() (*BattleGroupsData, error) {
 	var battlegroup *BattleGroupsData

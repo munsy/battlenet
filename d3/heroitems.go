@@ -1,16 +1,18 @@
 package d3
 
-// Get API Detailed Hero Items
+// DetailedHeroItemType represents a detailed Diablo III hero item type.
 type DetailedHeroItemType struct {
 	TwoHanded bool   `json:"twoHanded"`
 	ID        string `json:"id"`
 }
 
+// DetailedHeroItemAttributes represents a detailed Diablo III hero item attribute.
 type DetailedHeroItemAttributes struct {
 	Primary   []string `json:"primary"`
 	Secondary []string `json:"secondary"`
 }
 
+// DetailedHeroItem represents a detailed Diablo III hero item.
 type DetailedHeroItem struct {
 	ID   string `json:"id"`
 	Slug string `json:"slug"`
@@ -19,6 +21,7 @@ type DetailedHeroItem struct {
 	Path string `json:"path"`
 }
 
+// Gem represents a Diablo III gem.
 type Gem struct {
 	Item       DetailedHeroItem `json:"item"`
 	Attributes []string         `json:"attributes"`
@@ -26,6 +29,7 @@ type Gem struct {
 	IsJewel    bool             `json:"isJewel"`
 }
 
+// Dye represents a Diablo III dye.
 type Dye struct {
 	ID            string `json:"id"`
 	Name          string `json:"name"`
@@ -33,6 +37,7 @@ type Dye struct {
 	TooltipParams string `json:"tooltipParams"`
 }
 
+// DetailedHeroItemSlot represents a detailed Diablo III hero item slot.
 type DetailedHeroItemSlot struct {
 	ID                     string                     `json:"id"`
 	Name                   string                     `json:"name"`
@@ -61,6 +66,7 @@ type DetailedHeroItemSlot struct {
 	IsSeasonRequiredToDrop bool                       `json:"isSeasonRequiredToDrop"`
 }
 
+// DetailedHeroItems represents detailed Diablo III hero items.
 type DetailedHeroItems struct {
 	Head        DetailedHeroItemSlot `json:"head"`
 	Neck        DetailedHeroItemSlot `json:"neck"`

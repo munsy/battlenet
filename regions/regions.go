@@ -73,7 +73,7 @@ func (r Region) API() string {
 		url = urlCN
 		break
 	default:
-		panic(errors.UnresolvedEndpoint)
+		panic(errors.ErrUnresolvedEndpoint)
 	}
 	return url
 }
@@ -101,7 +101,7 @@ func (r Region) oauthHelper(endpoint string) string {
 		url = oauthCN + endpoint
 		break
 	default:
-		panic(errors.UnresolvedEndpoint)
+		panic(errors.ErrUnresolvedEndpoint)
 	}
 	return url
 }

@@ -1,16 +1,18 @@
 package d3
 
-// Get API Hero
+// Dye represents a Diablo III dye.
 type SkillSet struct {
 	Skill Skill `json:"skill"`
 	Rune  Skill `json:"rune"`
 }
 
+// Dye represents a Diablo III dye.
 type HeroSkills struct {
 	Active  []SkillSet `json:"active"`
 	Passive []SkillSet `json:"passive"`
 }
 
+// Dye represents a Diablo III dye.
 type DyeColor struct {
 	ID            string `json:"id"`
 	Name          string `json:"name"`
@@ -18,6 +20,7 @@ type DyeColor struct {
 	TooltipParams string `json:"tooltipParams"`
 }
 
+// Dye represents a Diablo III dye.
 type TransmogItem struct {
 	ID            string `json:"id"`
 	Name          string `json:"name"`
@@ -26,6 +29,7 @@ type TransmogItem struct {
 	TooltipParams string `json:"tooltipParams"`
 }
 
+// Dye represents a Diablo III dye.
 type HeroItemData struct {
 	ID            string       `json:"id"`
 	Name          string       `json:"name"`
@@ -36,6 +40,7 @@ type HeroItemData struct {
 	TransmogItem  TransmogItem `json:"transmogItem"`
 }
 
+// Dye represents a Diablo III dye.
 type HeroItems struct {
 	Head        HeroItemData `json:"head"`
 	Neck        HeroItemData `json:"neck"`
@@ -52,17 +57,20 @@ type HeroItems struct {
 	OffHand     HeroItemData `json:"offHand"`
 }
 
+// FollowerHands represents a Diablo III follwer's hands.
 type FollowerHands struct {
 	MainHand TransmogItem `json:"mainHand"`
 	OffHand  TransmogItem `json:"offHand"`
 }
 
+// FollowerStats represents Diablo III follower stats.
 type FollowerStats struct {
 	GoldFind        int `json:"goldFind"`
 	MagicFind       int `json:"magicFind"`
 	ExperienceBonus int `json:"experienceBonus"`
 }
 
+// HeroFollower represents a Diablo III hero follower.
 type HeroFollower struct {
 	Slug   string        `json:"slug"`
 	Level  int           `json:"level"`
@@ -71,22 +79,26 @@ type HeroFollower struct {
 	Skills []interface{} `json:"skills"`
 }
 
+// HeroFollowers represents Diablo III hero followers.
 type HeroFollowers struct {
 	Templar     HeroFollower `json:"templar"`
 	Scoundrel   HeroFollower `json:"scoundrel"`
 	Enchantress HeroFollower `json:"enchantress"`
 }
 
+// HeroCompletedQuest represents a completed Diablo III hero quest.
 type HeroCompletedQuest struct {
 	Slug string `json:"slug"`
 	Name string `json:"name"`
 }
 
+// HeroAct represents a Diablo III hero act.
 type HeroAct struct {
 	Completed       bool                 `json:"completed"`
 	CompletedQuests []HeroCompletedQuest `json:"completedQuests"`
 }
 
+// HeroProgression represents a Diablo III hero's progression.
 type HeroProgression struct {
 	Act1 HeroAct `json:"act1"`
 	Act2 HeroAct `json:"act2"`
@@ -95,6 +107,7 @@ type HeroProgression struct {
 	Act5 HeroAct `json:"act5"`
 }
 
+// HeroStats represents Diablo III hero stats.
 type HeroStats struct {
 	Life              float64 `json:"life"`
 	Damage            float64 `json:"damage"`
@@ -125,6 +138,7 @@ type HeroStats struct {
 	SecondaryResource int     `json:"secondaryResource"`
 }
 
+// Hero represents a Diablo III hero.
 type Hero struct {
 	ID                       int             `json:"id"`
 	Name                     string          `json:"name"`
