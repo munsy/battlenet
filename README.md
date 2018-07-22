@@ -14,33 +14,41 @@ $ go get github.com/munsy/gobattlenet/wow
 ```
 package main
 
-import(
+import (
+        "flag"
         "fmt"
-        "os"
 
         "github.com/munsy/gobattlenet/account"
 )
 
-func main() {
-		key := os.Args[1]
-        client := account.New()
+var tokenFlag = flag.String("t", "", "Battle.net API token (required).")
 
-        character, err := client.GetCharacterProfile("us", "thrall", "munsy", "")
+func main() {
+        flag.Parse()
+
+        client, err := account.New(*tokenFlag)
 
         if nil != err {
                 panic(err)
         }
 
-        fmt.Printf("Name: %v\nClass: %v\nRace: %v\n", character.Name, character.Class, character.Race)
+        bid, err := client.BattleID()
+
+        if nil != err {
+                panic(err)
+        }
+
+        fmt.Printf("ID: %d\n", bid.ID)
+        fmt.Printf("BattleTag: %s\n", bid.BattleTag)
 }
+
 ```
 ```
 $ go build
-$ ./raideriotest
-Name: Munsy
-Class: Druid
-Race: Troll
+$ ./account -t $YOUR_API_TOKEN_HERE
+ID: 12345654321
+BattleTag: Munsy#78910
 ```
 
-## Disclaimer
-I am in no way associated with the fine folks over at https://www.raider.io other than being a fan of their work and wanting to use it with my own stuff.
+## License
+MIT
