@@ -11,14 +11,7 @@ notifications:
 
 install:
   - go get github.com/BurntSushi/toml
-  - go get github.com/munsy/gobattlenet/local
-  - go get github.com/munsy/gobattlenet/pkg/errors
-  - go get github.com/munsy/gobattlenet/regions
-  - go get github.com/munsy/gobattlenet/settings
-  - go get github.com/munsy/gobattlenet/account
-  - go get github.com/munsy/gobattlenet/d3
-  - go get github.com/munsy/gobattlenet/sc2
-  - go get github.com/munsy/gobattlenet/wow
+  - go get github.com/munsy/gobattlenet
   - go get -v .
   - go get -v github.com/golang/lint/golint
 

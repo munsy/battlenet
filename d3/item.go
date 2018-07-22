@@ -1,25 +1,30 @@
 package d3
 
+// ItemMetadata represents Diablo III item metadata.
 type ItemMetadata struct {
 	TwoHanded bool   `json:"twoHanded"`
 	ID        string `json:"id"`
 }
 
+// ItemAttributeData represents Diablo III item attribute data.
 type ItemAttributeData struct {
 	TextHTML string `json:"textHtml"`
 	Text     string `json:"text"`
 }
 
+// RandomAffix represents a random Diablo III affix.
 type RandomAffix struct {
 	OneOf []ItemAttributeData `json:"oneOf"`
 }
 
+// ItemAttribute represents a Diablo III item attribute.
 type ItemAttribute struct {
 	Primary   []ItemAttributeData `json:"primary"`
 	Secondary []ItemAttributeData `json:"secondary"`
 	Other     []interface{}       `json:"other"`
 }
 
+// Item represents a Diablo III item.
 type Item struct {
 	ID                     string        `json:"id"`
 	Slug                   string        `json:"slug"`

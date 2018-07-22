@@ -1,5 +1,9 @@
 package regions
 
+import (
+	"github.com/munsy/gobattlenet/pkg/errors"
+)
+
 // Region can be one of: US, EU, KR, TW, SEA, or CN
 type Region int
 
@@ -21,7 +25,7 @@ func (r Region) String() string {
 	case CN:
 		region = "cn"
 	default:
-		panic(ErrorUnresolvedEndpoint)
+		panic(errors.UnresolvedEndpoint)
 	}
 	return region
 }
@@ -69,7 +73,7 @@ func (r Region) API() string {
 		url = urlCN
 		break
 	default:
-		panic(ErrorUnresolvedEndpoint)
+		panic(errors.UnresolvedEndpoint)
 	}
 	return url
 }
@@ -97,7 +101,7 @@ func (r Region) oauthHelper(endpoint string) string {
 		url = oauthCN + endpoint
 		break
 	default:
-		panic(ErrorUnresolvedEndpoint)
+		panic(errors.UnresolvedEndpoint)
 	}
 	return url
 }

@@ -1,12 +1,13 @@
 package d3
 
-// Get API Account
+// Kills represents all of a Diablo III character's kills.
 type Kills struct {
 	Monsters         int `json:"monsters"`
 	Elites           int `json:"elites"`
 	HardcoreMonsters int `json:"hardcoreMonsters"`
 }
 
+// AccountHero represents a Diablo III hero.
 type AccountHero struct {
 	ID           int    `json:"id"`
 	Name         string `json:"name"`
@@ -22,6 +23,7 @@ type AccountHero struct {
 	LastUpdated  int    `json:"last-updated"`
 }
 
+// TimePlayed represents time played on Diablo III.
 type TimePlayed struct {
 	DemonHunter float64 `json:"demon-hunter"`
 	Barbarian   float64 `json:"barbarian"`
@@ -32,6 +34,7 @@ type TimePlayed struct {
 	Crusader    float64 `json:"crusader"`
 }
 
+// Progression represents Diablo III character progression.
 type Progression struct {
 	Act1 bool `json:"act1"`
 	Act3 bool `json:"act3"`
@@ -40,11 +43,13 @@ type Progression struct {
 	Act4 bool `json:"act4"`
 }
 
+// Death represents a Diablo III death.
 type Death struct {
 	Killer int `json:"killer"`
 	Time   int `json:"time"`
 }
 
+// FallenHero represents a fallen Diablo III hero.
 type FallenHero struct {
 	HeroID   int    `json:"heroId"`
 	Name     string `json:"name"`
@@ -56,6 +61,7 @@ type FallenHero struct {
 	Gender   int    `json:"gender"`
 }
 
+// Season represents a Diablo III season.
 type Season struct {
 	SeasonID             int        `json:"seasonId"`
 	ParagonLevel         int        `json:"paragonLevel"`
@@ -65,6 +71,7 @@ type Season struct {
 	HighestHardcoreLevel int        `json:"highestHardcoreLevel"`
 }
 
+// SeasonalProfiles represents a Diablo III seasonal profile.
 type SeasonalProfiles struct {
 	Season14 Season `json:"season14"`
 	Season13 Season `json:"season13"`
@@ -83,11 +90,13 @@ type SeasonalProfiles struct {
 	Season0  Season `json:"season0"`
 }
 
+// Profession represents a Diablo III profession.
 type Profession struct {
 	Slug  string `json:"slug"`
 	Level int    `json:"level"`
 }
 
+// Account represents a Diablo III account.
 type Account struct {
 	BattleTag                  string           `json:"battleTag"`
 	ParagonLevel               int              `json:"paragonLevel"`
