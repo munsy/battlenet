@@ -1,4 +1,5 @@
-package battlenet // import "github.com/munsy/gobattlenet"
+// package battlenet provides clients for communicating with Blizzard's Battle.net APIs.
+package battlenet
 
 import (
 	"golang.org/x/oauth2"
