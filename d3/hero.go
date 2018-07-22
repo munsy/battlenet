@@ -1,18 +1,18 @@
 package d3
 
-// Dye represents a Diablo III dye.
+// SkillSet represents a Diablo III skill set.
 type SkillSet struct {
 	Skill Skill `json:"skill"`
 	Rune  Skill `json:"rune"`
 }
 
-// Dye represents a Diablo III dye.
+// HeroSkills represents Diablo III hero skills.
 type HeroSkills struct {
 	Active  []SkillSet `json:"active"`
 	Passive []SkillSet `json:"passive"`
 }
 
-// Dye represents a Diablo III dye.
+// DyeColor represents a Diablo III dye color.
 type DyeColor struct {
 	ID            string `json:"id"`
 	Name          string `json:"name"`
@@ -20,7 +20,7 @@ type DyeColor struct {
 	TooltipParams string `json:"tooltipParams"`
 }
 
-// Dye represents a Diablo III dye.
+// TransmogItem represents a Diablo III transmog item.
 type TransmogItem struct {
 	ID            string `json:"id"`
 	Name          string `json:"name"`
@@ -29,7 +29,7 @@ type TransmogItem struct {
 	TooltipParams string `json:"tooltipParams"`
 }
 
-// Dye represents a Diablo III dye.
+// HeroItemData represents Diablo III hero item data.
 type HeroItemData struct {
 	ID            string       `json:"id"`
 	Name          string       `json:"name"`
@@ -40,7 +40,7 @@ type HeroItemData struct {
 	TransmogItem  TransmogItem `json:"transmogItem"`
 }
 
-// Dye represents a Diablo III dye.
+// HeroItems represents Diablo III hero items.
 type HeroItems struct {
 	Head        HeroItemData `json:"head"`
 	Neck        HeroItemData `json:"neck"`

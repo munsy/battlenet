@@ -33,8 +33,7 @@ type Characters struct {
 	CharacterList []Character `json:"characters"`
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+// CharacterGuildEmblem represents a World of Warcraft character guild emblem.
 type CharacterGuildEmblem struct {
 	Icon              int    `json:"icon"`
 	IconColor         string `json:"iconColor"`
@@ -46,6 +45,7 @@ type CharacterGuildEmblem struct {
 	BackgroundColorID int    `json:"backgroundColorId"`
 }
 
+// CharacterGuild represents a World of Warcraft character guild.
 type CharacterGuild struct {
 	Name              string               `json:"name"`
 	Realm             string               `json:"realm"`
@@ -55,6 +55,7 @@ type CharacterGuild struct {
 	Emblem            CharacterGuildEmblem `json:"emblem"`
 }
 
+// CharacterFeedItem represents a World of Warcraft character feed item.
 type CharacterFeedItem struct {
 	Type           string      `json:"type"`
 	Timestamp      int64       `json:"timestamp"`
@@ -68,6 +69,7 @@ type CharacterFeedItem struct {
 	Name           string      `json:"name,omitempty"`
 }
 
+// CharacterItemSlotTooltipParams represents tooltip parameters for a World of Warcraft character item slot.
 type CharacterItemSlotTooltipParams struct {
 	Gem0              int `json:"gem0"`
 	Gem1              int `json:"gem1"`
@@ -81,17 +83,20 @@ type CharacterItemSlotTooltipParams struct {
 	AzeritePowerLevel int `json:"azeritePowerLevel"`
 }
 
+// CharacterItemSlotStat represents a World of Warcraft character item slot stat.
 type CharacterItemSlotStat struct {
 	Stat   int `json:"stat"`
 	Amount int `json:"amount"`
 }
 
+// CharacterItemSlotAppearance represents a World of Warcraft character item slot appearance.
 type CharacterItemSlotAppearance struct {
 	ItemID                      int `json:"itemId"`
 	ItemAppearanceModID         int `json:"itemAppearanceModId"`
 	TransmogItemAppearanceModID int `json:"transmogItemAppearanceModId"`
 }
 
+// CharacterWeaponDamage represents a World of Warcraft character weapon damage.
 type CharacterWeaponDamage struct {
 	Min      int `json:"min"`
 	Max      int `json:"max"`
@@ -99,17 +104,20 @@ type CharacterWeaponDamage struct {
 	ExactMax int `json:"exactMax"`
 }
 
+// CharacterWeaponInfo represents World of Warcraft character weapon info.
 type CharacterWeaponInfo struct {
 	Damage      CharacterWeaponDamage `json:"damage"`
 	WeaponSpeed float64               `json:"weaponSpeed"`
 	Dps         float64               `json:"dps"`
 }
 
+// CharacterArtifactTrait represents a World of Warcraft character artifact trait.
 type CharacterArtifactTrait struct {
 	ID   int `json:"id"`
 	Rank int `json:"rank"`
 }
 
+// CharacterWeaponRelic represents a World of Warcraft character weapon relic.
 type CharacterWeaponRelic struct {
 	Socket     int   `json:"socket"`
 	ItemID     int   `json:"itemId"`
@@ -117,6 +125,7 @@ type CharacterWeaponRelic struct {
 	BonusLists []int `json:"bonusLists"`
 }
 
+// CharacterWeaponSlot represents a World of Warcraft character weapon slot.
 type CharacterWeaponSlot struct {
 	ID                   int                            `json:"id"`
 	Name                 string                         `json:"name"`
@@ -137,6 +146,7 @@ type CharacterWeaponSlot struct {
 	Appearance           CharacterItemSlotAppearance    `json:"appearance"`
 }
 
+// CharacterItemSlot represents a World of Warcraft character item slot.
 type CharacterItemSlot struct {
 	ID                   int                            `json:"id"`
 	Name                 string                         `json:"name"`
@@ -156,6 +166,7 @@ type CharacterItemSlot struct {
 	Appearance           CharacterItemSlotAppearance    `json:"appearance"`
 }
 
+// CharacterItems represents World of Warcraft character items.
 type CharacterItems struct {
 	AverageItemLevel         int                 `json:"averageItemLevel"`
 	AverageItemLevelEquipped int                 `json:"averageItemLevelEquipped"`
@@ -177,6 +188,7 @@ type CharacterItems struct {
 	MainHand                 CharacterWeaponSlot `json:"mainHand"`
 }
 
+// CharacterStats represents World of Warcraft character stats.
 type CharacterStats struct {
 	Health                      int     `json:"health"`
 	PowerType                   string  `json:"powerType"`
@@ -229,6 +241,7 @@ type CharacterStats struct {
 	RangedDps                   int     `json:"rangedDps"`
 }
 
+// CharacterProfession represents a World of Warcraft character profession.
 type CharacterProfession struct {
 	ID      int           `json:"id"`
 	Name    string        `json:"name"`
@@ -238,11 +251,13 @@ type CharacterProfession struct {
 	Recipes []interface{} `json:"recipes"`
 }
 
+// CharacterProfessions represents World of Warcraft character professions.
 type CharacterProfessions struct {
 	Primary   []CharacterProfession `json:"primary"`
 	Secondary []CharacterProfession `json:"secondary"`
 }
 
+// CharacterReputation represents a World of Warcraft character reputation.
 type CharacterReputation struct {
 	ID       int    `json:"id"`
 	Name     string `json:"name"`
@@ -251,12 +266,14 @@ type CharacterReputation struct {
 	Max      int    `json:"max"`
 }
 
+// CharacterTitle represents a World of Warcraft character title.
 type CharacterTitle struct {
 	ID       int    `json:"id"`
 	Name     string `json:"name"`
 	Selected bool   `json:"selected,omitempty"`
 }
 
+// CharacterAchievements represents World of Warcraft character achievements.
 type CharacterAchievements struct {
 	AchievementsCompleted          []int         `json:"achievementsCompleted"`
 	AchievementsCompletedTimestamp []interface{} `json:"achievementsCompletedTimestamp"`
@@ -266,6 +283,7 @@ type CharacterAchievements struct {
 	CriteriaCreated                []interface{} `json:"criteriaCreated"`
 }
 
+// CharacterStatistic represents a World of Warcraft character statistic.
 type CharacterStatistic struct {
 	ID          int    `json:"id"`
 	Name        string `json:"name"`
@@ -275,12 +293,14 @@ type CharacterStatistic struct {
 	Highest     string `json:"highest,omitempty"`
 }
 
+// CharacterInnerSubcategory represents a World of Warcraft character inner subcategory.
 type CharacterInnerSubcategory struct {
 	ID         int                  `json:"id"`
 	Name       string               `json:"name"`
 	Statistics []CharacterStatistic `json:"statistics"`
 }
 
+// CharacterSubcategory represents a World of Warcraft character subcategory.
 type CharacterSubcategory struct {
 	ID            int                         `json:"id"`
 	Name          string                      `json:"name"`
@@ -288,12 +308,14 @@ type CharacterSubcategory struct {
 	SubCategories []CharacterInnerSubcategory `json:"subCategories,omitempty"`
 }
 
+// CharacterStatistics represents World of Warcraft character statistics.
 type CharacterStatistics struct {
 	ID            int                    `json:"id"`
 	Name          string                 `json:"name"`
 	SubCategories []CharacterSubcategory `json:"subCategories"`
 }
 
+// CharacterSpell represents a World of Warcraft character spell.
 type CharacterSpell struct {
 	ID          int    `json:"id"`
 	Name        string `json:"name"`
@@ -305,6 +327,7 @@ type CharacterSpell struct {
 	Cooldown    string `json:"cooldown"`
 }
 
+// CharacterTalent represents a World of Warcraft character talent.
 type CharacterTalent struct {
 	Tier   int            `json:"tier"`
 	Column int            `json:"column"`
@@ -312,6 +335,7 @@ type CharacterTalent struct {
 	Spec   CharacterSpec  `json:"spec,omitempty"`
 }
 
+// CharacterTalents represents World of Warcraft character talents.
 type CharacterTalents struct {
 	Selected   bool              `json:"selected,omitempty"`
 	Talents    []CharacterTalent `json:"talents"`
@@ -320,6 +344,7 @@ type CharacterTalents struct {
 	CalcSpec   string            `json:"calcSpec"`
 }
 
+// CharacterAppearance represents a World of Warcraft character appearance.
 type CharacterAppearance struct {
 	FaceVariation        int   `json:"faceVariation"`
 	SkinColor            int   `json:"skinColor"`
@@ -331,6 +356,7 @@ type CharacterAppearance struct {
 	CustomDisplayOptions []int `json:"customDisplayOptions"`
 }
 
+// CharacterMount represents a World of Warcraft character mount.
 type CharacterMount struct {
 	Name       string `json:"name"`
 	SpellID    int    `json:"spellId"`
@@ -344,12 +370,14 @@ type CharacterMount struct {
 	IsJumping  bool   `json:"isJumping"`
 }
 
+// CharacterMounts represents World of Warcraft character mounts.
 type CharacterMounts struct {
 	NumCollected    int              `json:"numCollected"`
 	NumNotCollected int              `json:"numNotCollected"`
 	Collected       []CharacterMount `json:"collected"`
 }
 
+// CharacterPetStat represents a World of Warcraft character pet stat.
 type CharacterPetStat struct {
 	SpeciesID    int `json:"speciesId"`
 	BreedID      int `json:"breedId"`
@@ -360,6 +388,7 @@ type CharacterPetStat struct {
 	Speed        int `json:"speed"`
 }
 
+// CharacterPet represents a World of Warcraft character pet.
 type CharacterPet struct {
 	Name                        string           `json:"name"`
 	SpellID                     int              `json:"spellId"`
@@ -377,12 +406,14 @@ type CharacterPet struct {
 	CanBattle                   bool             `json:"canBattle"`
 }
 
+// CharacterPets represents World of Warcraft character pets.
 type CharacterPets struct {
 	NumCollected    int            `json:"numCollected"`
 	NumNotCollected int            `json:"numNotCollected"`
 	Collected       []CharacterPet `json:"collected"`
 }
 
+// CharacterPetSlot represents a World of Warcraft character pet slot.
 type CharacterPetSlot struct {
 	Slot      int           `json:"slot"`
 	IsEmpty   bool          `json:"isEmpty"`
@@ -390,6 +421,7 @@ type CharacterPetSlot struct {
 	Abilities []interface{} `json:"abilities"`
 }
 
+// CharacterRaidBoss represents a World of Warcraft character raidboss.
 type CharacterRaidBoss struct {
 	ID              int    `json:"id"`
 	Name            string `json:"name"`
@@ -397,6 +429,7 @@ type CharacterRaidBoss struct {
 	NormalTimestamp int    `json:"normalTimestamp"`
 }
 
+// CharacterRaid represents a World of Warcraft character raid.
 type CharacterRaid struct {
 	Name   string              `json:"name"`
 	Lfr    int                 `json:"lfr"`
@@ -407,10 +440,12 @@ type CharacterRaid struct {
 	Bosses []CharacterRaidBoss `json:"bosses"`
 }
 
+// CharacterProgression represents a World of Warcraft character's progression.
 type CharacterProgression struct {
 	Raids []CharacterRaid `json:"raids"`
 }
 
+// CharacterArenaBracket represents a World of Warcraft character arena bracket.
 type CharacterArenaBracket struct {
 	Slug         string `json:"slug"`
 	Rating       int    `json:"rating"`
@@ -422,6 +457,7 @@ type CharacterArenaBracket struct {
 	SeasonLost   int    `json:"seasonLost"`
 }
 
+// CharacterArenaBrackets represents World of Warcraft character arena brackets.
 type CharacterArenaBrackets struct {
 	ARENABRACKET2V2         CharacterArenaBracket `json:"ARENA_BRACKET_2v2"`
 	ARENABRACKET3V3         CharacterArenaBracket `json:"ARENA_BRACKET_3v3"`
@@ -430,10 +466,12 @@ type CharacterArenaBrackets struct {
 	UNKNOWN                 CharacterArenaBracket `json:"UNKNOWN"`
 }
 
+// CharacterPvp represents a World of Warcraft character PvP.
 type CharacterPvp struct {
 	Brackets CharacterArenaBrackets `json:"brackets"`
 }
 
+// CharacterAuditSlot represents a World of Warcraft character audit slots.
 type CharacterAuditSlot struct {
 	Num2  int `json:"2"`
 	Num4  int `json:"4"`
@@ -446,6 +484,7 @@ type CharacterAuditSlot struct {
 	Num15 int `json:"15"`
 }
 
+// CharacterAuditUnenchantedItems represents unenchanted items from a character audit.
 type CharacterAuditUnenchantedItems struct {
 	Num2  int `json:"2"`
 	Num4  int `json:"4"`
@@ -457,34 +496,44 @@ type CharacterAuditUnenchantedItems struct {
 	Num15 int `json:"15"`
 }
 
+// CharacterAuditItemsWithEmptySockets represents items with empty sockets from a character audit.
 type CharacterAuditItemsWithEmptySockets struct {
 }
 
+// CharacterAuditInappropriateArmorType represents inappropriate armor types from a character audit.
 type CharacterAuditInappropriateArmorType struct {
 }
 
+// CharacterAuditLowLevelItems represents low level items returned from a character audit.
 type CharacterAuditLowLevelItems struct {
 }
 
+// CharacterAuditMissingExtraSockets represents missing extra sockets from a character audit.
 type CharacterAuditMissingExtraSockets struct {
 	Num5 int `json:"5"`
 }
 
+// CharacterAuditMissingBlacksmithSockets represents missing blacksmith sockets from a character audit.
 type CharacterAuditMissingBlacksmithSockets struct {
 }
 
+// CharacterAuditMissingEnchanterEnchants represents missing enchanter enchants from a character audit.
 type CharacterAuditMissingEnchanterEnchants struct {
 }
 
+// CharacterAuditMissingEngineerEnchants represents missing engineer enchants from a character audit.
 type CharacterAuditMissingEngineerEnchants struct {
 }
 
+// CharacterAuditMissingScribeEnchants represents missing scribe enchants from a character audit.
 type CharacterAuditMissingScribeEnchants struct {
 }
 
+// CharacterAuditMissingLeatherworkerEnchants represents missing leatherworker enchants.
 type CharacterAuditMissingLeatherworkerEnchants struct {
 }
 
+// CharacterAuditSpell represents a World of Warcraft character audit spell.
 type CharacterAuditSpell struct {
 	ID          int    `json:"id"`
 	Name        string `json:"name"`
@@ -493,6 +542,7 @@ type CharacterAuditSpell struct {
 	CastTime    string `json:"castTime"`
 }
 
+// CharacterAuditItemSpell represents a World of Warcraft character audit item spell.
 type CharacterAuditItemSpell struct {
 	SpellID           int                 `json:"spellId"`
 	Spell             CharacterAuditSpell `json:"spell"`
@@ -503,17 +553,20 @@ type CharacterAuditItemSpell struct {
 	ScaledDescription string              `json:"scaledDescription"`
 }
 
+// CharacterAuditItemSource represents a World of Warcraft character audit item source.
 type CharacterAuditItemSource struct {
 	SourceID   int    `json:"sourceId"`
 	SourceType string `json:"sourceType"`
 }
 
+// CharacterAuditBonusSummary represents a World of Warcraft character audit bonus summary.
 type CharacterAuditBonusSummary struct {
 	DefaultBonusLists []interface{} `json:"defaultBonusLists"`
 	ChanceBonusLists  []interface{} `json:"chanceBonusLists"`
 	BonusChances      []interface{} `json:"bonusChances"`
 }
 
+// CharacterAuditRecommendedBeltBuckle represents the recommended belt buckle.
 type CharacterAuditRecommendedBeltBuckle struct {
 	ID                   int                        `json:"id"`
 	Description          string                     `json:"description"`
@@ -556,6 +609,7 @@ type CharacterAuditRecommendedBeltBuckle struct {
 	ArtifactID           int                        `json:"artifactId"`
 }
 
+// CharacterAudit represents a World of Warcraft character audit.
 type CharacterAudit struct {
 	NumberOfIssues               int                                        `json:"numberOfIssues"`
 	Slots                        CharacterAuditSlot                         `json:"slots"`
@@ -579,6 +633,7 @@ type CharacterAudit struct {
 	MissingLeatherworkerEnchants CharacterAuditMissingLeatherworkerEnchants `json:"missingLeatherworkerEnchants"`
 }
 
+// CharacterData represents World of Warcraft character data.
 type CharacterData struct {
 	LastModified        int64                 `json:"lastModified"`
 	Name                string                `json:"name"`

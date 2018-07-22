@@ -1,6 +1,6 @@
 package sc2
 
-// Ladder represents a Starcraft II ladder.
+// Ladder represents a Starcraft II career.
 type Career struct {
 	PrimaryRace      string `json:"primaryRace"`
 	TerranWins       int    `json:"terranWins"`
@@ -10,28 +10,28 @@ type Career struct {
 	CareerTotalGames int    `json:"careerTotalGames"`
 }
 
-// Ladder represents a Starcraft II ladder.
+// Ladder represents the Starcraft II Terran race.
 type Terran struct {
 	Level          int `json:"level"`
 	TotalLevelXP   int `json:"totalLevelXP"`
 	CurrentLevelXP int `json:"currentLevelXP"`
 }
 
-// Ladder represents a Starcraft II ladder.
+// Zerg represents the Starcraft II Zerg race.
 type Zerg struct {
 	Level          int `json:"level"`
 	TotalLevelXP   int `json:"totalLevelXP"`
 	CurrentLevelXP int `json:"currentLevelXP"`
 }
 
-// Ladder represents a Starcraft II ladder.
+// Protoss represents the Starcraft II Protoss race.
 type Protoss struct {
 	Level          int `json:"level"`
 	TotalLevelXP   int `json:"totalLevelXP"`
 	CurrentLevelXP int `json:"currentLevelXP"`
 }
 
-// Ladder represents a Starcraft II ladder.
+// SwarmLevels represents the Starcraft II swarm levels.
 type SwarmLevels struct {
 	Level   int     `json:"level"`
 	Terran  Terran  `json:"terran"`
