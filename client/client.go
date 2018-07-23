@@ -9,7 +9,6 @@ import (
 	"github.com/munsy/gobattlenet/pkg/errors"
 	"github.com/munsy/gobattlenet/pkg/locale"
 	"github.com/munsy/gobattlenet/pkg/regions"
-	"github.com/munsy/gobattlenet/service"
 	"github.com/munsy/gobattlenet/service/account"
 	"github.com/munsy/gobattlenet/service/d3"
 	"github.com/munsy/gobattlenet/service/sc2"
@@ -34,10 +33,6 @@ type Client struct {
 // New creates a new Client.
 func New(s *settings.BNetSettings) (c *Client, err error) {
 	c = &Client{
-		Account:   service.Account(),
-		DIII:      service.D3(),
-		ScII:      service.Sc2(),
-		WoW:       service.WoW(),
 		client:    &http.Client{Timeout: (10 * time.Second)},
 		userAgent: "GoBattleNet/" + clientVersion,
 		locale:    locale.AmericanEnglish,
@@ -86,6 +81,26 @@ func (c *Client) SetKey(token string) {
 // UserAgent returns the client's user agent.
 func (c *Client) UserAgent() string {
 	return c.userAgent
+}
+
+// Account returns a new Account service.
+func (c *Client) Account(token string) *account.Service {
+	return account.New(token, client)
+}
+
+// D3 returns a new D3 service.
+func (c *Client) D3(key string) *d3.Service {
+	return d3.New(key, client)
+}
+
+// Sc2 returns a new Sc2 service.
+func (c *Client) Sc2(key string) *sc2.Service {
+	return sc2.New(key, client)
+}
+
+// WoW returns a new WoW service.
+func (c *Client) WoW(key string) *wow.Serivce {
+	return wow.New(key, client)
 }
 
 // Converts an HTTP response from a given endpoint to the supplied interface.
