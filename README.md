@@ -5,7 +5,7 @@ GoBattleNet
 Bindings for Battle.net's API written in Golang.
 
 ## Versions
-* This library is currently in alpha. Use at your own discretion.
+* This library is currently in alpha. Everything is subject to change. Use at your own discretion.
 * All data returned by clients should be up-to-date, including 
 World of Warcraft, which just had its API updated for Battle for Azeroth.
 

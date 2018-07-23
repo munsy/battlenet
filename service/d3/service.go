@@ -4,18 +4,19 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-	"time"
 
 	"github.com/munsy/gobattlenet/pkg/errors"
 	"github.com/munsy/gobattlenet/pkg/locale"
 	"github.com/munsy/gobattlenet/pkg/models/d3"
+	"github.com/munsy/gobattlenet/pkg/quota"
 	"github.com/munsy/gobattlenet/pkg/regions"
-	"github.com/munsy/gobattlenet/settings"
 )
 
 // Service represents the Diablo III service.
 type Service struct {
 	client *http.Client
+	region regions.Region
+	locale locale.Locale
 	key    string
 }
 
@@ -30,209 +31,135 @@ func New(key string, c *http.Client) *Service {
 // Converts an HTTP response from a given endpoint to the supplied interface.
 // This function expects the body to contain the associated JSON response
 // from the given endpoint and will return an error if it fails to properly unmarshal.
-func (s *Service) get(endpoint string, v interface{}) error {
+func (s *Service) get(endpoint string, v interface{}) (*Response, error) {
 	if nil == v {
-		return errors.ErrNoInterfaceSupplied
+		return nil, errors.ErrNoInterfaceSupplied
 	}
 
-	response, err := c.client.Get(endpoint + "?locale=" + s.locale + "&apikey=" + s.key)
+	response, err := s.client.Get(endpoint + "?locale=" + s.locale.String() + "&apikey=" + s.key)
 	if nil != err {
-		return err
+		return nil, err
 	}
 
 	defer response.Body.Close()
 
 	body, err := ioutil.ReadAll(response.Body)
 	if nil != err {
-		return err
+		return nil, err
 	}
 
 	err = json.Unmarshal([]byte(body), &v)
 	if nil != err {
-		return err
+		return nil, err
 	}
 
-	return nil
+	q := &quota.Quota{}
+	err = q.Set(response)
+	if nil != err {
+		return nil, err
+	}
+
+	return &Response{
+		Data:     v,
+		Endpoint: endpoint,
+		Quota:    q,
+	}, nil
 }
 
 // ActIndex gets an index of acts.
-func (c *Client) ActIndex() (*d3.ActIndex, error) {
+func (s *Service) ActIndex() (*Response, error) {
 	var index *d3.ActIndex
 
-	err := c.get(endpointActs(c.region), &index)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return index, nil
+	return s.get(endpointActs(s.region), &index)
 }
 
 // Act gets a single act by id.
-func (c *Client) Act(actID int) (*d3.Act, error) {
+func (s *Service) Act(actID int) (*Response, error) {
 	var act *d3.Act
 
-	err := c.get(endpointAct(c.region, actID), &act)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return act, nil
+	return s.get(endpointAct(s.region, actID), &act)
 }
 
 // Artisan gets a single artisan by slug.
-func (c *Client) Artisan(artisanSlug string) (*d3.Artisan, error) {
+func (s *Service) Artisan(artisanSlug string) (*Response, error) {
 	var artisan *d3.Artisan
 
-	err := c.get(endpointArtisan(c.region, artisanSlug), &artisan)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return artisan, nil
+	return s.get(endpointArtisan(s.region, artisanSlug), &artisan)
 }
 
 // Recipe gets a single recipe by slug for the specified artisan.
-func (c *Client) Recipe(artisanSlug, recipeSlug string) (*d3.Recipe, error) {
+func (s *Service) Recipe(artisanSlug, recipeSlug string) (*Response, error) {
 	var recipe *d3.Recipe
 
-	err := c.get(endpointRecipe(c.region, artisanSlug, recipeSlug), &recipe)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return recipe, nil
+	return s.get(endpointRecipe(s.region, artisanSlug, recipeSlug), &recipe)
 }
 
 // Follower gets a single follower by slug.
-func (c *Client) Follower(followerSlug string) (*d3.Follower, error) {
+func (s *Service) Follower(followerSlug string) (*Response, error) {
 	var follower *d3.Follower
 
-	err := c.get(endpointFollower(c.region, followerSlug), &follower)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return follower, nil
+	return s.get(endpointFollower(s.region, followerSlug), &follower)
 }
 
 // CharacterClass gets a single character class by slug.
-func (c *Client) CharacterClass(classSlug string) (*d3.CharacterClass, error) {
+func (s *Service) CharacterClass(classSlug string) (*Response, error) {
 	var cc *d3.CharacterClass
 
-	err := c.get(endpointCharacterClass(c.region, classSlug), &cc)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return cc, nil
+	return s.get(endpointCharacterClass(s.region, classSlug), &cc)
 }
 
 // CharacterSkill gets a single skill by slug, for a specific character class.
-func (c *Client) CharacterSkill(classSlug, skillSlug string) (*d3.CharacterAPISkill, error) {
+func (s *Service) CharacterSkill(classSlug, skillSlug string) (*Response, error) {
 	var cs *d3.CharacterAPISkill
 
-	err := c.get(endpointSkill(c.region, classSlug, skillSlug), &cs)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return cs, nil
+	return s.get(endpointSkill(s.region, classSlug, skillSlug), &cs)
 }
 
 // ItemTypeIndex gets an index of item types.
-func (c *Client) ItemTypeIndex() (*d3.ItemTypeIndex, error) {
+func (s *Service) ItemTypeIndex() (*Response, error) {
 	var index *d3.ItemTypeIndex
 
-	err := c.get(endpointItemTypeIndex(c.region), &index)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return index, nil
+	return s.get(endpointItemTypeIndex(s.region), &index)
 }
 
 // ItemType gets a single item type by slug.
-func (c *Client) ItemType(itemTypeSlug string) (*d3.ItemType, error) {
+func (s *Service) ItemType(itemTypeSlug string) (*Response, error) {
 	var it *d3.ItemType
 
-	err := c.get(endpointItemType(c.region, itemTypeSlug), &it)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return it, nil
+	return s.get(endpointItemType(s.region, itemTypeSlug), &it)
 }
 
 // Item gets a single item by item slug and ID.
-func (c *Client) Item(itemSlugAndID string) (*d3.Item, error) {
+func (s *Service) Item(itemSlugAndID string) (*Response, error) {
 	var item *d3.Item
 
-	err := c.get(endpointItem(c.region, itemSlugAndID), &item)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return item, nil
+	return s.get(endpointItem(s.region, itemSlugAndID), &item)
 }
 
 // Account gets a single profile.
-func (c *Client) Account(account string) (*d3.Account, error) {
+func (s *Service) Account(account string) (*Response, error) {
 	var acct *d3.Account
 
-	err := c.get(endpointAccount(c.region, account), &acct)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return acct, nil
+	return s.get(endpointAccount(s.region, account), &acct)
 }
 
 // Hero gets a single hero.
-func (c *Client) Hero(account string, heroID int) (*d3.Hero, error) {
+func (s *Service) Hero(account string, heroID int) (*Response, error) {
 	var hero *d3.Hero
 
-	err := c.get(endpointHero(c.region, account, heroID), &hero)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return hero, nil
+	return s.get(endpointHero(s.region, account, heroID), &hero)
 }
 
 // HeroItems gets a list of items for the specified hero.
-func (c *Client) HeroItems(account string, heroID int) (*d3.HeroItems, error) {
+func (s *Service) HeroItems(account string, heroID int) (*Response, error) {
 	var items *d3.HeroItems
 
-	err := c.get(endpointDetailedHeroItems(c.region, account, heroID), &items)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return items, nil
+	return s.get(endpointDetailedHeroItems(s.region, account, heroID), &items)
 }
 
 // FollowerItems gets a list of items for the specified hero's followers.
-func (c *Client) FollowerItems(account string, heroID int) (*d3.HeroFollowers, error) {
+func (s *Service) FollowerItems(account string, heroID int) (*Response, error) {
 	var followers *d3.HeroFollowers
 
-	err := c.get(endpointDetailedFollowerItems(c.region, account, heroID), &followers)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return followers, nil
+	return s.get(endpointDetailedFollowerItems(s.region, account, heroID), &followers)
 }

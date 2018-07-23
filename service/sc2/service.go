@@ -4,18 +4,19 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-	"time"
 
 	"github.com/munsy/gobattlenet/pkg/errors"
 	"github.com/munsy/gobattlenet/pkg/locale"
 	"github.com/munsy/gobattlenet/pkg/models/sc2"
+	"github.com/munsy/gobattlenet/pkg/quota"
 	"github.com/munsy/gobattlenet/pkg/regions"
-	"github.com/munsy/gobattlenet/settings"
 )
 
 // Service represents the Starcraft II service.
 type Service struct {
 	client *http.Client
+	region regions.Region
+	locale locale.Locale
 	key    string
 }
 
@@ -30,105 +31,79 @@ func New(key string, c *http.Client) *Service {
 // Converts an HTTP response from a given endpoint to the supplied interface.
 // This function expects the body to contain the associated JSON response
 // from the given endpoint and will return an error if it fails to properly unmarshal.
-func (s *Service) get(endpoint string, v interface{}) error {
+func (s *Service) get(endpoint string, v interface{}) (*Response, error) {
 	if nil == v {
-		return errors.ErrNoInterfaceSupplied
+		return nil, errors.ErrNoInterfaceSupplied
 	}
 
-	response, err := c.client.Get(endpoint + "?locale=" + s.locale + "&apikey=" + s.key)
+	response, err := s.client.Get(endpoint + "?locale=" + s.locale.String() + "&apikey=" + s.key)
 	if nil != err {
-		return err
+		return nil, err
 	}
 
 	defer response.Body.Close()
 
 	body, err := ioutil.ReadAll(response.Body)
 	if nil != err {
-		return err
+		return nil, err
 	}
 
 	err = json.Unmarshal([]byte(body), &v)
 	if nil != err {
-		return err
+		return nil, err
 	}
 
-	return nil
+	q := &quota.Quota{}
+	err = q.Set(response)
+	if nil != err {
+		return nil, err
+	}
+
+	return &Response{
+		Data:     v,
+		Endpoint: endpoint,
+		Quota:    q,
+	}, nil
 }
 
 // Character returns the Sc2 character profile.
-func (c *Client) Character(name string, profileID int) (*sc2.Character, error) {
+func (s *Service) Character(name string, profileID int) (*Response, error) {
 	var character *sc2.Character
 
-	err := c.get(endpointProfile(c.region, profileID, c.region.Itoa(), name), &character)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return character, nil
+	return s.get(endpointProfile(s.region, profileID, s.region.Itoa(), name), &character)
 }
 
 // LadderSeasons returns the Sc2 profile's ladder seasons.
-func (c *Client) LadderSeasons(name string, profileID int) (*sc2.LadderSeasons, error) {
+func (s *Service) LadderSeasons(name string, profileID int) (*Response, error) {
 	var ladderSeasons *sc2.LadderSeasons
 
-	err := c.get(endpointLadderProfile(c.region, profileID, c.region.Itoa(), name), &ladderSeasons)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return ladderSeasons, nil
+	return s.get(endpointLadderProfile(s.region, profileID, s.region.Itoa(), name), &ladderSeasons)
 }
 
 // MatchHistory returns the Sc2 profile's match history.
-func (c *Client) MatchHistory(name string, profileID int) (*sc2.MatchHistory, error) {
+func (s *Service) MatchHistory(name string, profileID int) (*Response, error) {
 	var matchHistory *sc2.MatchHistory
 
-	err := c.get(endpointMatchHistory(c.region, profileID, c.region.Itoa(), name), &matchHistory)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return matchHistory, nil
+	return s.get(endpointMatchHistory(s.region, profileID, s.region.Itoa(), name), &matchHistory)
 }
 
 // Ladder returns Sc2 ladder data.
-func (c *Client) Ladder(id int) (*sc2.Ladder, error) {
+func (s *Service) Ladder(id int) (*Response, error) {
 	var ladder *sc2.Ladder
 
-	err := c.get(endpointLadder(c.region, id), &ladder)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return ladder, nil
+	return s.get(endpointLadder(s.region, id), &ladder)
 }
 
 // Achievements returns Sc2 achievement data.
-func (c *Client) Achievements(id int) (*sc2.AchievementsData, error) {
+func (s *Service) Achievements(id int) (*Response, error) {
 	var achievements *sc2.AchievementsData
 
-	err := c.get(endpointAchievements(c.region), &achievements)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return achievements, nil
+	return s.get(endpointAchievements(s.region), &achievements)
 }
 
 // Rewards returns Sc2 reward data.
-func (c *Client) Rewards(id int) (*sc2.RewardsData, error) {
+func (s *Service) Rewards(id int) (*Response, error) {
 	var rewards *sc2.RewardsData
 
-	err := c.get(endpointRewards(c.region), &rewards)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return rewards, nil
+	return s.get(endpointRewards(s.region), &rewards)
 }
