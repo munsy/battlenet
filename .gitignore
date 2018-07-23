@@ -9,3 +9,5 @@ examples/sc2/sc2.exe
 examples/sc2/sc2
 examples/wow/wow.exe
 examples/wow/wow
+golint
+golint.exe
