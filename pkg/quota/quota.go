@@ -1,13 +1,13 @@
 // Package quota contains usage data about the Battle.net API, which comes back as part of the response headers after
 // you make a call with one of the gobattlenet clients. The following is a breakdown of the headers:
 //
-// X-Plan-Qps-Allotted: 	The maximum QPS (queries per second) capacity set on your API key. This is the maximum
-// 							number of calls that can be made in any given second.
-// X-Plan-Qps-Current: 		The current count of calls being applied against the above limit; in this case, it
-// 							is a representation of how many calls your key is making at that particular second in time.
-// X-Plan-Quota-Allotted: 	The maximum number of calls that can be made on daily basis.
-// X-Plan-Quota-Current: 	The current count of calls made in the current limit period, i.e. the current day.
-// X-Plan-Quota-Reset: 		The time when the quota count will reset to 0.
+// X-Plan-Qps-Allotted: The maximum QPS (queries per second) capacity set on your API key. This is the maximum
+// number of calls that can be made in any given second.
+// X-Plan-Qps-Current: The current count of calls being applied against the above limit; in this case, it
+// is a representation of how many calls your key is making at that particular second in time.
+// X-Plan-Quota-Allotted: The maximum number of calls that can be made on daily basis.
+// X-Plan-Quota-Current: The current count of calls made in the current limit period, i.e. the current day.
+// X-Plan-Quota-Reset: The time when the quota count will reset to 0.
 package quota
 
 import (
