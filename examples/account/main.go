@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/munsy/gobattlenet/account"
+	"github.com/munsy/gobattlenet/client/account"
 )
 
 var tokenFlag = flag.String("t", "", "Battle.net API token (required).")

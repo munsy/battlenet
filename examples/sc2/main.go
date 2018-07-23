@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/munsy/gobattlenet/sc2"
+	"github.com/munsy/gobattlenet/client/sc2"
 )
 
 var keyFlag = flag.String("k", "", "Battle.net API key (required).")

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/munsy/gobattlenet/sc2"
+	"github.com/munsy/gobattlenet/client/sc2"
 )
 
 var (

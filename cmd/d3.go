@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/munsy/gobattlenet/d3"
+	"github.com/munsy/gobattlenet/client/d3"
 )
 
 var (

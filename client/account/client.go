@@ -26,7 +26,7 @@ type Client struct {
 
 // New creates a new Client. Passing different interface types can cause
 // different behaviors. See function definition for more details.
-func New(args ...interface{}) (c *Client, err error) {
+func New(s *settings.BNetSettings) (c *Client, err error) {
 	c = &Client{
 		userAgent: "GoBattleNetAccount/" + settings.ClientVersion,
 		client:    &http.Client{Timeout: (10 * time.Second)},
@@ -35,34 +35,19 @@ func New(args ...interface{}) (c *Client, err error) {
 		token:     "",
 	}
 
-	if nil == args {
+	if nil == s {
 		return c, nil
 	}
 
-	for _, arg := range args {
-		switch t := arg.(type) {
-		case string:
-			c.token = t
-			break
-		case *http.Client:
-			c.client = t
-			break
-		case locale.Locale:
-			c.locale = t
-			break
-		case regions.Region:
-			c.region = t
-			break
-		case settings.BNetSettings:
-			c.client = t.Client
-			c.locale = t.Locale
-			c.region = t.Region
-			c.token = t.Key
-			break
-		default:
-			return nil, errors.ErrUnsupportedArgument
-		}
+	if s.Region.Int() > 5 {
+		return nil, errors.ErrUnsupportedArgument
 	}
+
+	c.client = s.Client
+	c.locale = s.Locale
+	c.region = s.Region
+	c.token = s.Key
+
 	return c, nil
 }
 
