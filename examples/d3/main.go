@@ -3,8 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
+	"net/http"
+	"time"
 
 	"github.com/munsy/gobattlenet/client/d3"
+	"github.com/munsy/gobattlenet/pkg/locale"
+	"github.com/munsy/gobattlenet/pkg/regions"
+	"github.com/munsy/gobattlenet/settings"
 )
 
 var keyFlag = flag.String("k", "", "Battle.net API key (required).")
@@ -12,7 +17,14 @@ var keyFlag = flag.String("k", "", "Battle.net API key (required).")
 func main() {
 	flag.Parse()
 
-	client, err := d3.New(*keyFlag)
+	settings := &settings.BNetSettings{
+		Client: &http.Client{Timeout: (10 * time.Second)},
+		Locale: locale.AmericanEnglish,
+		Region: regions.US,
+		Key:    *keyFlag,
+	}
+
+	client, err := d3.New(settings)
 
 	if nil != err {
 		panic(err)
