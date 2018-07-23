@@ -1,6 +1,6 @@
 GoBattleNet
 ===========
-[![Build Status](https://travis-ci.org/munsy/gobattlenet.svg?branch=master)](https://travis-ci.org/Munsy/gobattlenet) [![Go Report Card](https://goreportcard.com/badge/github.com/munsy/gobattlenet)](https://goreportcard.com/report/github.com/munsy/gobattlenet) [![GoDoc](https://godoc.org/github.com/munsy/gobattlenet?status.svg)](https://godoc.org/github.com/munsy/gobattlenet)
+[![Build Status](https://travis-ci.org/munsy/gobattlenet.svg?branch=master)](https://travis-ci.org/munsy/gobattlenet) [![Go Report Card](https://goreportcard.com/badge/github.com/munsy/gobattlenet)](https://goreportcard.com/report/github.com/munsy/gobattlenet) [![GoDoc](https://godoc.org/github.com/munsy/gobattlenet?status.svg)](https://godoc.org/github.com/munsy/gobattlenet)
 
 Bindings for Battle.net's API written in Golang.
 
