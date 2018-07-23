@@ -1,4 +1,4 @@
-package account
+package client
 
 import (
 	"encoding/json"
@@ -8,31 +8,40 @@ import (
 
 	"github.com/munsy/gobattlenet/pkg/errors"
 	"github.com/munsy/gobattlenet/pkg/locale"
-	"github.com/munsy/gobattlenet/pkg/models/account"
-	"github.com/munsy/gobattlenet/pkg/models/sc2"
-	"github.com/munsy/gobattlenet/pkg/models/wow"
 	"github.com/munsy/gobattlenet/pkg/regions"
+	"github.com/munsy/gobattlenet/service"
+	"github.com/munsy/gobattlenet/service/account"
+	"github.com/munsy/gobattlenet/service/d3"
+	"github.com/munsy/gobattlenet/service/sc2"
+	"github.com/munsy/gobattlenet/service/wow"
 	"github.com/munsy/gobattlenet/settings"
 )
 
-// Client allows the user to access the Battle.net Account API.
+const clientVersion = "alpha"
+
+// Client allows the user to access the Battle.net API.
 type Client struct {
-	userAgent string
+	Account   *account.Service
+	DIII      *d3.Service
+	ScII      *sc2.Service
+	WoW       *wow.Service
 	client    *http.Client
+	userAgent string
 	locale    locale.Locale
 	region    regions.Region
-	token     string
 }
 
-// New creates a new Client. Passing different interface types can cause
-// different behaviors. See function definition for more details.
+// New creates a new Client.
 func New(s *settings.BNetSettings) (c *Client, err error) {
 	c = &Client{
-		userAgent: "GoBattleNetAccount/" + settings.ClientVersion,
+		Account:   service.Account(),
+		DIII:      service.D3(),
+		ScII:      service.Sc2(),
+		WoW:       service.WoW(),
 		client:    &http.Client{Timeout: (10 * time.Second)},
+		userAgent: "GoBattleNet/" + clientVersion,
 		locale:    locale.AmericanEnglish,
 		region:    regions.US,
-		token:     "",
 	}
 
 	if nil == s {
@@ -79,54 +88,15 @@ func (c *Client) UserAgent() string {
 	return c.userAgent
 }
 
-// BattleID returns the Battle.net ID and BattleTag.
-func (c *Client) BattleID() (*account.BattleID, error) {
-	var bid *account.BattleID
-
-	err := c.get(endpointUser(c.region), &bid)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return bid, nil
-}
-
-// Sc2OauthProfile returns details about a character.
-func (c *Client) Sc2OauthProfile() (*sc2.Character, error) {
-	var character *sc2.Character
-
-	err := c.get(endpointSc2User(c.region), &character)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return character, nil
-}
-
-// WoWOauthProfile returns details about the WoW account.
-func (c *Client) WoWOauthProfile() (*wow.Characters, error) {
-	var character *wow.Characters
-
-	err := c.get(endpointWowCharacters(c.region), &character)
-
-	if nil != err {
-		return nil, err
-	}
-
-	return character, nil
-}
-
-// Convert an HTTP response from a given endpoint to the supplied interface.
+// Converts an HTTP response from a given endpoint to the supplied interface.
 // This function expects the body to contain the associated JSON response
 // from the given endpoint and will return an error if it fails to properly unmarshal.
-func (c *Client) get(endpoint string, v interface{}) error {
+func (s *Service) get(endpoint string, v interface{}) error {
 	if nil == v {
 		return errors.ErrNoInterfaceSupplied
 	}
 
-	response, err := http.Get(endpoint + "?access_token=" + c.token)
+	response, err := c.client.Get(endpoint + "?access_token=" + c.token)
 	if nil != err {
 		return err
 	}

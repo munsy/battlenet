@@ -13,68 +13,46 @@ import (
 	"github.com/munsy/gobattlenet/settings"
 )
 
-// Client allows the user to access the Diablo III Battle.net API.
-type Client struct {
-	userAgent string
-	client    *http.Client
-	locale    locale.Locale
-	region    regions.Region
-	key       string
+// Service represents the Diablo III service.
+type Service struct {
+	client *http.Client
+	key    string
 }
 
-// New creates a new Client. Passing different interface values/types
-// can cause different behaviors. See function definition for more details.
-func New(s *settings.BNetSettings) (c *Client, err error) {
-	c = &Client{
-		userAgent: "GoBattleNetD3/" + settings.ClientVersion,
-		client:    &http.Client{Timeout: (10 * time.Second)},
-		locale:    locale.AmericanEnglish,
-		region:    regions.US,
-		key:       "",
+// New returns a new Diablo III service.
+func New(key string, c *http.Client) *Service {
+	return &Service{
+		client: c,
+		key:    key,
 	}
-
-	if nil == s {
-		return c, nil
-	}
-
-	if s.Region.Int() > 5 {
-		return nil, errors.ErrUnsupportedArgument
-	}
-
-	if nil != s.Client {
-		c.client = s.Client
-	}
-	if c.locale != s.Locale {
-		c.locale = s.Locale
-	}
-	if c.region != s.Region {
-		c.region = s.Region
-	}
-	if s.Key != "" {
-		c.key = s.Key
-	}
-
-	return c, nil
 }
 
-// Locale gets the client's locale.
-func (c *Client) Locale() locale.Locale {
-	return c.locale
-}
+// Converts an HTTP response from a given endpoint to the supplied interface.
+// This function expects the body to contain the associated JSON response
+// from the given endpoint and will return an error if it fails to properly unmarshal.
+func (s *Service) get(endpoint string, v interface{}) error {
+	if nil == v {
+		return errors.ErrNoInterfaceSupplied
+	}
 
-// SetLocale sets the client's locale.
-func (c *Client) SetLocale(locale locale.Locale) {
-	c.locale = locale
-}
+	response, err := c.client.Get(endpoint + "?locale=" + s.locale + "&apikey=" + s.key)
+	if nil != err {
+		return err
+	}
 
-// SetKey sets the client's key.
-func (c *Client) SetKey(key string) {
-	c.key = key
-}
+	defer response.Body.Close()
 
-// UserAgent returns the client's user agent.
-func (c *Client) UserAgent() string {
-	return c.userAgent
+	body, err := ioutil.ReadAll(response.Body)
+	if nil != err {
+		return err
+	}
+
+	err = json.Unmarshal([]byte(body), &v)
+	if nil != err {
+		return err
+	}
+
+	return nil
 }
 
 // ActIndex gets an index of acts.
@@ -257,32 +235,4 @@ func (c *Client) FollowerItems(account string, heroID int) (*d3.HeroFollowers, e
 	}
 
 	return followers, nil
-}
-
-// Convert an HTTP response from a given endpoint to the supplied interface.
-// This function expects the body to contain the associated JSON response
-// from the given endpoint and will return an error if it fails to properly unmarshal.
-func (c *Client) get(endpoint string, v interface{}) error {
-	if nil == v {
-		return errors.ErrNoInterfaceSupplied
-	}
-
-	response, err := http.Get(endpoint + "?locale=" + c.locale.String() + "&apikey=" + c.key)
-	if nil != err {
-		return err
-	}
-
-	defer response.Body.Close()
-
-	body, err := ioutil.ReadAll(response.Body)
-	if nil != err {
-		return err
-	}
-
-	err = json.Unmarshal([]byte(body), &v)
-	if nil != err {
-		return err
-	}
-
-	return nil
 }

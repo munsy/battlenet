@@ -5,23 +5,14 @@ GoBattleNet
 Bindings for Battle.net's API written in Golang.
 
 ## Versions
-
-* All clients should be up-to-date, including World of Warcraft,
-which just had its API updated for Battle for Azeroth.
+* This library is currently in alpha. Use at your own discretion.
+* All data returned by clients should be up-to-date, including 
+World of Warcraft, which just had its API updated for Battle for Azeroth.
 
 ## Install
 ```
 $ go get github.com/munsy/gobattlenet
 ```
-Alternatively, you can select individual packages:
-```
-$ go get github.com/munsy/gobattlenet/client/account
-$ go get github.com/munsy/gobattlenet/client/d3
-$ go get github.com/munsy/gobattlenet/client/sc2
-$ go get github.com/munsy/gobattlenet/client/wow
-$ go get github.com/munsy/gobattlenet/settings
-```
-
 ## Example
 ```
 package main
