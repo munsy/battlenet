@@ -4,6 +4,7 @@ package quota
 
 import (
 	"net/http"
+	"strconv"
 	"time"
 )
 
@@ -32,13 +33,40 @@ type Quota struct {
 
 // Set sets the quota according to values returned by the given http.Response.
 func (q *Quota) Set(r *http.Response) error {
-	var err error
+	qpsAllotted, err := strconv.Atoi(r.Header.Get("X-Plan-Qps-Allotted"))
 
-	q.QPSAllotted = r.Header["X-Plan-Qps-Allotted"]
-	q.QPSCurrent = r.Header["X-Plan-Qps-Current"]
-	q.QuotaAlloted = r.Header["X-Plan-Quota-Allotted"]
-	q.QuotaCurrent = r.Header["X-Plan-Quota-Current"]
-	q.QuotaReset, err = time.Parse(timeFormat, r.Header["X-Plan-Quota-Reset"])
+	if nil != err {
+		return err
+	}
 
-	return err
+	qpsCurrent, err := strconv.Atoi(r.Header.Get("X-Plan-Qps-Current"))
+
+	if nil != err {
+		return err
+	}
+
+	quotaAlloted, err := strconv.Atoi(r.Header.Get("X-Plan-Quota-Allotted"))
+
+	if nil != err {
+		return err
+	}
+	quotaCurrent, err := strconv.Atoi(r.Header.Get("X-Plan-Quota-Current"))
+
+	if nil != err {
+		return err
+	}
+
+	quotaReset, err := time.Parse(timeFormat, r.Header.Get("X-Plan-Quota-Reset"))
+
+	if nil != err {
+		return err
+	}
+
+	q.QPSAllotted = qpsAllotted
+	q.QPSCurrent = qpsCurrent
+	q.QuotaAlloted = quotaAlloted
+	q.QuotaCurrent = quotaCurrent
+	q.QuotaReset = quotaReset
+
+	return nil
 }
