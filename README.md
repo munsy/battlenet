@@ -1,6 +1,6 @@
 GoBattleNet
 ===========
-[![Build Status](https://travis-ci.org/Munsy/gobattlenet.svg?branch=master)](https://travis-ci.org/Munsy/gobattlenet) [![Go Report Card](https://goreportcard.com/badge/github.com/munsy/gobattlenet)](https://goreportcard.com/report/github.com/munsy/gobattlenet) 
+[![Build Status](https://travis-ci.org/munsy/gobattlenet.svg?branch=master)](https://travis-ci.org/Munsy/gobattlenet) [![Go Report Card](https://goreportcard.com/badge/github.com/munsy/gobattlenet)](https://goreportcard.com/report/github.com/munsy/gobattlenet) [![GoDoc](https://godoc.org/github.com/munsy/gobattlenet?status.svg)](https://godoc.org/github.com/munsy/gobattlenet)
 
 Bindings for Battle.net's API written in Golang.
 
@@ -11,10 +11,15 @@ which just had its API updated for Battle for Azeroth.
 
 ## Install
 ```
-$ go get github.com/munsy/gobattlenet/account
-$ go get github.com/munsy/gobattlenet/d3
-$ go get github.com/munsy/gobattlenet/sc2
-$ go get github.com/munsy/gobattlenet/wow
+$ go get github.com/munsy/gobattlenet
+```
+Alternatively, you can select individual packages:
+```
+$ go get github.com/munsy/gobattlenet/client/account
+$ go get github.com/munsy/gobattlenet/client/d3
+$ go get github.com/munsy/gobattlenet/client/sc2
+$ go get github.com/munsy/gobattlenet/client/wow
+$ go get github.com/munsy/gobattlenet/settings
 ```
 
 ## Example
@@ -25,7 +30,8 @@ import (
         "flag"
         "fmt"
 
-        "github.com/munsy/gobattlenet/account"
+        "github.com/munsy/gobattlenet"
+        "github.com/munsy/gobattlenet/settings"
 )
 
 var tokenFlag = flag.String("t", "", "Battle.net API token (required).")
@@ -33,7 +39,14 @@ var tokenFlag = flag.String("t", "", "Battle.net API token (required).")
 func main() {
         flag.Parse()
 
-        client, err := account.New(*tokenFlag)
+        settings := &settings.BNetSettings{
+                Client: &http.Client{Timeout: (10 * time.Second)},
+                Locale: locale.AmericanEnglish,
+                Region: regions.US,
+                Key:    *tokenFlag,
+        }
+
+        client, err := battlenet.NewAccountClient(settings)
 
         if nil != err {
                 panic(err)
