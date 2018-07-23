@@ -59,12 +59,12 @@ type ChallengeData struct {
 type EmblemInfo struct {
 	Icon              int    `json:"icon"`
 	IconColor         string `json:"iconColor"`
-	IconColorId       int    `json:"iconColorId"`
+	IconColorID       int    `json:"iconColorId"`
 	Border            int    `json:"border"`
 	BorderColor       string `json:"borderColor"`
-	BorderColorId     int    `json:"borderColorId"`
+	BorderColorID     int    `json:"borderColorId"`
 	BackgroundColor   string `json:"backgroundColor"`
-	BackgroundColorId int    `json:"backgroundColorId"`
+	BackgroundColorID int    `json:"backgroundColorId"`
 }
 
 // GuildMember contains a character block as well as a rank field.

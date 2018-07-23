@@ -6,7 +6,8 @@ import (
 
 // Battle.net errors for clients and various packages.
 var (
-	ErrNoInterfaceSupplied error = errors.New("Nil interface was passed to constructor.")
-	ErrUnsupportedArgument error = errors.New("Unsupported argument type was passed to constructor.")
-	ErrUnresolvedEndpoint  error = errors.New("Unresolved endpoint.")
+	ErrNoInterfaceSupplied = errors.New("nil interface was passed to constructor")
+	ErrUnsupportedArgument = errors.New("unsupported argument type was passed to constructor")
+	ErrUnresolvedEndpoint  = errors.New("unresolved endpoint")
+	ErrInvalidDialectForm  = errors.New("invalid dialect format")
 )
