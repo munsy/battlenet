@@ -3,7 +3,7 @@ package wow
 import (
 	"strconv"
 
-	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/gobattlenet/pkg/regions"
 )
 
 // r regions.Region,
