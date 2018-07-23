@@ -43,10 +43,18 @@ func New(s *settings.BNetSettings) (c *Client, err error) {
 		return nil, errors.ErrUnsupportedArgument
 	}
 
-	c.client = s.Client
-	c.locale = s.Locale
-	c.region = s.Region
-	c.token = s.Key
+	if nil != s.Client {
+		c.client = s.Client
+	}
+	if c.locale != s.Locale {
+		c.locale = s.Locale
+	}
+	if c.region != s.Region {
+		c.region = s.Region
+	}
+	if s.Key != "" {
+		c.token = s.Key
+	}
 
 	return c, nil
 }

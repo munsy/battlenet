@@ -17,6 +17,7 @@ var (
 
 func parseAccountCommand() {
 	checkAllAccountConfigs()
+
 	client, err := account.New(config.Settings("token"))
 
 	if nil != err {

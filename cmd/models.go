@@ -18,8 +18,8 @@ type cmdConfig struct {
 	Locale string
 }
 
-func (c cmdConfig) Settings(cmdType string) settings.BNetSettings {
-	var s settings.BNetSettings
+func (c cmdConfig) Settings(cmdType string) *settings.BNetSettings {
+	s := &settings.BNetSettings{}
 
 	s.Client = &http.Client{Timeout: (10 * time.Second)}
 
