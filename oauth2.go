@@ -1,4 +1,7 @@
-// Package battlenet provides clients for communicating with Blizzard's Battle.net APIs.
+// Package battlenet provides clients for accessing Blizzard Entertainment's various
+// Battle.net API endpoints, including Diablo III, Starcraft II, and World of Warcraft.
+//
+// Official Battle.net API documentation can be found at: https://dev.battle.net/io-docs
 package battlenet
 
 import (

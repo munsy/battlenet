@@ -64,8 +64,8 @@ func main() {
 
 ```
 ```
-$ go build
-$ ./account -t $YOUR_API_TOKEN_HERE
+$ go build -o account.exe
+$ ./account.exe -t $YOUR_API_TOKEN_HERE
 ID: 12345654321
 BattleTag: Munsy#78910
 ```
