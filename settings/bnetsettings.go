@@ -12,5 +12,4 @@ type BNetSettings struct {
 	Client *http.Client
 	Locale locale.Locale
 	Region regions.Region
-	Key    string
 }

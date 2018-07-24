@@ -1,6 +1,3 @@
-cmd/cmd.exe
-cmd/cmd
-cmd/config.toml
 examples/account/account.exe
 examples/account/account
 examples/d3/d3.exe

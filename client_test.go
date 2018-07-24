@@ -17,7 +17,6 @@ func TestNewClient(t *testing.T) {
 		Client: &http.Client{Timeout: (10 * time.Second)},
 		Locale: locale.AmericanEnglish,
 		Region: regions.US,
-		Key:    "",
 	}
 
 	c, err := New(settings)

@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const timeFormat = "Monday, Jan 02, 2006 15:04:05 AM GMT"
+const timeFormat = "Monday, January 2, 2006 3:04:05 PM GMT"
 
 // Quota contains data about the Battle.net API usage. The following is a breakdown of the headers:
 //

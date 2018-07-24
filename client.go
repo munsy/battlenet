@@ -5,11 +5,11 @@
 package battlenet
 
 import (
-	"github.com/munsy/gobattlenet/client"
+	"github.com/munsy/gobattlenet/http"
 	"github.com/munsy/gobattlenet/settings"
 )
 
 // New returns a new  client.Client for accessing the Battle.net API.
-func New(s *settings.BNetSettings) (c *client.Client, err error) {
-	return client.New(s)
+func New(s *settings.BNetSettings) (c *http.Client, err error) {
+	return http.New(s)
 }
