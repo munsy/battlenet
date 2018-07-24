@@ -1,4 +1,4 @@
-package settings
+package battlenet
 
 import (
 	"net/http"
@@ -7,8 +7,8 @@ import (
 	"github.com/munsy/gobattlenet/pkg/regions"
 )
 
-// BNetSettings defines settings for a BNetClient.
-type BNetSettings struct {
+// Settings defines settings for a Client.
+type Settings struct {
 	Client *http.Client
 	Locale locale.Locale
 	Region regions.Region
