@@ -27,16 +27,15 @@ func main() {
 		Client: &http.Client{Timeout: (10 * time.Second)},
 		Locale: locale.AmericanEnglish,
 		Region: regions.US,
-		Key:    *keyFlag,
 	}
 
-	client, err := sc2.New(settings)
+	client, err := http.New(settings)
 
 	if nil != err {
 		panic(err)
 	}
 
-	achievements, err := client.Achievements(*achievementFlag)
+	achievements, err := client.Sc2(*keyFlag).Achievements(*achievementFlag)
 
 	if nil != err {
 		panic(err)

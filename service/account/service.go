@@ -1,7 +1,6 @@
 package account
 
 import (
-	"encoding/json"
 	"io/ioutil"
 	"net/http"
 
@@ -68,6 +67,59 @@ func (s *Service) get(endpoint string, v interface{}) (*Response, error) {
 		return nil, err
 	}
 
+	q := &quota.Quota{}
+	err = q.Set(response)
+	if nil != err {
+		return nil, err
+	}
+
+	return &Response{
+		body:     []byte(body),
+		endpoint: endpoint,
+		quota:    q,
+		region:   s.region,
+	}, nil
+}
+
+/*
+// BattleID returns the Battle.net ID and BattleTag.
+func (s *Service) BattleID() (*account.BattleID, error) {
+	var bid *account.BattleID
+	return s.get(endpointUser(s.region), &bid)
+}
+
+// Sc2OauthProfile returns details about a character.
+func (s *Service) Sc2OauthProfile() (*sc2.Character, error) {
+	var character *sc2.Character
+	return s.get(endpointSc2User(s.region), &character)
+}
+
+// WoWOauthProfile returns details about the WoW account.
+func (s *Service) WoWOauthProfile() (*wow.Characters, error) {
+	var character *wow.Characters
+	return s.get(endpointWowCharacters(s.region), &character)
+}
+
+// Converts an HTTP response from a given endpoint to the supplied interface.
+// This function expects the body to contain the associated JSON response
+// from the given endpoint and will return an error if it fails to properly unmarshal.
+func (s *Service) get(endpoint string, v interface{}) (Response, error) {
+	if nil == v {
+		return nil, errors.ErrNoInterfaceSupplied
+	}
+
+	response, err := s.client.Get(endpoint + "?access_token=" + s.token)
+	if nil != err {
+		return nil, err
+	}
+
+	defer response.Body.Close()
+
+	body, err := ioutil.ReadAll(response.Body)
+	if nil != err {
+		return nil, err
+	}
+
 	err = json.Unmarshal([]byte(body), &v)
 	if nil != err {
 		return nil, err
@@ -79,9 +131,10 @@ func (s *Service) get(endpoint string, v interface{}) (*Response, error) {
 		return nil, err
 	}
 
-	return &Response{
+	return Response{
 		Data:     v,
 		Endpoint: endpoint,
 		Quota:    q,
 	}, nil
 }
+*/

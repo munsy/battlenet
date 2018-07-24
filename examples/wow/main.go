@@ -21,7 +21,6 @@ func main() {
 		Client: &http.Client{Timeout: (10 * time.Second)},
 		Locale: locale.AmericanEnglish,
 		Region: regions.US,
-		Key:    *keyFlag,
 	}
 
 	client, err := wow.New(settings)
@@ -30,7 +29,7 @@ func main() {
 		panic(err)
 	}
 
-	status, err := client.RealmStatus()
+	status, err := client.WoW(*keyFlag).RealmStatus()
 
 	if nil != err {
 		panic(err)

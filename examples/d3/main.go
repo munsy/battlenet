@@ -21,16 +21,15 @@ func main() {
 		Client: &http.Client{Timeout: (10 * time.Second)},
 		Locale: locale.AmericanEnglish,
 		Region: regions.US,
-		Key:    *keyFlag,
 	}
 
-	client, err := d3.New(settings)
+	client, err := http.New(settings)
 
 	if nil != err {
 		panic(err)
 	}
 
-	acts, err := client.ActIndex()
+	acts, err := client.D3(*keyFlag).ActIndex()
 
 	if nil != err {
 		panic(err)
