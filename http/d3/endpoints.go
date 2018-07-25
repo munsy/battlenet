@@ -3,7 +3,7 @@ package d3
 import (
 	"strconv"
 
-	"github.com/munsy/gobattlenet/pkg/regions"
+	"github.com/munsy/gobattlenet/regions"
 )
 
 var (
