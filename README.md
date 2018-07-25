@@ -20,9 +20,12 @@ package main
 import (
         "flag"
         "fmt"
+        "net/http"
+        "time"
 
         "github.com/munsy/gobattlenet"
-        "github.com/munsy/gobattlenet/settings"
+        "github.com/munsy/gobattlenet/locale"
+        "github.com/munsy/gobattlenet/regions"
 )
 
 var tokenFlag = flag.String("t", "", "Battle.net API token (required).")
@@ -30,24 +33,37 @@ var tokenFlag = flag.String("t", "", "Battle.net API token (required).")
 func main() {
         flag.Parse()
 
-        settings := &settings.BNetSettings{
+        if *tokenFlag == "" {
+                fmt.Println("No token provided.")
+                return
+        }
+
+        // Create settings for the client. This is not required, but
+        // is necessary for non-default settings.
+        settings := &battlenet.Settings{
                 Client: &http.Client{Timeout: (10 * time.Second)},
                 Locale: locale.AmericanEnglish,
                 Region: regions.US,
-                Key:    *tokenFlag,
         }
 
-        client, err := battlenet.NewAccountClient(settings)
+        // Create a new client for accessing the Battle.net Account API.
+        // There are also clients for Diablo III, Starcraft II, and WoW.
+        client, err := battlenet.AccountClient(settings, *tokenFlag)
 
         if nil != err {
                 panic(err)
         }
 
-        bid, err := client.BattleID()
+        // Make a request. Each method corresponds to a Battle.net endpoint.
+        response, err := client.BattleID()
 
         if nil != err {
                 panic(err)
         }
+
+        // Get the underlying data. You can also see the endpoint that was called,
+        // as well as your quota usage.
+        bid := response.Data
 
         fmt.Printf("ID: %d\n", bid.ID)
         fmt.Printf("BattleTag: %s\n", bid.BattleTag)
