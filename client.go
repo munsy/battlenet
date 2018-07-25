@@ -4,7 +4,7 @@ import (
 	"github.com/munsy/gobattlenet/http/account"
 	"github.com/munsy/gobattlenet/http/d3"
 	"github.com/munsy/gobattlenet/http/sc2"
-	// "github.com/munsy/gobattlenet/http/wow"
+	"github.com/munsy/gobattlenet/http/wow"
 )
 
 const version = "alpha"
@@ -24,9 +24,7 @@ func SC2Client(s *Settings, key string) (*sc2.Client, error) {
 	return sc2.New(s.Client, s.Region, s.Locale, key, version)
 }
 
-/*
 // WoWClient returns a new client for accessing the World of Warcraft API.
 func WoWClient(s *Settings, key string) (*wow.Client, error) {
 	return wow.New(s.Client, s.Region, s.Locale, key, version)
 }
-*/
