@@ -25,6 +25,11 @@ type Client struct {
 	token     string
 }
 
+// UserAgent returns the client User-Agent header used in API requests.
+func (c *Client) UserAgent() string {
+	return c.userAgent
+}
+
 // New returns a new account client.
 func New(c *http.Client, r regions.Region, l locale.Locale, t, v string) (*Client, error) {
 	if "" == t {

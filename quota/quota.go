@@ -24,11 +24,36 @@ const timeFormat = "Monday, January 2, 2006 3:04:05 PM GMT"
 //
 // X-Plan-Quota-Reset: The time when the quota count will reset to 0.
 type Quota struct {
-	QPSAllotted  int
-	QPSCurrent   int
-	QuotaAlloted int
-	QuotaCurrent int
-	QuotaReset   time.Time
+	qpsAllotted  int
+	qpsCurrent   int
+	quotaAlloted int
+	quotaCurrent int
+	quotaReset   time.Time
+}
+
+// QPSAllotted returns the allotted QPS.
+func (q *Quota) QPSAllotted() int {
+	return q.qpsAllotted
+}
+
+// QPSCurrent returns the current QPS.
+func (q *Quota) QPSCurrent() int {
+	return q.qpsCurrent
+}
+
+// QuotaAlloted returns the alloted quota.
+func (q *Quota) QuotaAlloted() int {
+	return q.quotaAlloted
+}
+
+// QuotaCurrent returns the current quota.
+func (q *Quota) QuotaCurrent() int {
+	return q.quotaCurrent
+}
+
+// QuotaReset returns the time the quota will reset.
+func (q *Quota) QuotaReset() time.Time {
+	return q.quotaReset
 }
 
 // Set sets the quota according to values returned by the given http.Response.
@@ -45,29 +70,29 @@ func (q *Quota) Set(r *http.Response) error {
 
 	var err error
 
-	q.QPSAllotted, err = strconv.Atoi(qpsAllotted)
+	q.qpsAllotted, err = strconv.Atoi(qpsAllotted)
 	if nil != err {
 		return err
 	}
 
-	q.QPSCurrent, err = strconv.Atoi(qpsCurrent)
+	q.qpsCurrent, err = strconv.Atoi(qpsCurrent)
 	if nil != err {
 		return err
 	}
 
-	q.QuotaAlloted, err = strconv.Atoi(quotaAlloted)
-
-	if nil != err {
-		return err
-	}
-
-	q.QuotaCurrent, err = strconv.Atoi(quotaCurrent)
+	q.quotaAlloted, err = strconv.Atoi(quotaAlloted)
 
 	if nil != err {
 		return err
 	}
 
-	q.QuotaReset, err = time.Parse(timeFormat, quotaReset)
+	q.quotaCurrent, err = strconv.Atoi(quotaCurrent)
+
+	if nil != err {
+		return err
+	}
+
+	q.quotaReset, err = time.Parse(timeFormat, quotaReset)
 
 	if nil != err {
 		return err

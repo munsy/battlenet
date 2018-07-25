@@ -23,6 +23,11 @@ type Client struct {
 	key       string
 }
 
+// UserAgent returns the client User-Agent header used in API requests.
+func (c *Client) UserAgent() string {
+	return c.userAgent
+}
+
 // New returns a new Starcraft II client.
 func New(c *http.Client, r regions.Region, l locale.Locale, k, v string) (*Client, error) {
 	if "" == k {
