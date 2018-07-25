@@ -52,7 +52,7 @@ type CharacterAchievementData struct {
 	Categories   []CharacterAchievementCategory `json:"categories,omitempty"`
 }
 
-// CharacterAchievementsData represents World of Warcraft character achivements data.
+// CharacterAchievementsData represents World of Warcraft character achievements data.
 type CharacterAchievementsData struct {
 	Achievements []CharacterAchievementData `json:"achievements"`
 }
