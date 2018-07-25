@@ -4,6 +4,7 @@ import (
 	"time"
 )
 
+// Quota defines the battlenet.Quota interface.
 type Quota interface {
 	// QPSAllotted returns the allotted QPS.
 	QPSAllotted() int
