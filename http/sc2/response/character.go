@@ -6,6 +6,7 @@ import (
 	"github.com/munsy/gobattlenet/regions"
 )
 
+// Character represents a Character response.
 type Character struct {
 	Data     *sc2.Character
 	Endpoint string

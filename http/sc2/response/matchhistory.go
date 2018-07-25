@@ -6,6 +6,7 @@ import (
 	"github.com/munsy/gobattlenet/regions"
 )
 
+// MatchHistory represents a MatchHistory response.
 type MatchHistory struct {
 	Data     *sc2.MatchHistory
 	Endpoint string

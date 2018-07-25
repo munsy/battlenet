@@ -6,6 +6,7 @@ import (
 	"github.com/munsy/gobattlenet/regions"
 )
 
+// Achievements represents an Achievements response.
 type Achievements struct {
 	Data     *sc2.AchievementsData
 	Endpoint string

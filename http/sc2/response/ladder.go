@@ -6,6 +6,7 @@ import (
 	"github.com/munsy/gobattlenet/regions"
 )
 
+// Ladder represents a Ladder response.
 type Ladder struct {
 	Data     *sc2.Ladder
 	Endpoint string

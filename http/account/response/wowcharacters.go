@@ -6,6 +6,7 @@ import (
 	"github.com/munsy/gobattlenet/regions"
 )
 
+// WoWCharacters represents a WoWCharacters response.
 type WoWCharacters struct {
 	Data     *wow.Characters
 	Endpoint string

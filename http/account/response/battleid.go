@@ -6,6 +6,7 @@ import (
 	"github.com/munsy/gobattlenet/regions"
 )
 
+// BattleID represents a BattleID response.
 type BattleID struct {
 	Data     *account.BattleID
 	Endpoint string

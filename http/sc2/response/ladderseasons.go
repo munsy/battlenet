@@ -6,6 +6,7 @@ import (
 	"github.com/munsy/gobattlenet/regions"
 )
 
+// LadderSeasons represents a LadderSeasons response.
 type LadderSeasons struct {
 	Data     *sc2.LadderSeasons
 	Endpoint string

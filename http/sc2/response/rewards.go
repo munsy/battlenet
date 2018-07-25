@@ -6,6 +6,7 @@ import (
 	"github.com/munsy/gobattlenet/regions"
 )
 
+// Rewards represents a Rewards response.
 type Rewards struct {
 	Data     *sc2.RewardsData
 	Endpoint string
