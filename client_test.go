@@ -10,16 +10,16 @@ import (
 	"github.com/munsy/gobattlenet/settings"
 )
 
-// make these better
+// make this better
 
 func TestNewClient(t *testing.T) {
-	settings := &settings.BNetSettings{
+	settings := &Settings{
 		Client: &http.Client{Timeout: (10 * time.Second)},
 		Locale: locale.AmericanEnglish,
 		Region: regions.US,
 	}
 
-	c, err := New(settings)
+	c, err := NewNewAccountClient(settings, "fake-token")
 
 	if nil != err {
 		t.Fatal(err.Error())

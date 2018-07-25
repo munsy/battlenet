@@ -7,10 +7,8 @@ import (
 	"time"
 
 	"github.com/munsy/gobattlenet"
-	"github.com/munsy/gobattlenet/pkg/locale"
-	"github.com/munsy/gobattlenet/pkg/models/account"
-	"github.com/munsy/gobattlenet/pkg/regions"
-	"github.com/munsy/gobattlenet/settings"
+	"github.com/munsy/gobattlenet/locale"
+	"github.com/munsy/gobattlenet/regions"
 )
 
 var tokenFlag = flag.String("t", "", "Battle.net API token (required).")
@@ -23,31 +21,25 @@ func main() {
 		return
 	}
 
-	settings := &settings.BNetSettings{
+	settings := &battlenet.Settings{
 		Client: &http.Client{Timeout: (10 * time.Second)},
 		Locale: locale.AmericanEnglish,
 		Region: regions.US,
 	}
 
-	client, err := battlenet.New(settings)
+	client, err := battlenet.AccountClient(settings, *tokenFlag)
 
 	if nil != err {
 		panic(err)
 	}
 
-	response, err := client.Account(*tokenFlag).BattleID()
+	response, err := client.BattleID()
 
 	if nil != err {
 		panic(err)
 	}
 
-	data, err := response.Data()
-
-	if nil != err {
-		panic(err)
-	}
-
-	bid := data.(*account.BattleID)
+	bid := response.Data
 
 	fmt.Printf("ID: %d\n", bid.ID)
 	fmt.Printf("BattleTag: %s\n", bid.BattleTag)

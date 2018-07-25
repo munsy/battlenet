@@ -3,7 +3,7 @@ package locale
 import (
 	"fmt"
 
-	"github.com/munsy/gobattlenet/pkg/errors"
+	"github.com/munsy/gobattlenet/errors"
 )
 
 // Locale represents a Battle.net-defined locale.

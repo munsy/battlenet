@@ -59,12 +59,12 @@ var (
 	//  GAME DATA API
 	d3Data                    = func(r regions.Region) string { return r.API() + "/data/" }
 	dataD3                    = func(r regions.Region) string { return d3Data(r) + "d3/" }
-	endpointSeasonIndex       = func(r regions.Region) string { return dataD3(r) + "season/" }                             // SEASON INDEX 		/DATA/D3/SEASON/
+	endpointSeasonIndex       = func(r regions.Region) string { return dataD3(r) + "season/" }                             // SEASON INDEX 			/DATA/D3/SEASON/
 	endpointSeason            = func(r regions.Region, id int) string { return endpointSeasonIndex(r) + strconv.Itoa(id) } // SEASON 				/DATA/D3/SEASON/:ID
 	endpointSeasonLeaderboard = func(r regions.Region, id int, leaderboard string) string {                                // SEASON LEADERBOARD 	/DATA/D3/SEASON/:ID/LEADERBOARD/:LEADERBOARD
 		return endpointSeason(r, id) + "/leaderboard/" + leaderboard
 	}
-	endpointEraIndex       = func(r regions.Region) string { return dataD3(r) + "era/" }                             // ERA INDEX 		/DATA/D3/ERA/
+	endpointEraIndex       = func(r regions.Region) string { return dataD3(r) + "era/" }                             // ERA INDEX 			/DATA/D3/ERA/
 	endpointEra            = func(r regions.Region, id int) string { return endpointEraIndex(r) + strconv.Itoa(id) } // ERA 				/DATA/D3/ERA/:ID
 	endpointEraLeaderboard = func(r regions.Region, id int, leaderboard string) string {                             // ERA LEADERBOARD 	/DATA/D3/ERA/:ID/LEADERBOARD/:LEADERBOARD
 		return endpointEra(r, id) + "/leaderboard/" + leaderboard

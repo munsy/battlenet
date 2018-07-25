@@ -1,11 +1,11 @@
-// Package quota contains usage data about the Battle.net API, which comes back as part of the response headers after
-// you make a call with one of the gobattlenet clients.
 package quota
 
 import (
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/munsy/gobattlenet/errors"
 )
 
 const timeFormat = "Monday, January 2, 2006 3:04:05 PM GMT"
@@ -33,40 +33,45 @@ type Quota struct {
 
 // Set sets the quota according to values returned by the given http.Response.
 func (q *Quota) Set(r *http.Response) error {
-	qpsAllotted, err := strconv.Atoi(r.Header.Get("X-Plan-Qps-Allotted"))
+	if r.Header.Get("X-Mashery-Error-Code") != "" {
+		return errors.ErrNoTokenSupplied
+	}
+
+	qpsAllotted := r.Header.Get("X-Plan-Qps-Allotted")
+	qpsCurrent := r.Header.Get("X-Plan-Qps-Current")
+	quotaAlloted := r.Header.Get("X-Plan-Quota-Allotted")
+	quotaCurrent := r.Header.Get("X-Plan-Quota-Current")
+	quotaReset := r.Header.Get("X-Plan-Quota-Reset")
+
+	var err error
+
+	q.QPSAllotted, err = strconv.Atoi(qpsAllotted)
+	if nil != err {
+		return err
+	}
+
+	q.QPSCurrent, err = strconv.Atoi(qpsCurrent)
+	if nil != err {
+		return err
+	}
+
+	q.QuotaAlloted, err = strconv.Atoi(quotaAlloted)
 
 	if nil != err {
 		return err
 	}
 
-	qpsCurrent, err := strconv.Atoi(r.Header.Get("X-Plan-Qps-Current"))
+	q.QuotaCurrent, err = strconv.Atoi(quotaCurrent)
 
 	if nil != err {
 		return err
 	}
 
-	quotaAlloted, err := strconv.Atoi(r.Header.Get("X-Plan-Quota-Allotted"))
+	q.QuotaReset, err = time.Parse(timeFormat, quotaReset)
 
 	if nil != err {
 		return err
 	}
-	quotaCurrent, err := strconv.Atoi(r.Header.Get("X-Plan-Quota-Current"))
-
-	if nil != err {
-		return err
-	}
-
-	quotaReset, err := time.Parse(timeFormat, r.Header.Get("X-Plan-Quota-Reset"))
-
-	if nil != err {
-		return err
-	}
-
-	q.QPSAllotted = qpsAllotted
-	q.QPSCurrent = qpsCurrent
-	q.QuotaAlloted = quotaAlloted
-	q.QuotaCurrent = quotaCurrent
-	q.QuotaReset = quotaReset
 
 	return nil
 }
