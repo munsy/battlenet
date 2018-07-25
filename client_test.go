@@ -5,9 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/munsy/gobattlenet/pkg/locale"
-	"github.com/munsy/gobattlenet/pkg/regions"
-	"github.com/munsy/gobattlenet/settings"
+	"github.com/munsy/gobattlenet/locale"
+	"github.com/munsy/gobattlenet/regions"
 )
 
 // make this better
@@ -19,7 +18,7 @@ func TestNewClient(t *testing.T) {
 		Region: regions.US,
 	}
 
-	c, err := NewNewAccountClient(settings, "fake-token")
+	c, err := AccountClient(settings, "fake-token")
 
 	if nil != err {
 		t.Fatal(err.Error())
