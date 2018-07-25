@@ -6,10 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/munsy/gobattlenet/client/sc2"
-	"github.com/munsy/gobattlenet/pkg/locale"
-	"github.com/munsy/gobattlenet/pkg/regions"
-	"github.com/munsy/gobattlenet/settings"
+	"github.com/munsy/gobattlenet"
+	"github.com/munsy/gobattlenet/locale"
+	"github.com/munsy/gobattlenet/regions"
 )
 
 var keyFlag = flag.String("k", "", "Battle.net API key (required).")
@@ -18,28 +17,35 @@ var achievementFlag = flag.Int("id", 0, "Starcraft II achievement ID number (req
 func main() {
 	flag.Parse()
 
+	if *keyFlag == "" {
+		fmt.Println("No key provided.")
+		return
+	}
+
 	if *achievementFlag == 0 {
 		fmt.Println("Invalid achievement id.")
 		return
 	}
 
-	settings := &settings.BNetSettings{
+	settings := &battlenet.Settings{
 		Client: &http.Client{Timeout: (10 * time.Second)},
 		Locale: locale.AmericanEnglish,
 		Region: regions.US,
 	}
 
-	client, err := http.New(settings)
+	client, err := battlenet.SC2Client(settings, *keyFlag)
 
 	if nil != err {
 		panic(err)
 	}
 
-	achievements, err := client.Sc2(*keyFlag).Achievements(*achievementFlag)
+	response, err := client.Achievements(*achievementFlag)
 
 	if nil != err {
 		panic(err)
 	}
+
+	achievements := response.Data
 
 	fmt.Printf("%s\t\t%s\n", "AchievementID", "Title")
 	fmt.Println("----------------------------------------")
