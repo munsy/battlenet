@@ -25,6 +25,16 @@ type Client struct {
 	token     string
 }
 
+// Region returns the client's current region as a string.
+func (c *Client) Region() string {
+	return c.region.String()
+}
+
+// Locale returns the client's current locale as a string.
+func (c *Client) Locale() string {
+	return c.locale.String()
+}
+
 // UserAgent returns the client User-Agent header used in API requests.
 func (c *Client) UserAgent() string {
 	return c.userAgent
@@ -132,7 +142,7 @@ func (c *Client) get(endpoint string, v interface{}) (*quota.Quota, error) {
 		return nil, errors.ErrNoInterfaceSupplied
 	}
 
-	request := endpoint + "?access_token=" + c.token
+	request := endpoint + "?locale=" + c.locale.String() + "&access_token=" + c.token
 
 	response, err := c.client.Get(request)
 	if nil != err {

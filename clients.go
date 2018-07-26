@@ -7,7 +7,7 @@ import (
 	"github.com/munsy/gobattlenet/http/wow"
 )
 
-const version = "alpha"
+const version = "beta"
 
 // AccountClient returns a new client for accessing the Battle.net Account API.
 func AccountClient(s *Settings, token string) (*account.Client, error) {

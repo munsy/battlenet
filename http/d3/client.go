@@ -23,6 +23,16 @@ type Client struct {
 	key       string
 }
 
+// Region returns the client's current region as a string.
+func (c *Client) Region() string {
+	return c.region.String()
+}
+
+// Locale returns the client's current locale as a string.
+func (c *Client) Locale() string {
+	return c.locale.String()
+}
+
 // UserAgent returns the client User-Agent header used in API requests.
 func (c *Client) UserAgent() string {
 	return c.userAgent

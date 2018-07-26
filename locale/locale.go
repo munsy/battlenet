@@ -20,5 +20,5 @@ func (l Locale) String() string {
 		panic(errors.ErrInvalidDialectForm)
 	}
 
-	return fmt.Sprintf("%s_%s", dialects[l.dialect], languages[l.language])
+	return fmt.Sprintf("%s_%s", languages[l.language], dialects[l.dialect])
 }
