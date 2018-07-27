@@ -4,6 +4,8 @@ import (
 	"github.com/munsy/battlenet/errors"
 )
 
+const numRegions = 5
+
 // Region can be one of: US, EU, KR, TW, SEA, or CN
 type Region int
 

@@ -6,8 +6,7 @@ import (
 	"time"
 )
 
-// make this better
-
+// Test valid settings (with a fake token, we're not connecting anywhere)
 func TestNewClient(t *testing.T) {
 	settings := &Settings{
 		Client: &http.Client{Timeout: (10 * time.Second)},
@@ -19,6 +18,19 @@ func TestNewClient(t *testing.T) {
 
 	if nil != err {
 		t.Fatal(err.Error())
+	}
+	if c == nil {
+		t.Fatal("nil client")
+	}
+
+}
+
+// Nil test
+func TestNilSettingsClient(t *testing.T) {
+	c, err := AccountClient(nil, "fake-token")
+
+	if nil != err {
+		t.Fatal("error returned:\n" + err.Error())
 	}
 	if c == nil {
 		t.Fatal("nil client")
