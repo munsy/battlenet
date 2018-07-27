@@ -84,6 +84,12 @@ Please submit all bug reports as issues.
 This section will be updated in the future with a more comprehensive guide to 
 submitting helpful bug reports and/or bug fixes.
 
+
+Contributing
+============
+* Testing is mostly what is needed right now
+* Submit contributions as pull requests
+
 Licensing
 =========
 GoBattleNet is licensed under the MIT License. See
