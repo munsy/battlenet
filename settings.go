@@ -3,8 +3,8 @@ package battlenet
 import (
 	"net/http"
 
-	"github.com/munsy/gobattlenet/locale"
-	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/battlenet/locale"
+	"github.com/munsy/battlenet/regions"
 )
 
 // Settings defines settings for a Client.

@@ -1,10 +1,10 @@
 package battlenet
 
 import (
-	"github.com/munsy/gobattlenet/http/account"
-	"github.com/munsy/gobattlenet/http/d3"
-	"github.com/munsy/gobattlenet/http/sc2"
-	"github.com/munsy/gobattlenet/http/wow"
+	"github.com/munsy/battlenet/http/account"
+	"github.com/munsy/battlenet/http/d3"
+	"github.com/munsy/battlenet/http/sc2"
+	"github.com/munsy/battlenet/http/wow"
 )
 
 const version = "beta"

@@ -1,7 +1,7 @@
 package battlenet
 
 import (
-	"github.com/munsy/gobattlenet/locale"
+	"github.com/munsy/battlenet/locale"
 )
 
 // Locale holds all of the possible Battle.net locale definitions.

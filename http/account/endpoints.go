@@ -1,7 +1,7 @@
 package account
 
 import (
-	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/battlenet/regions"
 )
 
 var (

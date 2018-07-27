@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/munsy/gobattlenet/errors"
+	"github.com/munsy/battlenet/errors"
 )
 
 const timeFormat = "Monday, January 2, 2006 3:04:05 PM GMT"

@@ -11,7 +11,7 @@ notifications:
 
 install:
   - go get github.com/BurntSushi/toml
-  - go get github.com/munsy/gobattlenet
+  - go get github.com/munsy/battlenet
   - go get -v .
   - go get -v github.com/golang/lint/golint
 

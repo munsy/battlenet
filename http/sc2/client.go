@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/munsy/gobattlenet/errors"
-	"github.com/munsy/gobattlenet/http/sc2/response"
-	"github.com/munsy/gobattlenet/locale"
-	"github.com/munsy/gobattlenet/models/sc2"
-	"github.com/munsy/gobattlenet/quota"
-	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/battlenet/errors"
+	"github.com/munsy/battlenet/http/sc2/response"
+	"github.com/munsy/battlenet/locale"
+	"github.com/munsy/battlenet/models/sc2"
+	"github.com/munsy/battlenet/quota"
+	"github.com/munsy/battlenet/regions"
 )
 
 // Client represents the Starcraft II client.

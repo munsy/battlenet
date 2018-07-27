@@ -1,7 +1,7 @@
 package battlenet
 
 import (
-	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/battlenet/regions"
 )
 
 // Regions holds all of the possible Battle.net regions.

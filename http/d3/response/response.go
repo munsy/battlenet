@@ -1,9 +1,9 @@
 package response
 
 import (
-	"github.com/munsy/gobattlenet/models/d3"
-	"github.com/munsy/gobattlenet/quota"
-	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/battlenet/models/d3"
+	"github.com/munsy/battlenet/quota"
+	"github.com/munsy/battlenet/regions"
 )
 
 // ActIndex represents an ActIndex response.

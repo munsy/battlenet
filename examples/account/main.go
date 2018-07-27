@@ -6,9 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/munsy/gobattlenet"
-	"github.com/munsy/gobattlenet/locale"
-	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/battlenet"
 )
 
 var tokenFlag = flag.String("t", "", "Battle.net API token (required).")
@@ -23,8 +21,8 @@ func main() {
 
 	settings := &battlenet.Settings{
 		Client: &http.Client{Timeout: (10 * time.Second)},
-		Locale: locale.AmericanEnglish,
-		Region: regions.US,
+		Locale: battlenet.Locale.AmericanEnglish,
+		Region: battlenet.Regions.US,
 	}
 
 	client, err := battlenet.AccountClient(settings, *tokenFlag)

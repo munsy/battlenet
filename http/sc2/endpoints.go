@@ -3,7 +3,7 @@ package sc2
 import (
 	"strconv"
 
-	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/battlenet/regions"
 )
 
 var (

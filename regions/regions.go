@@ -1,7 +1,7 @@
 package regions
 
 import (
-	"github.com/munsy/gobattlenet/errors"
+	"github.com/munsy/battlenet/errors"
 )
 
 // Region can be one of: US, EU, KR, TW, SEA, or CN

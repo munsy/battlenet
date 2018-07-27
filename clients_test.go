@@ -4,9 +4,6 @@ import (
 	"net/http"
 	"testing"
 	"time"
-
-	"github.com/munsy/gobattlenet/locale"
-	"github.com/munsy/gobattlenet/regions"
 )
 
 // make this better
@@ -14,8 +11,8 @@ import (
 func TestNewClient(t *testing.T) {
 	settings := &Settings{
 		Client: &http.Client{Timeout: (10 * time.Second)},
-		Locale: locale.AmericanEnglish,
-		Region: regions.US,
+		Locale: Locale.AmericanEnglish,
+		Region: Regions.US,
 	}
 
 	c, err := AccountClient(settings, "fake-token")

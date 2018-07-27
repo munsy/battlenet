@@ -1,8 +1,8 @@
-GoBattleNet
+BattleNet
 ===========
-[![Build Status](https://travis-ci.org/munsy/gobattlenet.svg?branch=master)](https://travis-ci.org/munsy/gobattlenet) [![Go Report Card](https://goreportcard.com/badge/github.com/munsy/gobattlenet)](https://goreportcard.com/report/github.com/munsy/gobattlenet) [![GoDoc](https://godoc.org/github.com/munsy/gobattlenet?status.svg)](https://godoc.org/github.com/munsy/gobattlenet)
+[![Build Status](https://travis-ci.org/munsy/battlenet.svg?branch=master)](https://travis-ci.org/munsy/battlenet) [![Go Report Card](https://goreportcard.com/badge/github.com/munsy/battlenet)](https://goreportcard.com/report/github.com/munsy/battlenet) [![GoDoc](https://godoc.org/github.com/munsy/battlenet?status.svg)](https://godoc.org/github.com/munsy/battlenet)
 
-Bindings for Battle.net's API written in Golang.
+A Golang library for retrieving data from Blizzard's Battle.net API.
 
 ## Versions
 * This library is currently in beta. The library is much more stable than it was in alpha. That being said, everything is still subject to change. Use at your own discretion.
@@ -10,7 +10,7 @@ Bindings for Battle.net's API written in Golang.
 
 ## Install
 ```
-$ go get github.com/munsy/gobattlenet
+$ go get github.com/munsy/battlenet
 ```
 ## Example
 ```
@@ -22,9 +22,7 @@ import (
         "net/http"
         "time"
 
-        "github.com/munsy/gobattlenet"
-        "github.com/munsy/gobattlenet/locale"
-        "github.com/munsy/gobattlenet/regions"
+        "github.com/munsy/battlenet"
 )
 
 var tokenFlag = flag.String("t", "", "Battle.net API token (required).")
@@ -41,8 +39,8 @@ func main() {
         // is necessary for non-default settings.
         settings := &battlenet.Settings{
                 Client: &http.Client{Timeout: (10 * time.Second)},
-                Locale: locale.AmericanEnglish,
-                Region: regions.US,
+                Locale: battlenet.Locale.AmericanEnglish,
+                Region: battlenet.Regions.US,
         }
 
         // Create a new client for accessing the Battle.net Account API.
@@ -77,7 +75,7 @@ BattleTag: Munsy#78910
 ```
 
 Additional examples for Diablo III, Starcraft II, and World of Warcraft can be 
-found in the [examples](https://github.com/munsy/gobattlenet/blob/master/examples) 
+found in the [examples](https://github.com/munsy/battlenet/blob/master/examples) 
 package.
 
 Bug Reporting/Fixing
@@ -89,5 +87,5 @@ submitting helpful bug reports and/or bug fixes.
 Licensing
 =========
 GoBattleNet is licensed under the MIT License. See
-[LICENSE](https://github.com/munsy/gobattlenet/blob/master/LICENSE) for the full
+[LICENSE](https://github.com/munsy/battlenet/blob/master/LICENSE) for the full
 license text.

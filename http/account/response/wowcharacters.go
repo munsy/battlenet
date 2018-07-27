@@ -1,9 +1,9 @@
 package response
 
 import (
-	"github.com/munsy/gobattlenet/models/wow"
-	"github.com/munsy/gobattlenet/quota"
-	"github.com/munsy/gobattlenet/regions"
+	"github.com/munsy/battlenet/models/wow"
+	"github.com/munsy/battlenet/quota"
+	"github.com/munsy/battlenet/regions"
 )
 
 // WoWCharacters represents a WoWCharacters response.
