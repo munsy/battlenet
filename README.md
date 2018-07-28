@@ -1,6 +1,6 @@
 BattleNet
 =========
-[![Build Status](https://travis-ci.org/munsy/battlenet.svg?branch=master)](https://travis-ci.org/munsy/battlenet) [![Go Report Card](https://goreportcard.com/badge/github.com/munsy/battlenet)](https://goreportcard.com/report/github.com/munsy/battlenet) [![GoDoc](https://godoc.org/github.com/munsy/battlenet?status.svg)](https://godoc.org/github.com/munsy/battlenet)
+[![Build Status](https://travis-ci.org/munsy/battlenet.svg?branch=master)](https://travis-ci.org/munsy/battlenet) [![GoDoc](https://godoc.org/github.com/munsy/battlenet?status.svg)](https://godoc.org/github.com/munsy/battlenet)
 
 A Golang library for retrieving data from Blizzard's Battle.net API.
 
