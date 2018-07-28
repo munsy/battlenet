@@ -1,6 +1,7 @@
 package account
 
 import (
+	"net/http"
 	"testing"
 
 	"github.com/munsy/battlenet/locale"
@@ -8,6 +9,18 @@ import (
 )
 
 func TestNew(t *testing.T) {
+	c, err := New(http.DefaultClient, regions.US, locale.AmericanEnglish, "no-token", "test")
+
+	if nil != err {
+		t.Fatal(err.Error())
+	}
+
+	if nil == c {
+		t.Fatal("nil client")
+	}
+}
+
+func TestNil(t *testing.T) {
 	c, err := New(nil, regions.US, locale.AmericanEnglish, "no-token", "test")
 
 	if nil != err {
@@ -16,6 +29,38 @@ func TestNew(t *testing.T) {
 
 	if nil == c.client {
 		t.Fatal("nil client")
+	}
+}
+
+func TestRegion(t *testing.T) {
+	c, err := New(nil, regions.US, locale.AmericanEnglish, "no-token", "test")
+
+	if nil != err {
+		t.Fatal(err.Error())
+	}
+
+	if c.Locale() != "en_US" {
+		t.Fatal("wrong locale")
+	}
+}
+
+func TestLocale(t *testing.T) {
+	c, err := New(nil, regions.US, locale.AmericanEnglish, "no-token", "test")
+
+	if nil != err {
+		t.Fatal(err.Error())
+	}
+
+	if c.UserAgent() != "GoBattleNet/test" {
+		t.Fatal("wrong version")
+	}
+}
+
+func TestUserAgent(t *testing.T) {
+	c, err := New(nil, regions.US, locale.AmericanEnglish, "no-token", "test")
+
+	if nil != err {
+		t.Fatal(err.Error())
 	}
 
 	if c.UserAgent() != "GoBattleNet/test" {
