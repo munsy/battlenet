@@ -1,21 +1,5 @@
 package wow
 
-// GuildProfile contains all the information for a guild's members,
-// Battlegroup, achievement points, emblem, etc.
-type GuildProfile struct {
-	LastModified      int             `json:"lastModified"`
-	Name              string          `json:"name"`
-	Realm             string          `json:"realm"`
-	Battlegroup       string          `json:"battlegroup"`
-	Level             int             `json:"level"`
-	Side              int             `json:"side"`
-	AchievementPoints int             `json:"achievementPoints"`
-	Members           []GuildMember   `json:"members"`
-	Emblem            EmblemInfo      `json:"emblem"`
-	News              []GuildNews     `json:"news"`
-	Challenge         []ChallengeData `json:"challenge"`
-}
-
 // GuildNews represents news for a World of Warcraft guild.
 type GuildNews struct {
 	Type        string      `json:"type"`
@@ -67,15 +51,6 @@ type EmblemInfo struct {
 	BackgroundColorID int    `json:"backgroundColorId"`
 }
 
-// GuildMember represents a list of characters that are a member
-// of the guild. When the members list is requested, a list of character
-// objects is returned. Each object in the returned members list
-// contains a character block as well as a rank field.
-type GuildMember struct {
-	Character GuildMemberInfo `json:"character"`
-	Rank      int             `json:"rank"`
-}
-
 // GuildMemberInfo gives information for a member of the guild.
 // Contains a character block as well as a rank field.
 type GuildMemberInfo struct {
@@ -92,4 +67,29 @@ type GuildMemberInfo struct {
 	Guild             string        `json:"guild"`
 	GuildRealm        string        `json:"guildRealm"`
 	LastModified      int           `json:"lastModified"`
+}
+
+// GuildMember represents a list of characters that are a member
+// of the guild. When the members list is requested, a list of character
+// objects is returned. Each object in the returned members list
+// contains a character block as well as a rank field.
+type GuildMember struct {
+	Character GuildMemberInfo `json:"character"`
+	Rank      int             `json:"rank"`
+}
+
+// GuildProfile contains all the information for a guild's members,
+// Battlegroup, achievement points, emblem, etc.
+type GuildProfile struct {
+	LastModified      int             `json:"lastModified"`
+	Name              string          `json:"name"`
+	Realm             string          `json:"realm"`
+	Battlegroup       string          `json:"battlegroup"`
+	Level             int             `json:"level"`
+	Side              int             `json:"side"`
+	AchievementPoints int             `json:"achievementPoints"`
+	Members           []GuildMember   `json:"members"`
+	Emblem            EmblemInfo      `json:"emblem"`
+	News              []GuildNews     `json:"news"`
+	Challenge         []ChallengeData `json:"challenge"`
 }
