@@ -10,7 +10,7 @@ type GuildProfile struct {
 	Level             int             `json:"level"`
 	Side              int             `json:"side"`
 	AchievementPoints int             `json:"achievementPoints"`
-	Members           GuildMembers    `json:"members"`
+	Members           []GuildMember   `json:"members"`
 	Emblem            EmblemInfo      `json:"emblem"`
 	News              []GuildNews     `json:"news"`
 	Challenge         []ChallengeData `json:"challenge"`
@@ -67,17 +67,14 @@ type EmblemInfo struct {
 	BackgroundColorID int    `json:"backgroundColorId"`
 }
 
-// GuildMember contains a character block as well as a rank field.
+// GuildMember represents a list of characters that are a member
+// of the guild. When the members list is requested, a list of character
+// objects is returned. Each object in the returned members list
+// contains a character block as well as a rank field.
 type GuildMember struct {
 	Character GuildMemberInfo `json:"character"`
 	Rank      int             `json:"rank"`
 }
-
-// GuildMembers represents a list of characters that are a member
-// of the guild. When the members list is requested, a list of character
-// objects is returned. Each object in the returned members list
-// contains a character block as well as a rank field.
-type GuildMembers []GuildMember
 
 // GuildMemberInfo gives information for a member of the guild.
 // Contains a character block as well as a rank field.
