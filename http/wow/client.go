@@ -197,7 +197,7 @@ func (c *Client) CharacterProfile(realm, characterName string) (*response.Charac
 func (c *Client) GuildProfile(realm, guildName string) (*response.GuildProfile, error) {
 	var data *wow.GuildProfile
 
-	ep := endpointGuildProfile(c.region, realm, guildName) + "&fields=achievements%2Cchallenge%2Cnews%2Cmembers"
+	ep := endpointGuildProfile(c.region, realm, guildName) + "?fields=achievements%2Cchallenge%2Cnews%2Cmembers"
 
 	q, err := c.get(ep, &data)
 
