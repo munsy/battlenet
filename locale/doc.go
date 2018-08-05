@@ -1,4 +1,4 @@
-// Package locale defeines valid language and country sets for accessing the Battle.net API.
+// Package locale defines valid language and country sets for accessing the Battle.net API.
 //
 // The following locales are supported:
 // en_US - American English
