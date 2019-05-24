@@ -4,10 +4,6 @@ BattleNet
 
 A Golang library for retrieving data from Blizzard's Battle.net API.
 
-## Versions
-* This library is currently in beta. The library is much more stable than it was in alpha. That being said, everything is still subject to change. Use at your own discretion.
-* All data returned by clients should be up-to-date, including World of Warcraft, which just had its API updated for Battle for Azeroth.
-
 ## Install
 ```
 $ go get github.com/munsy/battlenet
