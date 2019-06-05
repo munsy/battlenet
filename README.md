@@ -4,6 +4,8 @@ BattleNet
 
 A Golang library for retrieving data from Blizzard's Battle.net API.
 
+Requires Go 1.12 or higher.
+
 ## Install
 ```
 $ go get github.com/munsy/battlenet
