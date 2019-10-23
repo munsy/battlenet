@@ -8,6 +8,7 @@ import (
 
 // r regions.Region,
 var (
+	
 	endpointWow = func(r regions.Region) string { return r.API() + "wow/" }
 
 	//	ACHIEVEMENT
