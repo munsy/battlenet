@@ -1,17 +1,9 @@
 package wow
 
-type NamespaceCategory int
+type NamespaceCategory string
 
 const(
-	STATIC NamespaceCategory = iota,
-	DYNAMIC,
-	PROFILE
+	STATIC NamespaceCategory = "static",
+	DYNAMIC NamespaceCategory = "dynamic",
+	PROFILE NamespaceCategory = "profile"
 )
-
-type WoWNamespace interface {
-	String() string
-}
-
-func Namespace() WoWNamespace {
-
-}
