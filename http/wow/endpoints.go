@@ -8,7 +8,6 @@ import (
 
 // r regions.Region,
 var (
-	
 	endpointWow = func(r regions.Region) string { return r.API() + "wow/" }
 
 	//	ACHIEVEMENT
@@ -105,15 +104,15 @@ var (
 	endpointData                  = func(r regions.Region) string { return endpointWow(r) + "data/" }
 	endpointDataCharacter         = func(r regions.Region) string { return endpointData(r) + "character/" }
 	endpointDataGuild             = func(r regions.Region) string { return endpointData(r) + "guild/" }
-	endpointBattlegroups          = func(r regions.Region) string { return endpointData(r) + "battlegroups/" }         // BATTLEGROUPS 			/WOW/DATA/BATTLEGROUPS/
-	endpointCharacterRaces        = func(r regions.Region) string { return endpointDataCharacter(r) + "races" }        // CHARACTER RACES 		/WOW/DATA/CHARACTER/RACES
+	endpointBattlegroups          = func(r regions.Region) string { return endpointData(r) + "battlegroups/" }         // BATTLEGROUPS 				/WOW/DATA/BATTLEGROUPS/
+	endpointCharacterRaces        = func(r regions.Region) string { return endpointDataCharacter(r) + "races" }        // CHARACTER RACES 			/WOW/DATA/CHARACTER/RACES
 	endpointCharacterClasses      = func(r regions.Region) string { return endpointDataCharacter(r) + "classes" }      // CHARACTER CLASSES 		/WOW/DATA/CHARACTER/CLASSES
 	endpointCharacterAchievements = func(r regions.Region) string { return endpointDataCharacter(r) + "achievements" } // CHARACTER ACHIEVEMENTS 	/WOW/DATA/CHARACTER/ACHIEVEMENTS
 	endpointGuildRewards          = func(r regions.Region) string { return endpointDataGuild(r) + "rewards" }          // GUILD REWARDS 			/WOW/DATA/GUILD/REWARDS
-	endpointGuildPerks            = func(r regions.Region) string { return endpointDataGuild(r) + "perks" }            // GUILD PERKS 			/WOW/DATA/GUILD/PERKS
+	endpointGuildPerks            = func(r regions.Region) string { return endpointDataGuild(r) + "perks" }            // GUILD PERKS 				/WOW/DATA/GUILD/PERKS
 	endpointGuildAchievements     = func(r regions.Region) string { return endpointDataGuild(r) + "achievements" }     // GUILD ACHIEVEMENTS 		/WOW/DATA/GUILD/ACHIEVEMENTS
-	endpointItemClasses           = func(r regions.Region) string { return endpointData(r) + "item/classes" }          // ITEM CLASSES 			/WOW/DATA/ITEM/CLASSES
-	endpointTalents               = func(r regions.Region) string { return endpointData(r) + "talents" }               // TALENTS 				/WOW/DATA/TALENTS
+	endpointItemClasses           = func(r regions.Region) string { return endpointData(r) + "item/classes" }          // ITEM CLASSES 				/WOW/DATA/ITEM/CLASSES
+	endpointTalents               = func(r regions.Region) string { return endpointData(r) + "talents" }               // TALENTS 					/WOW/DATA/TALENTS
 	endpointPetTypes              = func(r regions.Region) string { return endpointData(r) + "pet/types" }             // PET TYPES 				/WOW/DATA/PET/TYPES
 
 	//	WOW GAME DATA API

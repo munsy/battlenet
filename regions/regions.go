@@ -57,17 +57,9 @@ func (r Region) API() string {
 	var url string
 	switch r {
 	case US:
-		url = urlHead + r.String() + urlTail
-		break
 	case EU:
-		url = urlHead + r.String() + urlTail
-		break
 	case KR:
-		url = urlHead + r.String() + urlTail
-		break
 	case TW:
-		url = urlHead + r.String() + urlTail
-		break
 	case SEA:
 		url = urlHead + r.String() + urlTail
 		break
@@ -85,17 +77,9 @@ func (r Region) oauthHelper(endpoint string) string {
 	var url string
 	switch r {
 	case US:
-		url = urlHead + r.String() + oauthTail + endpoint
-		break
 	case EU:
-		url = urlHead + r.String() + oauthTail + endpoint
-		break
 	case KR:
-		url = urlHead + r.String() + oauthTail + endpoint
-		break
 	case TW:
-		url = urlHead + r.String() + oauthTail + endpoint
-		break
 	case SEA:
 		url = urlHead + r.String() + oauthTail + endpoint
 		break
